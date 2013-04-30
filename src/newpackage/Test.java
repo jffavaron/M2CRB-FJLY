@@ -12,6 +12,7 @@ public class Test {
     
     public void main() {
         System.out.println("hello !");
+        System.out.println("modification de Lydia !");
     }
     
 }
