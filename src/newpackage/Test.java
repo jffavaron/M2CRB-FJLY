@@ -11,7 +11,7 @@ package newpackage;
 public class Test {
     
     public void main() {
-        System.out.println("hello");
+        System.out.println("hello !");
     }
     
 }
