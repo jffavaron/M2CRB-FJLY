@@ -88,7 +88,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         setTitle("SmartPhone");
         setResizable(false);
 
-        ImageBandeau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/bandeau.jpg"))); // NOI18N
+        ImageBandeau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/bandeau.jpg"))); // NOI18N
 
         javax.swing.GroupLayout bandeauPanelLayout = new javax.swing.GroupLayout(bandeauPanel);
         bandeauPanel.setLayout(bandeauPanelLayout);
@@ -267,7 +267,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         EcranIdentification.getAccessibleContext().setAccessibleName("");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
         jButton1.setText("Muséum d'histoire naturelle de Toulouse");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +289,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/company_logo45x45.jpg"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/company_logo45x45.jpg"))); // NOI18N
         jButton2.setText("Musée des Augustins - Musée des beaux arts de Toulouse");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
@@ -300,7 +300,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/hg-deportation45x45.jpg"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-deportation45x45.jpg"))); // NOI18N
         jButton3.setText("Musée de la résistance et de la déportation");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
@@ -311,7 +311,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/hg-labit45x45.jpg"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-labit45x45.jpg"))); // NOI18N
         jButton4.setText("Musée Georges-Labit ");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
@@ -322,7 +322,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/4385_20090101171725.jpg"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/4385_20090101171725.jpg"))); // NOI18N
         jButton5.setText("Musée Saint-Raymond de Toulouse");
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 

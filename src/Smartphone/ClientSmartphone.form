@@ -67,7 +67,7 @@
         <Component class="javax.swing.JLabel" name="ImageBandeau">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/GUI/Images/bandeau.jpg"/>
+              <Image iconType="3" name="/Smartphone/Images/bandeau.jpg"/>
             </Property>
           </Properties>
         </Component>
@@ -461,7 +461,7 @@
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/721-museum-toulouse - Copie.jpg"/>
+                  <Image iconType="3" name="/Smartphone/Images/721-museum-toulouse - Copie.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;um d&apos;histoire naturelle de Toulouse"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
@@ -486,7 +486,7 @@
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/company_logo45x45.jpg"/>
+                  <Image iconType="3" name="/Smartphone/Images/company_logo45x45.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;e des Augustins - Mus&#xe9;e des beaux arts de Toulouse"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
@@ -503,7 +503,7 @@
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/hg-deportation45x45.jpg"/>
+                  <Image iconType="3" name="/Smartphone/Images/hg-deportation45x45.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;e de la r&#xe9;sistance et de la d&#xe9;portation"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
@@ -520,7 +520,7 @@
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/hg-labit45x45.jpg"/>
+                  <Image iconType="3" name="/Smartphone/Images/hg-labit45x45.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;e Georges-Labit "/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
@@ -537,7 +537,7 @@
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/4385_20090101171725.jpg"/>
+                  <Image iconType="3" name="/Smartphone/Images/4385_20090101171725.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;e Saint-Raymond de Toulouse"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
