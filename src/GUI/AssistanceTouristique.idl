@@ -1,0 +1,129 @@
+// Module de gestion d'assistance touristique
+module GestionAssitanceTouristique{
+	// --#### Définitions des types
+	typedef string t_raison; // type message de raison d'exception
+	
+	// Structure Coordonnees permettant d'indiquer la latitude et la longitude d'une coordonnée
+	struct Coordonnees{
+		float latitude;
+		float longitude;
+	};
+	
+	// Structure Carte permettant d'indiquer les informations relatives à la carte électronique virtuelle d'un touriste
+	struct Carte{
+		short idCarte;
+		long dateDebut;
+		long dateFin;
+	};
+	
+	// Structure Statistique permettant d'indiquer le libellé d'une statistique et sa valeur correspondante
+	struct Statistique{
+		string libelleStat;
+		long valeurStat;
+		string uniteStat;
+	};
+	
+	// Structure Visite permettant d'indiquer les informations relatives à une visite 
+	struct Visite{
+		long date;
+		long heureEntree;
+		long heureSortie;
+		string interet;
+	};
+	
+	// Structure Site permettant d'indiquer les informations générales relatives à un site touristique
+	struct Site{
+		string nom;
+		Coordonnees coord;
+		long affluenceCourante;
+		long horaireFermeture;
+	};
+		
+	typedef sequence<Site> t_listeSites; // type liste de sites touristiques
+	typedef sequence<Statistique> t_listeStat; // type liste de statistiques
+	typedef sequence<Visite> t_listeVisites; // type liste de visites
+	
+	//--#### Définitions des interfaces
+	
+	// Interface SmartphoneTouriste
+	interface SmartphoneTouriste{
+		// Attributs 
+		readonly attribute short idCarteAchetee; // accessible
+		
+		// Méthodes
+		void notifierAvisVisite(in Visite visite, in Site site);
+	};
+	
+	// Interface Office
+	interface Office{
+		// Méthodes
+		t_listeSites getListeSitesAVisiter(in short idCarte, in Coordonnees coordGPS, in t_listeSites listeSitesVisites);	// renvoie la liste des informations relatives aux sites à visiter
+		
+	};
+	
+	// Interface ServiceAchat
+	interface ServiceAchatOffice{
+		// Exceptions
+		exception achatImpossibleException {t_raison raison;};
+
+		// Méthodes
+		Carte acheterPrestation(in short dateD, in short dateF, in float montant) raises(achatImpossibleException); // renvoie l'identifiant de la carte générée
+		
+	};
+	
+	// Interface ServiceStatOffice
+	interface ServiceStatOffice{
+		// Méthodes
+		t_listeStat getStatsGlobales();	// renvoie une liste de statistiques sur l'ensemble des sites
+		void afficherStatsSite(in t_listeStat listeStat); 	// affiche la listes des statistiques d'un site touristique
+	};
+	
+	// Interface SiteTouristique
+	interface SiteTouristique{
+		// Méthodes
+		short getHorairesFermeture();	// revoie l heure de fermeture du site sous la forme HHMM
+	};
+	
+	// Interface ServiceESSite
+	interface ServiceESSite{
+		// Exceptions
+		exception carteNonValideException {t_raison raison;};
+		exception siteDejaVisiteException {t_raison raison;};
+		exception siteSatureException {t_raison raison;};
+		exception siteFermeException {t_raison raison;};
+	
+		// Méthodes		
+		oneway void autoriserEntree(in Carte carte);	// enregistre la carte comme valide pour la période correspondante
+		boolean entrer(in short idCarte) raises (carteNonValideException, siteDejaVisiteException, siteSatureException, siteFermeException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
+		oneway void sortir(in short idCarte);
+		oneway void donnerAvisVisite(in string interet);
+		t_listeVisites getInfosES();	// renvoie une liste d'informations sur les visites (entrées et sorties) du site touristique
+		short getAffluenceCourante(); // renvoie l'affluence courante du site touristique
+		
+	};
+		
+	// Interface ServiceStatSite
+	interface ServiceStatSite{
+		// Méthodes
+		t_listeStat getStatsSite();	// renvoie une liste de statistiques sur le site touristique
+		void afficherInfosES(in t_listeVisites listeVisites); // affiche la liste des visites du site touristique
+	};
+	
+	// Interface ServiceDeplacement
+	interface ServiceDeplacement{
+		// Exceptions
+		exception coordNonValidesException {t_raison raison;};
+		// Méthodes
+		long calculerDureeTrajet(in Coordonnees coordGPS_A, in Coordonnees coordGPS_B, in string mode) raises(coordNonValidesException);	// renvoie la durée du trajet en minute
+	};
+	
+	// Interface ServiceBanque
+	interface ServiceBancaire{
+		// Exceptions
+		exception operationImpossibleException {t_raison raison;};
+		
+		// Méthodes
+		boolean verifierPaiement(in float montant) raises(operationImpossibleException);	// renvoie true si paiement validé, false sinon
+	};	
+	
+};
