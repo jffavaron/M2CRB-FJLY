@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Site;
 import GestionAssitanceTouristique.*;
 /**
  *
  * @author Lydia
  */
-public abstract class ServiceBancaireImpl extends ServiceBancairePOA {
+public abstract class SiteTouristiqueImpl extends SiteTouristiquePOA {
     
-    public ServiceBancaireImpl() {
+    public SiteTouristiqueImpl() {
         
     }
     
-    public boolean verifierPaiement(float montant) {
-        return false;
+    public short getHorairesFermeture() {
+        return 0;
         
     }
 }

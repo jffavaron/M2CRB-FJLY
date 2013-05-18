@@ -2,24 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Site;
 import GestionAssitanceTouristique.*;
 /**
  *
  * @author Lydia
  */
-public abstract class ServiceStatOfficeImpl extends ServiceStatOfficePOA {
+public abstract class ServiceStatSiteImpl extends ServiceStatSitePOA {
     
-    public ServiceStatOfficeImpl() {
+    public ServiceStatSiteImpl() {
         
     }
     
-    public Statistique[] getStatsGlobales() {
+    public Statistique[] getStatsSite() {
         return null;
         
     }
     
-    public void afficherStatsSite(Statistique[] listeStat) {
+    public void afficherInfosES(Visite[] listeVisites) {
         
     }
 }

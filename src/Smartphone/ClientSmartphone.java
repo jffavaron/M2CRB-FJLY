@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Smartphone;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author pc-jfred
  */
-public class MainSmartphone extends javax.swing.JFrame {
+public class ClientSmartphone extends javax.swing.JFrame {
 
     /**
      * Creates new form MainSmartphone
      */
-    public MainSmartphone() {
+    public ClientSmartphone() {
         initComponents();
     }
 
@@ -392,7 +392,7 @@ public class MainSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranAccueil, "EcranAccueil");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/721-museum-toulouse100x100.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse100x100.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -827,20 +827,20 @@ public class MainSmartphone extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainSmartphone().setVisible(true);
+                new ClientSmartphone().setVisible(true);
             }
         });
     }
