@@ -32,6 +32,7 @@ public class MainSmartphone extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jTextField1 = new javax.swing.JTextField();
         bandeauPanel = new javax.swing.JPanel();
         ImageBandeau = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
@@ -61,6 +62,58 @@ public class MainSmartphone extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         EcranInfoSite = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane5 = new javax.swing.JTextPane();
+        labelIdentifiant13 = new javax.swing.JLabel();
+        labelIdentifiant14 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        labelIdentifiant15 = new javax.swing.JLabel();
+        jProgressBar6 = new javax.swing.JProgressBar();
+        EcranInfoSite1 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        labelIdentifiant4 = new javax.swing.JLabel();
+        labelIdentifiant5 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        labelIdentifiant6 = new javax.swing.JLabel();
+        jProgressBar3 = new javax.swing.JProgressBar();
+        EcranInfoSite2 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
+        labelIdentifiant7 = new javax.swing.JLabel();
+        labelIdentifiant8 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        labelIdentifiant9 = new javax.swing.JLabel();
+        jProgressBar4 = new javax.swing.JProgressBar();
+        EcranInfoSite3 = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
+        labelIdentifiant10 = new javax.swing.JLabel();
+        labelIdentifiant11 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        labelIdentifiant12 = new javax.swing.JLabel();
+        jProgressBar5 = new javax.swing.JProgressBar();
+        EcranInfoSite4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,16 +143,16 @@ public class MainSmartphone extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         EcranMesAchats = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
@@ -130,6 +183,8 @@ public class MainSmartphone extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         jScrollPane3.setViewportView(jEditorPane1);
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SmartPhone");
@@ -177,7 +232,7 @@ public class MainSmartphone extends javax.swing.JFrame {
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(boutonRetour)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
@@ -307,7 +362,7 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addComponent(boutonInscription)
                 .addGap(18, 18, 18)
                 .addComponent(boutonMotDePasseOublie)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranIdentification, "EcranIdentification");
@@ -316,6 +371,7 @@ public class MainSmartphone extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
         jButton1.setText("Muséum d'histoire naturelle de Toulouse");
+        jButton1.setAutoscrolls(true);
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,6 +411,11 @@ public class MainSmartphone extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/hg-deportation45x45.jpg"))); // NOI18N
         jButton3.setText("Musée de la résistance et de la déportation");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,6 +427,11 @@ public class MainSmartphone extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/hg-labit45x45.jpg"))); // NOI18N
         jButton4.setText("Musée Georges-Labit ");
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,6 +443,11 @@ public class MainSmartphone extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/4385_20090101171725.jpg"))); // NOI18N
         jButton5.setText("Musée Saint-Raymond de Toulouse");
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Réserver");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -454,14 +525,454 @@ public class MainSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranAccueil, "EcranAccueil");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/721-museum-toulouse100x100.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/721-museum-toulouse100x100.jpg"))); // NOI18N
+        jLabel49.setText("jLabel1");
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel50.setText("Muséum d'histoires naturelles");
+
+        jLabel51.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel51.setText("Prix : 8 €");
+
+        jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane7.setAutoscrolls(true);
+        jScrollPane7.setFocusable(false);
+
+        jTextPane5.setEditable(false);
+        jTextPane5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane5.setText("Au gré de plusieurs espaces thématiques, l'exposition permanente du Muséum meet en exergue la richesse et la profondeur des relations liant l'Homme et la Nature. L'Homme depuis sa naissance jusqu'à son avenir, en passant par les différentes étapes de son évolution est ainsi amené à s'interroger, réfléchir, jusqu'à prendre conscience des défis contemporains posés à l'humanité.");
+        jTextPane5.setFocusable(false);
+        jTextPane5.setHighlighter(null);
+        jScrollPane7.setViewportView(jTextPane5);
+
+        labelIdentifiant13.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant13.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant13.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant13.setText("   Présentation");
+        labelIdentifiant13.setToolTipText("");
+        labelIdentifiant13.setOpaque(true);
+
+        labelIdentifiant14.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant14.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant14.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant14.setText("   Adresse");
+        labelIdentifiant14.setToolTipText("");
+        labelIdentifiant14.setOpaque(true);
+
+        jLabel52.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel52.setText("Musée nationnal - Sciences");
+
+        jLabel53.setText("35 Allée Jules Guesde Toulouse");
+
+        jLabel54.setText("05 67 73 84 84");
+
+        labelIdentifiant15.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant15.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant15.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant15.setText("   Affluence");
+        labelIdentifiant15.setToolTipText("");
+        labelIdentifiant15.setOpaque(true);
+
+        jProgressBar6.setForeground(new java.awt.Color(51, 255, 51));
+        jProgressBar6.setValue(14);
+
+        javax.swing.GroupLayout EcranInfoSiteLayout = new javax.swing.GroupLayout(EcranInfoSite);
+        EcranInfoSite.setLayout(EcranInfoSiteLayout);
+        EcranInfoSiteLayout.setHorizontalGroup(
+            EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIdentifiant13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(labelIdentifiant14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel54))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelIdentifiant15, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jProgressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        EcranInfoSiteLayout.setVerticalGroup(
+            EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EcranInfoSiteLayout.createSequentialGroup()
+                        .addComponent(jLabel50)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel52)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jProgressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(EcranInfoSite, "EcranInfoSite");
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/musee des augustins.jpg"))); // NOI18N
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel32.setText("Musée des augustins");
+
+        jLabel33.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel33.setText("Plein tarif : 4 €");
+
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane4.setAutoscrolls(true);
+        jScrollPane4.setFocusable(false);
+
+        jTextPane2.setEditable(false);
+        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane2.setText("Le musée des Augustins, est installé au cœur de la cité. Il abrite depuis 1793 des collections de peinture et de sculpture du début du Moyen Âge aux année 1940. Leur variété et leur qualité permettent d'évoquer les grandes étapes de l'histoire de l'art occidental.");
+        jTextPane2.setFocusable(false);
+        jTextPane2.setHighlighter(null);
+        jScrollPane4.setViewportView(jTextPane2);
+
+        labelIdentifiant4.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant4.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant4.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant4.setText("   Présentation");
+        labelIdentifiant4.setToolTipText("");
+        labelIdentifiant4.setOpaque(true);
+
+        labelIdentifiant5.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant5.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant5.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant5.setText("   Adresse");
+        labelIdentifiant5.setToolTipText("");
+        labelIdentifiant5.setOpaque(true);
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel34.setText("Musée des Beaux-Arts de Toulouse");
+
+        jLabel35.setText("21, rue de Metz 31300 Toulouse  ");
+
+        jLabel36.setText("Tél +33 (0)5 61 22 21 82");
+
+        labelIdentifiant6.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant6.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant6.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant6.setText("   Affluence");
+        labelIdentifiant6.setToolTipText("");
+        labelIdentifiant6.setOpaque(true);
+
+        jProgressBar3.setForeground(new java.awt.Color(51, 255, 51));
+        jProgressBar3.setValue(25);
+
+        javax.swing.GroupLayout EcranInfoSite1Layout = new javax.swing.GroupLayout(EcranInfoSite1);
+        EcranInfoSite1.setLayout(EcranInfoSite1Layout);
+        EcranInfoSite1Layout.setHorizontalGroup(
+            EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIdentifiant4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(labelIdentifiant5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite1Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel36))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelIdentifiant6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite1Layout.createSequentialGroup()
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel33)))
+                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        EcranInfoSite1Layout.setVerticalGroup(
+            EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSite1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EcranInfoSite1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite1Layout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(labelIdentifiant4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(EcranInfoSite1, "EcranInfoSite1");
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Musee de la resistance et de la deportation.jpg"))); // NOI18N
+        jLabel37.setText("jLabel1");
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel38.setText("Musée de la Résistance et de la Déportation de l'Isère  Maison des Droits de l'Homme");
+        jLabel38.setAutoscrolls(true);
+
+        jLabel39.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel39.setText("gratuite");
+
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane5.setAutoscrolls(true);
+        jScrollPane5.setFocusable(false);
+
+        jTextPane3.setEditable(false);
+        jTextPane3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane3.setText("Initié au cours des années 1960 par des résistants, des déportés et des enseignants, le Musée de la Résistance et de la Déportation devient départemental en 1994.");
+        jTextPane3.setFocusable(false);
+        jTextPane3.setHighlighter(null);
+        jScrollPane5.setViewportView(jTextPane3);
+
+        labelIdentifiant7.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant7.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant7.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant7.setText("   Présentation");
+        labelIdentifiant7.setToolTipText("");
+        labelIdentifiant7.setOpaque(true);
+
+        labelIdentifiant8.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant8.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant8.setText("   Adresse");
+        labelIdentifiant8.setToolTipText("");
+        labelIdentifiant8.setOpaque(true);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel40.setText("Maison des droits de l'homme");
+
+        jLabel41.setText("14, rue Hébert 38000 Grenoble");
+
+        jLabel42.setText("Tél : 04 76 42 38 53");
+
+        labelIdentifiant9.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant9.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant9.setText("   Affluence");
+        labelIdentifiant9.setToolTipText("");
+        labelIdentifiant9.setOpaque(true);
+
+        jProgressBar4.setForeground(new java.awt.Color(51, 255, 51));
+        jProgressBar4.setValue(14);
+
+        javax.swing.GroupLayout EcranInfoSite2Layout = new javax.swing.GroupLayout(EcranInfoSite2);
+        EcranInfoSite2.setLayout(EcranInfoSite2Layout);
+        EcranInfoSite2Layout.setHorizontalGroup(
+            EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIdentifiant7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(labelIdentifiant8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel41)
+                    .addComponent(jLabel42))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelIdentifiant9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        EcranInfoSite2Layout.setVerticalGroup(
+            EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(EcranInfoSite2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel37)
+                        .addComponent(jLabel40))
+                    .addGroup(EcranInfoSite2Layout.createSequentialGroup()
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel39)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(EcranInfoSite2, "EcranInfoSite2");
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Musee Georges-Labit .jpg"))); // NOI18N
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel44.setText("Musée Georges-Labit");
+
+        jLabel45.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel45.setText("Prix : 4 €");
+
+        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane6.setAutoscrolls(true);
+        jScrollPane6.setFocusable(false);
+
+        jTextPane4.setEditable(false);
+        jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane4.setText("Le musée Georges-Labit est d’abord l’œuvre d’un grand voyageur : Georges Labit (Toulouse, 1862-1899). Grâce à lui, la ville de Toulouse possède l’un des plus anciens musées d’art asiatique en France, le second après le musée Guimet de Paris.");
+        jTextPane4.setFocusable(false);
+        jTextPane4.setHighlighter(null);
+        jScrollPane6.setViewportView(jTextPane4);
+
+        labelIdentifiant10.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant10.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant10.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant10.setText("   Présentation");
+        labelIdentifiant10.setToolTipText("");
+        labelIdentifiant10.setOpaque(true);
+
+        labelIdentifiant11.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant11.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant11.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant11.setText("   Adresse");
+        labelIdentifiant11.setToolTipText("");
+        labelIdentifiant11.setOpaque(true);
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel46.setText("Musée d’art asiatique ");
+
+        jLabel47.setText("17, rue du Japon, 31400 Toulouse");
+
+        jLabel48.setText("Tél : 05 61 14 65 50");
+
+        labelIdentifiant12.setBackground(new java.awt.Color(153, 153, 153));
+        labelIdentifiant12.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelIdentifiant12.setForeground(new java.awt.Color(255, 255, 255));
+        labelIdentifiant12.setText("   Affluence");
+        labelIdentifiant12.setToolTipText("");
+        labelIdentifiant12.setOpaque(true);
+
+        jProgressBar5.setForeground(new java.awt.Color(51, 255, 51));
+        jProgressBar5.setValue(37);
+
+        javax.swing.GroupLayout EcranInfoSite3Layout = new javax.swing.GroupLayout(EcranInfoSite3);
+        EcranInfoSite3.setLayout(EcranInfoSite3Layout);
+        EcranInfoSite3Layout.setHorizontalGroup(
+            EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIdentifiant10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(labelIdentifiant11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel47)
+                    .addComponent(jLabel48))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelIdentifiant12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel45)
+                            .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jProgressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        EcranInfoSite3Layout.setVerticalGroup(
+            EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EcranInfoSite3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite3Layout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel46)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel45))
+                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(labelIdentifiant10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelIdentifiant12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jProgressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(EcranInfoSite3, "EcranInfoSite3");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Musee Saint-Raymond de Toulouse.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Muséum d'histoires naturelles");
+        jLabel2.setText("Musee Saint-Raymond de Toulouse");
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("Prix : 8 €");
+        jLabel3.setText("Prix : 4 €");
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -470,7 +981,7 @@ public class MainSmartphone extends javax.swing.JFrame {
 
         jTextPane1.setEditable(false);
         jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jTextPane1.setText("Au gré de plusieurs espaces thématiques, l'exposition permanente du Muséum meet en exergue la richesse et la profondeur des relations liant l'Homme et la Nature. L'Homme depuis sa naissance jusqu'à son avenir, en passant par les différentes étapes de son évolution est ainsi amené à s'interroger, réfléchir, jusqu'à prendre conscience des défis contemporains posés à l'humanité.");
+        jTextPane1.setText("Le musée Saint-Raymond, présente tous les jours une importante collection archéologique. Près de 1000 pièces retracent le quotidien des Celtes et des Romains dans la région toulousaine.");
         jTextPane1.setFocusable(false);
         jTextPane1.setHighlighter(null);
         jScrollPane1.setViewportView(jTextPane1);
@@ -490,11 +1001,11 @@ public class MainSmartphone extends javax.swing.JFrame {
         labelIdentifiant2.setOpaque(true);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        jLabel4.setText("Musée nationnal - Sciences");
+        jLabel4.setText("musée des Antiques de Toulouse");
 
-        jLabel5.setText("35 Allée Jules Guesde Toulouse");
+        jLabel5.setText("1 Ter place Saint-Sernin 31000 Toulouse");
 
-        jLabel6.setText("05 67 73 84 84");
+        jLabel6.setText("Tél. : 05 61 22 31 44");
 
         labelIdentifiant3.setBackground(new java.awt.Color(153, 153, 153));
         labelIdentifiant3.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -504,49 +1015,49 @@ public class MainSmartphone extends javax.swing.JFrame {
         labelIdentifiant3.setOpaque(true);
 
         jProgressBar1.setForeground(new java.awt.Color(51, 255, 51));
-        jProgressBar1.setValue(14);
+        jProgressBar1.setValue(70);
 
-        javax.swing.GroupLayout EcranInfoSiteLayout = new javax.swing.GroupLayout(EcranInfoSite);
-        EcranInfoSite.setLayout(EcranInfoSiteLayout);
-        EcranInfoSiteLayout.setHorizontalGroup(
-            EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout EcranInfoSite4Layout = new javax.swing.GroupLayout(EcranInfoSite4);
+        EcranInfoSite4.setLayout(EcranInfoSite4Layout);
+        EcranInfoSite4Layout.setHorizontalGroup(
+            EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelIdentifiant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(labelIdentifiant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSite4Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(labelIdentifiant3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(0, 67, Short.MAX_VALUE))
+            .addComponent(labelIdentifiant3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(EcranInfoSite4Layout.createSequentialGroup()
+                .addGroup(EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                    .addGroup(EcranInfoSite4Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        EcranInfoSiteLayout.setVerticalGroup(
-            EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+        EcranInfoSite4Layout.setVerticalGroup(
+            EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranInfoSite4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, EcranInfoSiteLayout.createSequentialGroup()
+                .addGroup(EcranInfoSite4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranInfoSite4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(labelIdentifiant1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,7 +1074,7 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        mainPanel.add(EcranInfoSite, "EcranInfoSite");
+        mainPanel.add(EcranInfoSite4, "EcranInfoSite4");
 
         jLabel7.setText("Ici la billetterie !");
 
@@ -678,19 +1189,13 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addGap(88, 88, 88))
         );
 
-        mainPanel.add(EcranDetailCmd, "card8");
+        mainPanel.add(EcranDetailCmd, "EcranDetailCmd");
 
         jLabel11.setText("Montant de la transaction: ");
 
         jLabel13.setText("N° de carte : ");
 
         jLabel15.setText("26 €");
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
 
         jLabel16.setText("Expire fin :");
 
@@ -718,6 +1223,12 @@ public class MainSmartphone extends javax.swing.JFrame {
 
         jLabel30.setText("Saisir votre carte de paiement : ");
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EcranPaiementLayout = new javax.swing.GroupLayout(EcranPaiement);
         EcranPaiement.setLayout(EcranPaiementLayout);
         EcranPaiementLayout.setHorizontalGroup(
@@ -726,29 +1237,28 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EcranPaiementLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
                                 .addGroup(EcranPaiementLayout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jPasswordField1))
-                                .addGroup(EcranPaiementLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(EcranPaiementLayout.createSequentialGroup()
+                                    .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(EcranPaiementLayout.createSequentialGroup()
+                                            .addComponent(jButton9)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton10))
+                                        .addComponent(jLabel17))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(EcranPaiementLayout.createSequentialGroup()
-                                .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(EcranPaiementLayout.createSequentialGroup()
-                                        .addComponent(jButton9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton10))
-                                    .addComponent(jLabel17))
+                                .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(EcranPaiementLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,7 +1270,7 @@ public class MainSmartphone extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel15))
                             .addComponent(jLabel30))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         EcranPaiementLayout.setVerticalGroup(
             EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -776,7 +1286,7 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -787,15 +1297,15 @@ public class MainSmartphone extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(EcranPaiementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
                     .addComponent(jButton10))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        mainPanel.add(EcranPaiement, "card7");
+        mainPanel.add(EcranPaiement, "EcranPaiement");
 
         jLabel18.setText("Mes achats");
         jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1212,7 +1722,11 @@ public class MainSmartphone extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+//On affiche les Infos du Site
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranInfoSite1");
+        //On rend le bouton Retour visible
+        boutonRetour.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
@@ -1221,15 +1735,18 @@ public class MainSmartphone extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 
-        boutonRetour.setVisible(true);
         boutonBilletterie.setVisible(false);
         boutonAccueil.setVisible(false);
         boutonRecherche.setVisible(false);
 
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranDetailCmd");
+        
+        //On rend le bouton Retour visible
+        boutonRetour.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranPaiement");
@@ -1239,10 +1756,6 @@ public class MainSmartphone extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1259,6 +1772,34 @@ public class MainSmartphone extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //On affiche les Infos du Site
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranInfoSite2");
+        //On rend le bouton Retour visible
+        boutonRetour.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //On affiche les Infos du Site
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranInfoSite3");
+        //On rend le bouton Retour visible
+        boutonRetour.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        //On affiche les Infos du Site
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranInfoSite4");
+        //On rend le bouton Retour visible
+        boutonRetour.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1302,6 +1843,10 @@ public class MainSmartphone extends javax.swing.JFrame {
     private javax.swing.JPanel EcranES;
     private javax.swing.JPanel EcranIdentification;
     private javax.swing.JPanel EcranInfoSite;
+    private javax.swing.JPanel EcranInfoSite1;
+    private javax.swing.JPanel EcranInfoSite2;
+    private javax.swing.JPanel EcranInfoSite3;
+    private javax.swing.JPanel EcranInfoSite4;
     private javax.swing.JPanel EcranMesAchats;
     private javax.swing.JPanel EcranPaiement;
     private javax.swing.JPanel EcranRecherche;
@@ -1366,8 +1911,32 @@ public class MainSmartphone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1375,22 +1944,47 @@ public class MainSmartphone extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JProgressBar jProgressBar4;
+    private javax.swing.JProgressBar jProgressBar5;
+    private javax.swing.JProgressBar jProgressBar6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPaneIdentification;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
+    private javax.swing.JTextPane jTextPane5;
     private javax.swing.JTextPane jTextPaneIdentification;
     private javax.swing.JLabel labelIdentifiant;
     private javax.swing.JLabel labelIdentifiant1;
+    private javax.swing.JLabel labelIdentifiant10;
+    private javax.swing.JLabel labelIdentifiant11;
+    private javax.swing.JLabel labelIdentifiant12;
+    private javax.swing.JLabel labelIdentifiant13;
+    private javax.swing.JLabel labelIdentifiant14;
+    private javax.swing.JLabel labelIdentifiant15;
     private javax.swing.JLabel labelIdentifiant2;
     private javax.swing.JLabel labelIdentifiant3;
+    private javax.swing.JLabel labelIdentifiant4;
+    private javax.swing.JLabel labelIdentifiant5;
+    private javax.swing.JLabel labelIdentifiant6;
+    private javax.swing.JLabel labelIdentifiant7;
+    private javax.swing.JLabel labelIdentifiant8;
+    private javax.swing.JLabel labelIdentifiant9;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel mainPanel;
