@@ -4,17 +4,27 @@
  */
 package Office;
 
+import java.awt.CardLayout;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lydia
  */
-public class ClientOffice extends javax.swing.JFrame {
-
+public class ClientOffice extends javax.swing.JFrame implements Runnable {
+    private AssistanceTouristique.Office monOffice;
+    //Liste des sites
+    //private ArrayList<GestionAssitanceTouristique.Site> = new ArrayList<GestionAssitanceTouristique.Site>();
     /**
      * Creates new form ClientOffice
      */
-    public ClientOffice() {
+    public ClientOffice(AssistanceTouristique.Office office) {
+        this.monOffice=office;
         initComponents();
+    }
+    
+    public void run() {
+        new ClientOffice(monOffice).setVisible(true);
     }
 
     /**
@@ -26,31 +36,106 @@ public class ClientOffice extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        ListeSites = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        BoutonReserver = new javax.swing.JButton();
+        EcranAchat = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
+
+        jLabel1.setText("Liste de tous les sites de l'office");
+
+        BoutonReserver.setText("Réserver");
+        BoutonReserver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonReserverActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ListeSitesLayout = new javax.swing.GroupLayout(ListeSites);
+        ListeSites.setLayout(ListeSitesLayout);
+        ListeSitesLayout.setHorizontalGroup(
+            ListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListeSitesLayout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addGroup(ListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BoutonReserver)
+                    .addComponent(jLabel1))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        ListeSitesLayout.setVerticalGroup(
+            ListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListeSitesLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(BoutonReserver)
+                .addGap(78, 78, 78))
         );
+
+        getContentPane().add(ListeSites, "card3");
+
+        jLabel2.setText("Date de début :");
+
+        jLabel3.setText("Date de fin :");
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+
+        jFormattedTextField2.setText("jFormattedTextField2");
+
+        javax.swing.GroupLayout EcranAchatLayout = new javax.swing.GroupLayout(EcranAchat);
+        EcranAchat.setLayout(EcranAchatLayout);
+        EcranAchatLayout.setHorizontalGroup(
+            EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranAchatLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(52, 52, 52)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        EcranAchatLayout.setVerticalGroup(
+            EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranAchatLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(EcranAchat, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BoutonReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonReserverActionPerformed
+        // TODO: lancement du serveur du service achat de l'office
+        //Office.ServeurServiceAchatOffice serveur_servAchat=new Office.ServeurServiceAchatOffice();
+    }//GEN-LAST:event_BoutonReserverActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         *
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -69,13 +154,21 @@ public class ClientOffice extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientOffice().setVisible(true);
             }
         });
-    }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BoutonReserver;
+    private javax.swing.JPanel EcranAchat;
+    private javax.swing.JPanel ListeSites;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

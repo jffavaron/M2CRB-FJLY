@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package Office;
-import GestionAssitanceTouristique.*;
+import AssistanceTouristique.*;
 
 import org.omg.CORBA.*; 
 import org.omg.PortableServer.*; 
@@ -14,7 +14,7 @@ import org.omg.CosNaming.NamingContextPackage.*;
  *
  * @author Lydia
  */
-public abstract class OfficeImpl extends OfficePOA {
+public class OfficeImpl extends OfficePOA {
    
     public OfficeImpl() {
         

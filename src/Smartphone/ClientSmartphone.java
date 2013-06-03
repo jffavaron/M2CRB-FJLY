@@ -4,8 +4,22 @@
  */
 package Smartphone;
 
+import AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException;
+import AssistanceTouristique.ServiceBancairePackage.operationImpossibleException;
+import Office.ClientOffice;
+import Office.ServiceAchatOfficeImpl;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +31,12 @@ public class ClientSmartphone extends javax.swing.JFrame {
     /**
      * Creates new form MainSmartphone
      */
+    public static AssistanceTouristique.Office monOffice;
+    public static AssistanceTouristique.ServiceAchatOffice monServAchat;
+    public static AssistanceTouristique.ServiceBancaire monServBancaire;
+    public static String dd, df;
+    public static Float montant;
+    
     public ClientSmartphone() {
         initComponents();
     }
@@ -30,6 +50,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         bandeauPanel = new javax.swing.JPanel();
         ImageBandeau = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
@@ -57,7 +78,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jCheckBox5 = new javax.swing.JCheckBox();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        boutonReserver = new javax.swing.JButton();
         EcranInfoSite = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -75,14 +96,37 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         EcranRecherche = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        EcranAchat = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        dateD = new javax.swing.JFormattedTextField();
+        dateF = new javax.swing.JFormattedTextField();
+        BoutonPayer = new javax.swing.JButton();
+        textMontant = new javax.swing.JLabel();
+        EcranBanque = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        BoutonValiderPaiement = new javax.swing.JButton();
+        inputCarteBancaire = new javax.swing.JTextField();
+        inputMontant = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         footerPanel = new javax.swing.JPanel();
         boutonAccueil = new javax.swing.JButton();
         boutonBilletterie = new javax.swing.JButton();
         boutonRecherche = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SmartPhone");
@@ -119,7 +163,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
             }
         });
 
-        labelLogo.setFont(new java.awt.Font("Brush Script Std", 0, 24)); // NOI18N
+        labelLogo.setFont(new java.awt.Font("Brush Script MT", 0, 24)); // NOI18N
         labelLogo.setForeground(new java.awt.Color(255, 0, 0));
         labelLogo.setText("Ticket'Me !");
 
@@ -326,7 +370,12 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jButton5.setText("Musée Saint-Raymond de Toulouse");
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton6.setText("Réserver");
+        boutonReserver.setText("Réserver");
+        boutonReserver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonReserverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout EcranAccueilLayout = new javax.swing.GroupLayout(EcranAccueil);
         EcranAccueil.setLayout(EcranAccueilLayout);
@@ -335,7 +384,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addGroup(EcranAccueilLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(EcranAccueilLayout.createSequentialGroup()
                         .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,7 +435,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                     .addComponent(jCheckBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
 
@@ -545,31 +594,143 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranRecherche, "EcranRecherche");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+        jLabel9.setText("Date de début :");
+
+        jLabel10.setText("Date de fin :");
+
+        jLabel11.setText("Montant :");
+
+        dateD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        dateD.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        dateD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateDActionPerformed(evt);
+            }
+        });
+
+        dateF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        dateF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateFActionPerformed(evt);
+            }
+        });
+
+        BoutonPayer.setText("Payer");
+        BoutonPayer.setActionCommand("BoutonPayer");
+        BoutonPayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonPayerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EcranAchatLayout = new javax.swing.GroupLayout(EcranAchat);
+        EcranAchat.setLayout(EcranAchatLayout);
+        EcranAchatLayout.setHorizontalGroup(
+            EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranAchatLayout.createSequentialGroup()
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranAchatLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranAchatLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(42, 42, 42))
+                            .addGroup(EcranAchatLayout.createSequentialGroup()
+                                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)))
+                        .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dateD)
+                            .addComponent(dateF)
+                            .addComponent(textMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EcranAchatLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(BoutonPayer)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+        EcranAchatLayout.setVerticalGroup(
+            EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranAchatLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(dateD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(dateF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(textMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addComponent(BoutonPayer)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        mainPanel.add(jPanel6, "card7");
+        BoutonPayer.getAccessibleContext().setAccessibleName("BoutonPayer");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+        mainPanel.add(EcranAchat, "EcranAchat");
+        EcranAchat.getAccessibleContext().setAccessibleName("");
+
+        jLabel12.setText("Paiement de la commande");
+
+        jLabel14.setText("Numéro de carte bancaire :");
+
+        BoutonValiderPaiement.setText("Valider");
+        BoutonValiderPaiement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonValiderPaiementActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EcranBanqueLayout = new javax.swing.GroupLayout(EcranBanque);
+        EcranBanque.setLayout(EcranBanqueLayout);
+        EcranBanqueLayout.setHorizontalGroup(
+            EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranBanqueLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranBanqueLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(inputMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(EcranBanqueLayout.createSequentialGroup()
+                .addGroup(EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranBanqueLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(inputCarteBancaire))
+                    .addGroup(EcranBanqueLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel12)
+                        .addGap(0, 92, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(EcranBanqueLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(BoutonValiderPaiement)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+        EcranBanqueLayout.setVerticalGroup(
+            EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranBanqueLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel12)
+                .addGap(30, 30, 30)
+                .addComponent(inputMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputCarteBancaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(BoutonValiderPaiement)
+                .addGap(41, 41, 41))
         );
 
-        mainPanel.add(jPanel7, "card8");
+        inputMontant.getAccessibleContext().setAccessibleName("inputMontant");
+
+        mainPanel.add(EcranBanque, "EcranBanque");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -810,10 +971,104 @@ public class ClientSmartphone extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void boutonReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonReserverActionPerformed
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranAchat");
+    }//GEN-LAST:event_boutonReserverActionPerformed
+
+    private void BoutonPayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPayerActionPerformed
+         // TODO add your handling code here:
+        //Je récupère les dates
+        dd=dateD.getText();
+        df=dateF.getText();
+        montant=Float.parseFloat(textMontant.getText());
+        
+        //Appel au serveur du service achat de l'office
+        Office.ServeurServiceAchatOffice serveur_achat = new Office.ServeurServiceAchatOffice(monServAchat, dd, df, montant);
+        
+        //Affichage de l'écran informations bancaires
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranBanque");
+        
+        try {
+            //appel de la fonction acheter prestation
+            //AssistanceTouristique.Carte c = monServAchat.acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
+            AssistanceTouristique.Carte c = serveur_achat.getServiceAchat().acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
+            //System.out.println(c.dateDebut+" "+c.dateFin);
+        } catch (achatImpossibleException ex) {
+            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BoutonPayerActionPerformed
+
+    private void dateDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateDActionPerformed
+        // TODO add your handling code here:
+         DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT,Locale.FRANCE);
+
+        //Récupération de la date de début
+        Date dd, df;
+        try {
+            dd = formater.parse(dateD.getText());
+            df = formater.parse(dateF.getText());
+            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24; 
+
+            long diff = Math.abs(df.getTime() - dd.getTime());
+            long nb_jour = (long)diff/CONST_DURATION_OF_DAY;
+            
+            //Calcul du montant en fonction du nombre de jours (5 euros par jour)
+            long montant=(nb_jour*5)+1;
+            System.out.println(String.valueOf(montant));
+            
+            //J'affiche la valeur du montant dans l'input du montant
+            textMontant.setText(String.valueOf(montant));
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dateDActionPerformed
+
+    private void dateFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFActionPerformed
+        // TODO add your handling code here:
+        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT,Locale.FRANCE);
+
+        //Récupération de la date de début
+        Date dd, df;
+        try {
+            dd = formater.parse(dateD.getText());
+            df = formater.parse(dateF.getText());
+            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24; 
+
+            long diff = Math.abs(df.getTime() - dd.getTime());
+            long nb_jour = (long)diff/CONST_DURATION_OF_DAY;
+            
+            //Calcul du montant en fonction du nombre de jours (5 euros par jour)
+            long montant=(nb_jour*5)+5;
+  
+            //J'affiche la valeur du montant dans l'input du montant
+            textMontant.setText(String.valueOf(montant));
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dateFActionPerformed
+
+    private void BoutonValiderPaiementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonValiderPaiementActionPerformed
+        // TODO add your handling code here:
+        AutresServices.ServeurServiceBancaire servBanque = new AutresServices.ServeurServiceBancaire(monServBancaire);
+        try {
+            boolean reponse = servBanque.getServiceBancaire().verifierPaiement(montant);
+            
+        } catch (operationImpossibleException ex) {
+            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_BoutonValiderPaiementActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        String nom_office;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -836,17 +1091,46 @@ public class ClientSmartphone extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClientSmartphone().setVisible(true);
-            }
-        });
+          //Flux E/S standards
+        BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
+        PrintStream sortie_std = new PrintStream(System.out);
+        
+         try {
+            //Configuration de base
+            sortie_std.print("Client smartphone: quel est le nom de l'office :");
+            nom_office = entree_std.readLine();
+            
+            //1
+            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
+            
+            //2 
+            //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
+            
+            //Recherche de l'office
+            org.omg.CosNaming.NameComponent[] office = new org.omg.CosNaming.NameComponent[1];
+            office[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
+            org.omg.CORBA.Object distantOffice = nameRoot.resolve(office);
+            
+            //3
+            monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
+            monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
+                        
+           //Appel à l'interfca graphique
+           new ClientSmartphone().setVisible(true);
+           
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BoutonPayer;
+    private javax.swing.JButton BoutonValiderPaiement;
     private javax.swing.JPanel EcranAccueil;
+    private javax.swing.JPanel EcranAchat;
+    private javax.swing.JPanel EcranBanque;
     private javax.swing.JPanel EcranBilletterie;
     private javax.swing.JPanel EcranIdentification;
     private javax.swing.JPanel EcranInfoSite;
@@ -858,24 +1142,32 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton boutonInscription;
     private javax.swing.JButton boutonMotDePasseOublie;
     private javax.swing.JButton boutonRecherche;
+    private javax.swing.JButton boutonReserver;
     private javax.swing.JButton boutonRetour;
     private javax.swing.JButton boutonSeConnecter;
+    private javax.swing.JFormattedTextField dateD;
+    private javax.swing.JFormattedTextField dateF;
     private javax.swing.JTextField fieldIdentifiant;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JPanel footerPanel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JTextField inputCarteBancaire;
+    private javax.swing.JLabel inputMontant;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -883,8 +1175,8 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar1;
@@ -899,5 +1191,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel textMontant;
     // End of variables declaration//GEN-END:variables
 }

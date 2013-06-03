@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 package Site;
-import GestionAssitanceTouristique.*;
+import AssistanceTouristique.*;
 /**
  *
  * @author Lydia
  */
-public abstract class SiteTouristiqueImpl extends SiteTouristiquePOA {
+public class SiteTouristiqueImpl extends SiteTouristiquePOA {
     
     public SiteTouristiqueImpl() {
         
