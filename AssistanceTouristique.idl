@@ -1,5 +1,5 @@
 // Module de gestion d'assistance touristique
-module GestionAssitanceTouristique{
+module AssistanceTouristique{
 	// --#### Définitions des types
 	typedef string t_raison; // type message de raison d'exception
 	
@@ -12,8 +12,8 @@ module GestionAssitanceTouristique{
 	// Structure Carte permettant d'indiquer les informations relatives à la carte électronique virtuelle d'un touriste
 	struct Carte{
 		short idCarte;
-		long dateDebut;
-		long dateFin;
+		string dateDebut;
+		string dateFin;
 	};
 	
 	// Structure Statistique permettant d'indiquer le libellé d'une statistique et sa valeur correspondante
@@ -25,7 +25,7 @@ module GestionAssitanceTouristique{
 	
 	// Structure Visite permettant d'indiquer les informations relatives à une visite 
 	struct Visite{
-		long date;
+		string date;
 		long heureEntree;
 		long heureSortie;
 		string interet;
@@ -67,7 +67,7 @@ module GestionAssitanceTouristique{
 		exception achatImpossibleException {t_raison raison;};
 
 		// Méthodes
-		Carte acheterPrestation(in short dateD, in short dateF, in float montant) raises(achatImpossibleException); // renvoie l'identifiant de la carte générée
+		Carte acheterPrestation(in string dateD, in string dateF, in float montant) raises(achatImpossibleException); // renvoie l'identifiant de la carte générée
 		
 	};
 	

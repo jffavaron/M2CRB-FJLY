@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 package Site;
-import GestionAssitanceTouristique.*;
+import AssistanceTouristique.*;
 /**
  *
  * @author Lydia
  */
-public abstract class ServiceESSiteImpl extends ServiceESSitePOA {
+public class ServiceESSiteImpl extends ServiceESSitePOA {
  
     public ServiceESSiteImpl() {
         
@@ -18,10 +18,10 @@ public abstract class ServiceESSiteImpl extends ServiceESSitePOA {
         
     }
     
-    public boolean entrer(short idCarte) throws GestionAssitanceTouristique.ServiceESSitePackage.carteNonValideException, 
-                                                GestionAssitanceTouristique.ServiceESSitePackage.siteDejaVisiteException, 
-                                                GestionAssitanceTouristique.ServiceESSitePackage.siteSatureException, 
-                                                GestionAssitanceTouristique.ServiceESSitePackage.siteFermeException {
+    public boolean entrer(short idCarte) throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException, 
+                                                AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteException, 
+                                                AssistanceTouristique.ServiceESSitePackage.siteSatureException, 
+                                                AssistanceTouristique.ServiceESSitePackage.siteFermeException {
         return false;
       
     }

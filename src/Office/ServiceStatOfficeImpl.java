@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 package Office;
-import GestionAssitanceTouristique.*;
+import AssistanceTouristique.*;
 /**
  *
  * @author Lydia
  */
-public abstract class ServiceStatOfficeImpl extends ServiceStatOfficePOA {
+public class ServiceStatOfficeImpl extends ServiceStatOfficePOA {
     
     public ServiceStatOfficeImpl() {
         
