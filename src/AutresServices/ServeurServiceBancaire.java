@@ -14,14 +14,26 @@ import java.io.PrintStream;
  * @author Lydia
  */
 public class ServeurServiceBancaire {
-    private AssistanceTouristique.ServiceBancaire serv;
+    private AssistanceTouristique.ServiceBancaire monServBancaire;
+    private AssistanceTouristique.ServiceAchatOffice serv_achat;
+    public static String nom_banque = "bnp";
+    /*private BufferedReader entree_std;
+    private PrintStream sortie_std;
+    private org.omg.CORBA.ORB orb;*/
     
-    public ServeurServiceBancaire(AssistanceTouristique.ServiceBancaire serv) {
-        this.serv=serv;
+    /*public ServeurServiceBancaire(String nom_banque ) {
+        this.entree_std=entree_std;
+        this.sortie_std=sortie_std;
+        this.orb=orb;
+        this.serv_achat=serv_achat;
+        this.nom_banque=nom_banque;
     }
     
+    public ServeurServiceBancaire() {
+    }*/
+    
     public void validerPaiement() {
-        
+        System.out.println("Le paiement est accepté");
     }
     
     public void refuserPaiement() {
@@ -29,11 +41,19 @@ public class ServeurServiceBancaire {
     }
     
     public AssistanceTouristique.ServiceBancaire getServiceBancaire() {
-        return serv;
+        return monServBancaire;
     }
     
+    /* public String getNomBanque() {
+        return nom_banque;
+    }
+     
+    public void setNomBanque(String nom_banque){
+        this.nom_banque = nom_banque;
+    }*/
+   
     public static void main(String args[]) {
-        String nom_office;
+    //public void run() {
         
         //Flux E/S standards
         BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
@@ -42,19 +62,23 @@ public class ServeurServiceBancaire {
         try {
             //System.out.println(System.getProperty("java.home") +java.io.File.separator + "lib");
             //Configuration de base
-            sortie_std.print("Quel est le nom de l'office :");
-            nom_office = entree_std.readLine();
-            
+            //sortie_std.print("Quel est le nom de la banque :");
+            //nom_banque = entree_std.readLine();
+            //Appel au constructeur pour enregistrer le nom du service bancaire
+            //ServeurServiceBancaire serv = new ServeurServiceBancaire(entree_std.readLine());
+            //nom=serv.getNomBanque();
+    
             //1
             org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
             
-            //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
-            org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
+            org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
+            
             //2
             org.omg.PortableServer.POA rootPOA = org.omg.PortableServer.POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
             
             //3
-            ServiceBancaireImpl monServiceBancaire = new ServiceBancaireImpl();
+            ServiceBancaireImpl monServiceBancaire = new ServiceBancaireImpl(sortie_std);
             
             //4
             rootPOA.activate_object(monServiceBancaire);
@@ -68,11 +92,13 @@ public class ServeurServiceBancaire {
             //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
             
             org.omg.CosNaming.NameComponent[] nameToRegister = new org.omg.CosNaming.NameComponent[1];
-            
-            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nom_office,"");
+            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nom_banque,"");
             nameRoot.rebind(nameToRegister, rootPOA.servant_to_reference(monServiceBancaire));
             
-            sortie_std.println("Le service bancaire de l'office "+nom_office+" tourne");
+            /*this.serv=AssistanceTouristique.ServiceBancaireHelper.narrow(rootPOA.servant_to_reference(monServiceBancaire));
+            sortie_std.println("Le serveur bancaire est actif");*/
+            
+            sortie_std.println("Le service de la banque "+nom_banque+" tourne");
             
             //7
             orb.run();  

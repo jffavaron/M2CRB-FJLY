@@ -10,6 +10,6 @@ public interface SiteTouristiqueOperations
     /**
      * Operation getHorairesFermeture
      */
-    public short getHorairesFermeture();
+    public short getHorairesFermeture(int idSite);
 
 }

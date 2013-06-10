@@ -98,17 +98,17 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation getInfosES
      */
-    public AssistanceTouristique.Visite[] getInfosES()
+    public AssistanceTouristique.Visite[] getInfosES(int idSite)
     {
-        return _tie.getInfosES();
+        return _tie.getInfosES( idSite);
     }
 
     /**
      * Operation getAffluenceCourante
      */
-    public short getAffluenceCourante()
+    public short getAffluenceCourante(int idSite)
     {
-        return _tie.getAffluenceCourante();
+        return _tie.getAffluenceCourante( idSite);
     }
 
 }

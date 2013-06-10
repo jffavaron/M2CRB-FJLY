@@ -10,11 +10,6 @@ public interface ServiceStatSiteOperations
     /**
      * Operation getStatsSite
      */
-    public AssistanceTouristique.Statistique[] getStatsSite();
-
-    /**
-     * Operation afficherInfosES
-     */
-    public void afficherInfosES(AssistanceTouristique.Visite[] listeVisites);
+    public AssistanceTouristique.Statistique[] getStatsSite(String date, int idSite);
 
 }

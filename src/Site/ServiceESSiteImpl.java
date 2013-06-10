@@ -36,14 +36,29 @@ public class ServiceESSiteImpl extends ServiceESSitePOA {
         
     }
     
-    public Visite[] getInfosES() {
+    public Visite[] getInfosES(int idSite) {
         return null;
         
     }
     
-    public short getAffluenceCourante() {
-        return 0;
+    public short getAffluenceCourante(int idSite) {
+        short affluenceCourante=0;
+        switch(idSite) {
+            //Georges Labit
+            case 1 :
+                affluenceCourante=2;
+                break;
+            //Museum histoire naturelle
+            case 2:
+                affluenceCourante=4;
+                break;
+            //Saint Raymond
+            case 3 :
+                affluenceCourante=6;
+                break;      
+        }
         
+        return affluenceCourante;  
     }
     
 }

@@ -4,9 +4,12 @@
  */
 package Smartphone;
 
+import AssistanceTouristique.*;
+
 import AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException;
 import AssistanceTouristique.ServiceBancairePackage.operationImpossibleException;
 import Office.ClientOffice;
+import Office.ServeurOffice;
 import Office.ServiceAchatOfficeImpl;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -28,17 +31,38 @@ import javax.swing.JOptionPane;
  * @author pc-jfred
  */
 public class ClientSmartphone extends javax.swing.JFrame {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
 
+    //</editor-fold>
     /**
      * Creates new form MainSmartphone
      */
+    //Flux E/S standards
+    /*public static String nom_office;
+     public static BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
+     public static PrintStream sortie_std = new PrintStream(System.out); 
+    
+     public static org.omg.CORBA.Object distantOffice;*/
+    private static org.omg.CosNaming.NamingContext nameRoot;
     public static AssistanceTouristique.Office monOffice;
     public static AssistanceTouristique.ServiceAchatOffice monServAchat;
-    public static AssistanceTouristique.ServiceBancaire monServBancaire;
+    //public static AssistanceTouristique.ServiceBancaire monServBancaire;
+    public static AutresServices.ServeurServiceBancaire serveur_bancaire;
+    
     public static String dd, df;
     public static Float montant;
+    //TODO à récupérer dans la base de donnée
+    public static short idCarte = 0;
+    public static Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
+    public static Site[] sitesVisites= new Site[1];
     
+
     public ClientSmartphone() {
+        sitesVisites[0] = new Site("test", coordSmartphone, 12, 120);
         initComponents();
     }
 
@@ -350,13 +374,15 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranAccueilLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(EcranAccueilLayout.createSequentialGroup()
-                        .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -366,13 +392,13 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
@@ -796,13 +822,14 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonAccueil.setForeground(new Color(180, 180, 180));
         boutonRecherche.setBackground(new Color(0, 0, 0));
         boutonRecherche.setForeground(new Color(180, 180, 180));
-        
+
         //on masque le bouton retour
         boutonRetour.setVisible(false);
-        
+
         //on affiche l'écran d'accueil
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranBilletterie");
+
     }//GEN-LAST:event_boutonBilletterieActionPerformed
 
     private void boutonAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAccueilActionPerformed
@@ -813,10 +840,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonBilletterie.setForeground(new Color(180, 180, 180));
         boutonRecherche.setBackground(new Color(0, 0, 0));
         boutonRecherche.setForeground(new Color(180, 180, 180));
-        
+
         //on masque le bouton retour
         boutonRetour.setVisible(false);
-        
+
         //on affiche l'écran d'accueil
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranAccueil");
@@ -830,10 +857,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonBilletterie.setForeground(new Color(180, 180, 180));
         boutonAccueil.setBackground(new Color(0, 0, 0));
         boutonAccueil.setForeground(new Color(180, 180, 180));
-        
+
         //on masque le bouton retour
         boutonRetour.setVisible(false);
-        
+
         //on affiche l'écran d'accueil
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranRecherche");
@@ -850,24 +877,39 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private void boutonSeConnecterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSeConnecterActionPerformed
         System.out.println(fieldPassword.getPassword().toString());
         //vérification des données de connection ...
-        if(fieldIdentifiant.getText().equals("") && String.valueOf(fieldPassword.getPassword()).equals(""))
-        {
+        if (fieldIdentifiant.getText().equals("") && String.valueOf(fieldPassword.getPassword()).equals("")) {
             // si l'identification est ok ...
             System.out.println("Connexion réussie !");
             CardLayout card = (CardLayout) mainPanel.getLayout();
             card.show(mainPanel, "EcranAccueil");
-            footerPanel.setBackground(new Color(0,0,0));
+            footerPanel.setBackground(new Color(0, 0, 0));
             boutonAccueil.setVisible(true);
             boutonBilletterie.setVisible(true);
             boutonRecherche.setVisible(true);
-        }
-        else{
+        } else {
             //on affiche une pop-up d'erreur et on vide les champs de saisie
             System.out.println("Echec d'authentification !");
             JOptionPane.showMessageDialog(this, "Erreur d'authentification : \nPseudo et/ou mot de passe incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
             fieldIdentifiant.setText("");
             fieldPassword.setText("");
         }
+        /************ Appel aux services de l'office **********/
+        String nom_office=ServeurOffice.nomOffice;
+        
+        try {
+            //Recherche de l'office
+            org.omg.CosNaming.NameComponent[] office = new org.omg.CosNaming.NameComponent[1];
+            office[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
+            org.omg.CORBA.Object distantOffice = nameRoot.resolve(office);
+            
+            AssistanceTouristique.Office monOffice = AssistanceTouristique.OfficeHelper.narrow(distantOffice);
+            
+            //Récupération de la liste des sites à visiter
+            monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
+            
+       } catch (Exception e) {
+            e.printStackTrace();
+        }     
 
     }//GEN-LAST:event_boutonSeConnecterActionPerformed
 
@@ -881,7 +923,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         card.show(mainPanel, "EcranInfoSite");
         //On rend le bouton Retour visible
         boutonRetour.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boutonReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonReserverActionPerformed
@@ -890,47 +932,50 @@ public class ClientSmartphone extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonReserverActionPerformed
 
     private void BoutonPayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPayerActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         //Je récupère les dates
-        dd=dateD.getText();
-        df=dateF.getText();
-        montant=Float.parseFloat(textMontant.getText());
-        
+        dd = dateD.getText();
+        df = dateF.getText();
+        montant = Float.parseFloat(textMontant.getText());
+
+        //3
+        // monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
+
         //Appel au serveur du service achat de l'office
-        Office.ServeurServiceAchatOffice serveur_achat = new Office.ServeurServiceAchatOffice(monServAchat, dd, df, montant);
-        
+        //Office.ServeurServiceAchatOffice serveur_achat = new Office.ServeurServiceAchatOffice(monServAchat, dd, df, montant);
+
         //Affichage de l'écran informations bancaires
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranBanque");
-        
-        try {
+
+        /*try {
             //appel de la fonction acheter prestation
             //AssistanceTouristique.Carte c = monServAchat.acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
-            AssistanceTouristique.Carte c = serveur_achat.getServiceAchat().acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
-            //System.out.println(c.dateDebut+" "+c.dateFin);
+            //AssistanceTouristique.Carte c = serveur_achat.getServiceAchat().acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
+            System.out.println(c.dateDebut + " " + c.dateFin);
         } catch (achatImpossibleException ex) {
             Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_BoutonPayerActionPerformed
 
     private void dateDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateDActionPerformed
         // TODO add your handling code here:
-         DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT,Locale.FRANCE);
+        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
 
         //Récupération de la date de début
         Date dd, df;
         try {
             dd = formater.parse(dateD.getText());
             df = formater.parse(dateF.getText());
-            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24; 
+            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24;
 
             long diff = Math.abs(df.getTime() - dd.getTime());
-            long nb_jour = (long)diff/CONST_DURATION_OF_DAY;
-            
+            long nb_jour = (long) diff / CONST_DURATION_OF_DAY;
+
             //Calcul du montant en fonction du nombre de jours (5 euros par jour)
-            long montant=(nb_jour*5)+1;
+            long montant = (nb_jour * 5) + 1;
             System.out.println(String.valueOf(montant));
-            
+
             //J'affiche la valeur du montant dans l'input du montant
             textMontant.setText(String.valueOf(montant));
 
@@ -941,21 +986,21 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
     private void dateFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFActionPerformed
         // TODO add your handling code here:
-        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT,Locale.FRANCE);
+        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
 
         //Récupération de la date de début
         Date dd, df;
         try {
             dd = formater.parse(dateD.getText());
             df = formater.parse(dateF.getText());
-            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24; 
+            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24;
 
             long diff = Math.abs(df.getTime() - dd.getTime());
-            long nb_jour = (long)diff/CONST_DURATION_OF_DAY;
-            
+            long nb_jour = (long) diff / CONST_DURATION_OF_DAY;
+
             //Calcul du montant en fonction du nombre de jours (5 euros par jour)
-            long montant=(nb_jour*5)+5;
-  
+            long montant = (nb_jour * 5) + 5;
+
             //J'affiche la valeur du montant dans l'input du montant
             textMontant.setText(String.valueOf(montant));
 
@@ -966,22 +1011,24 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
     private void BoutonValiderPaiementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonValiderPaiementActionPerformed
         // TODO add your handling code here:
-        AutresServices.ServeurServiceBancaire servBanque = new AutresServices.ServeurServiceBancaire(monServBancaire);
-        try {
-            boolean reponse = servBanque.getServiceBancaire().verifierPaiement(montant);
+        //monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
+        //AutresServices.ServeurServiceBancaire servBanque = new AutresServices.ServeurServiceBancaire(monServBancaire);
+        /*try {
+         //boolean reponse = servBanque.getServiceBancaire().verifierPaiement(montant);
+         boolean reponse = serveur_bancaire.getServiceBancaire().verifierPaiement(montant);
+         if(reponse)
+         serveur_bancaire.validerPaiement();
             
-        } catch (operationImpossibleException ex) {
-            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+         } catch (operationImpossibleException ex) {
+         Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+         }*/
+        //monServAchat.acheterPrestation(dd, dd, montant);
     }//GEN-LAST:event_BoutonValiderPaiementActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        String nom_office;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1004,68 +1051,38 @@ public class ClientSmartphone extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClientSmartphone.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-          //Flux E/S standards
-        /*BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
-        PrintStream sortie_std = new PrintStream(System.out);*/
-        
-         try {
-            //Configuration de base
-            /*sortie_std.print("Client smartphone: quel est le nom de l'office :");
-            nom_office = entree_std.readLine();
+
+        try {
             
             //1
             org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
-            
+
             //2 
-            org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
             //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
-            
+
             //Recherche de l'office
-            org.omg.CosNaming.NameComponent[] office = new org.omg.CosNaming.NameComponent[1];
-            office[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
-            org.omg.CORBA.Object distantOffice = nameRoot.resolve(office);
+            /*org.omg.CosNaming.NameComponent[] office = new org.omg.CosNaming.NameComponent[1];
+             office[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
+             org.omg.CORBA.Object distantOffice = nameRoot.resolve(office);
             
-            //3
-            monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
-            //monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
-                  */      
-           //Appel à l'interfca graphique
-           new ClientSmartphone().setVisible(true);
-           
-           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_site_histoirenaturelle", "root", "");
-           
-            //Création d'un objet Statement
-            Statement state = conn.createStatement();
-             //L'objet ResultSet contient le résultat de la requête SQL
-             ResultSet result = state.executeQuery("SELECT * FROM infosite");
-             
-              //On récupère les MetaData
-      ResultSetMetaData resultMeta = result.getMetaData();
-             
-                   System.out.println("\n**********************************");
-      //On affiche le nom des colonnes
-      for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-        System.out.print("\t" + resultMeta.getColumnName(i).toUpperCase() + "\t *");
-          
-      System.out.println("\n**********************************");
-          
-      while(result.next()){         
-        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-          System.out.print("\t" + result.getObject(i).toString() + "\t |");
-             
-        System.out.println("\n---------------------------------");
- 
-      }
- 
-      result.close();
-      state.close();
-           
-        }
-        catch (Exception e) {
+             //3
+             monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
+             //monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
+             */
+            /*
+             //Lancement du serveur service bancaire
+             serveur_bancaire = new AutresServices.ServeurServiceBancaire(orb, entree_std, sortie_std);
+             Thread threadServBancaire = new Thread(serveur_bancaire);
+             threadServBancaire.start();*/
+
+            //Appel à l'interface graphique
+            new ClientSmartphone().setVisible(true);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonPayer;
     private javax.swing.JButton BoutonValiderPaiement;
@@ -1101,6 +1118,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

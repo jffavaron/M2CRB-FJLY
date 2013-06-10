@@ -19,55 +19,35 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
     private Short df;
     private float montant;
     private String nom;
-    static org.omg.CORBA.ORB orb;
     
-    static public void init(java.lang.String nommage) {
-        try {
-           //Initialisation de l'ORB
-            System.out.println("init : initialisation de l'ORB");
-            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init((String[])null, System.getProperties());
-            
-            //recuperation du POA racine
-            POA poaRoot = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
-            
-            // creation de politiques pour un POA persistent
-            org.omg.CORBA.Policy[] policies =
-            {poaRoot.create_lifespan_policy(LifespanPolicyValue.PERSISTENT) };
-            
-            // creation de son propre POA avec les politiques precedentes
-             POA poaGestionComptes = poaRoot.create_POA(nommage + "_poa", poaRoot.the_POAManager(),policies);
-             System.out.println("init : " + nommage +"_poa cree");
-             
-            // recuperation du naming service
-            NamingContext root =
-            org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+    private String nom_achat;
+    private String nom_banque;
+    private org.omg.CosNaming.NamingContext naming;
+    private org.omg.CORBA.ORB orb;
+    private ServiceBancaire banque;
+    
+    public ServiceAchatOfficeImpl(String nom_achat, String nom_banque, org.omg.CosNaming.NamingContext naming, org.omg.CORBA.ORB orb) {
+        this.naming=naming;
+        this.nom_achat=nom_achat;
+        this.nom_banque=nom_banque;
+        this.orb=orb;
         
+        //recherche banque auprès du naming service
+        try {
+            org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
             // construction du nom a enregistrer
             org.omg.CosNaming.NameComponent [] nameToFind = new org.omg.CosNaming.NameComponent[1];
-            nameToFind [0] = new org.omg.CosNaming.NameComponent(nommage, " ");
+            nameToFind [0] = new org.omg.CosNaming.NameComponent(nom_banque, " ");
+            System.out.println("Objet "+nom_banque);
             
-            // creation du servant
-            ServiceAchatOfficeImpl monServiceAchat = new ServiceAchatOfficeImpl(nommage);
-            
-            // attribution d'un ID et activation dans le POA
-            poaGestionComptes.activate_object_with_id(nommage.getBytes(),monServiceAchat);
-            
-            // activation du POA manager
-            poaRoot.the_POAManager().activate();
-            
-            // enregistrement dans le service de nommage
-            root.rebind(nameToFind, poaGestionComptes.servant_to_reference(monServiceAchat));
-            System.out.println("init : enregistrement dans le service de nommage");
-            // mise en attente de requetes
-            orb.run();
-            System.out.println("init : attente de requetes");
+            org.omg.CORBA.Object distantServBancaire = nameRoot.resolve(nameToFind);
+            //this.banque = AssistanceTouristique.ServiceBancaireHelper.narrow(distantServBancaire);
+            System.out.println("Objet "+nom_banque+ "trouvé auprès du service de noms.");
         }
         catch(Exception e) {
             e.printStackTrace();
         }
-    }
-    public ServiceAchatOfficeImpl(String nom) {
-        this.nom = nom;
+
     }
     
     public Carte acheterPrestation(String dateD, String dateF, float montant) throws 
@@ -75,6 +55,13 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
         //Génération d'un numéro de carte aléatoire
         //Construction de la carte
         Carte c = new Carte(Short.parseShort("10"), dateD, dateF);
+        try {
+            this.banque.verifierPaiement(montant);
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
         return c;
         
     }

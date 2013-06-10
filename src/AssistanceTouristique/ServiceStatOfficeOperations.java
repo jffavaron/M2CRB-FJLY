@@ -12,9 +12,4 @@ public interface ServiceStatOfficeOperations
      */
     public AssistanceTouristique.Statistique[] getStatsGlobales();
 
-    /**
-     * Operation afficherStatsSite
-     */
-    public void afficherStatsSite(AssistanceTouristique.Statistique[] listeStat);
-
 }

@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package Office;
+import AutresServices.ServeurServiceBancaire;
 import java.io.*;
 
 /**
@@ -20,7 +21,6 @@ public class ServeurServiceAchatOffice {
        this.df = df;
     }
     
-    
     public void envoyerCarteElectronique(int idCarte) {
         
     }
@@ -34,17 +34,21 @@ public class ServeurServiceAchatOffice {
     }
     
     public static void main(String[] args) {
-        String nom_office;
+        String nom_achat;
+        String nom_banque = ServeurServiceBancaire.nom_banque;
+        System.out.println(nom_banque);
+        
+        //ServeurServiceBancaire serv_bancaire = new ServeurServiceBancaire();
         
         //Flux E/S standards
         BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
         PrintStream sortie_std = new PrintStream(System.out);
         
         try {
-            System.out.println(System.getProperty("java.home") +java.io.File.separator + "lib");
+            //System.out.println(System.getProperty("java.home") +java.io.File.separator + "lib");
             //Configuration de base
-            sortie_std.print("Quel est le nom de l'office :");
-            nom_office = entree_std.readLine();
+            sortie_std.print("Quel est le nom du service achat? ");
+            nom_achat = entree_std.readLine();
             
             //1
             org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
@@ -55,7 +59,7 @@ public class ServeurServiceAchatOffice {
             org.omg.PortableServer.POA rootPOA = org.omg.PortableServer.POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
             
             //3
-            ServiceAchatOfficeImpl monServiceAchat = new ServiceAchatOfficeImpl(nom_office);
+            ServiceAchatOfficeImpl monServiceAchat = new ServiceAchatOfficeImpl(nom_achat, nom_banque, nameRoot, orb);
             
             //4
             rootPOA.activate_object(monServiceAchat);
@@ -70,10 +74,10 @@ public class ServeurServiceAchatOffice {
             
             org.omg.CosNaming.NameComponent[] nameToRegister = new org.omg.CosNaming.NameComponent[1];
             
-            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nom_office,"");
+            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nom_achat,"");
             nameRoot.rebind(nameToRegister, rootPOA.servant_to_reference(monServiceAchat));
             
-            sortie_std.println("Le service achat de l'office "+nom_office+" tourne");
+            sortie_std.println("Le service achat de l'office "+nom_achat+" tourne");
             
             //7
             orb.run();  

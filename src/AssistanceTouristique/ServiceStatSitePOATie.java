@@ -65,17 +65,9 @@ public class ServiceStatSitePOATie extends ServiceStatSitePOA
     /**
      * Operation getStatsSite
      */
-    public AssistanceTouristique.Statistique[] getStatsSite()
+    public AssistanceTouristique.Statistique[] getStatsSite(String date, int idSite)
     {
-        return _tie.getStatsSite();
-    }
-
-    /**
-     * Operation afficherInfosES
-     */
-    public void afficherInfosES(AssistanceTouristique.Visite[] listeVisites)
-    {
-        _tie.afficherInfosES( listeVisites);
+        return _tie.getStatsSite( date,  idSite);
     }
 
 }

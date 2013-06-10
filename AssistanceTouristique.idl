@@ -75,13 +75,12 @@ module AssistanceTouristique{
 	interface ServiceStatOffice{
 		// Méthodes
 		t_listeStat getStatsGlobales();	// renvoie une liste de statistiques sur l'ensemble des sites
-		void afficherStatsSite(in t_listeStat listeStat); 	// affiche la listes des statistiques d'un site touristique
 	};
 	
 	// Interface SiteTouristique
 	interface SiteTouristique{
 		// Méthodes
-		short getHorairesFermeture();	// revoie l heure de fermeture du site sous la forme HHMM
+		short getHorairesFermeture(in long idSite);	// revoie l heure de fermeture du site sous la forme HHMM
 	};
 	
 	// Interface ServiceESSite
@@ -97,16 +96,15 @@ module AssistanceTouristique{
 		boolean entrer(in short idCarte) raises (carteNonValideException, siteDejaVisiteException, siteSatureException, siteFermeException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
 		oneway void sortir(in short idCarte);
 		oneway void donnerAvisVisite(in string interet);
-		t_listeVisites getInfosES();	// renvoie une liste d'informations sur les visites (entrées et sorties) du site touristique
-		short getAffluenceCourante(); // renvoie l'affluence courante du site touristique
+		t_listeVisites getInfosES(in long idSite);	// renvoie une liste d'informations sur les visites (entrées et sorties) du site touristique
+		short getAffluenceCourante(in long idSite); // renvoie l'affluence courante du site touristique
 		
 	};
 		
 	// Interface ServiceStatSite
 	interface ServiceStatSite{
 		// Méthodes
-		t_listeStat getStatsSite();	// renvoie une liste de statistiques sur le site touristique
-		void afficherInfosES(in t_listeVisites listeVisites); // affiche la liste des visites du site touristique
+		t_listeStat getStatsSite(in string date, in long idSite);	// renvoie une liste de statistiques sur le site touristique
 	};
 	
 	// Interface ServiceDeplacement

@@ -33,9 +33,7 @@ public abstract class ServiceStatOfficePOA extends org.omg.PortableServer.Servan
             final org.omg.CORBA.portable.ResponseHandler handler)
     {
 
-        if (opName.equals("afficherStatsSite")) {
-                return _invoke_afficherStatsSite(_is, handler);
-        } else if (opName.equals("getStatsGlobales")) {
+        if (opName.equals("getStatsGlobales")) {
                 return _invoke_getStatsGlobales(_is, handler);
         } else {
             throw new org.omg.CORBA.BAD_OPERATION(opName);
@@ -52,19 +50,6 @@ public abstract class ServiceStatOfficePOA extends org.omg.PortableServer.Servan
 
         _output = handler.createReply();
         AssistanceTouristique.t_listeStatHelper.write(_output,_arg_result);
-
-        return _output;
-    }
-
-    private org.omg.CORBA.portable.OutputStream _invoke_afficherStatsSite(
-            final org.omg.CORBA.portable.InputStream _is,
-            final org.omg.CORBA.portable.ResponseHandler handler) {
-        org.omg.CORBA.portable.OutputStream _output;
-        AssistanceTouristique.Statistique[] arg0_in = AssistanceTouristique.t_listeStatHelper.read(_is);
-
-        afficherStatsSite(arg0_in);
-
-        _output = handler.createReply();
 
         return _output;
     }

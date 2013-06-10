@@ -70,12 +70,4 @@ public class ServiceStatOfficePOATie extends ServiceStatOfficePOA
         return _tie.getStatsGlobales();
     }
 
-    /**
-     * Operation afficherStatsSite
-     */
-    public void afficherStatsSite(AssistanceTouristique.Statistique[] listeStat)
-    {
-        _tie.afficherStatsSite( listeStat);
-    }
-
 }
