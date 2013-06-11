@@ -48,6 +48,11 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
     public String telephone;
 
     /**
+     * Struct member affluenceCourante
+     */
+    public int affluenceCourante;
+
+    /**
      * Default constructor
      */
     public Site()
@@ -63,8 +68,9 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
      * @param description description struct member
      * @param adresse adresse struct member
      * @param telephone telephone struct member
+     * @param affluenceCourante affluenceCourante struct member
      */
-    public Site(short idSite, String titre, AssistanceTouristique.Coordonnees coord, String horaire0uverture, String horaireFermeture, String description, String adresse, String telephone)
+    public Site(short idSite, String titre, AssistanceTouristique.Coordonnees coord, String horaire0uverture, String horaireFermeture, String description, String adresse, String telephone, int affluenceCourante)
     {
         this.idSite = idSite;
         this.titre = titre;
@@ -74,6 +80,7 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
         this.description = description;
         this.adresse = adresse;
         this.telephone = telephone;
+        this.affluenceCourante = affluenceCourante;
     }
 
 }

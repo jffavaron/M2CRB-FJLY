@@ -82,7 +82,7 @@ public class OfficeImpl extends OfficePOA {
                     //Récupération de l'affluence courante auprès du service ES du site
                     affluenceCourante = this.monServES.getAffluenceCourante((short)site.getKey());
                     
-                    siteAVisiter[i] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaire0uverture, infoSite.horaireFermeture, infoSite.description, infoSite.adresse, infoSite.telephone);
+                    siteAVisiter[i] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaire0uverture, infoSite.horaireFermeture, infoSite.description, infoSite.adresse, infoSite.telephone, affluenceCourante);
                     i++;
                 }
             //}

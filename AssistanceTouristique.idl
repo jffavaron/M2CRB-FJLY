@@ -41,6 +41,7 @@ module AssistanceTouristique{
                 string description;
                 string adresse;
                 string telephone;
+                long affluenceCourante;
 	};
 		
 	typedef sequence<Site> t_listeSites; // type liste de sites touristiques

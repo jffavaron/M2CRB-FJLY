@@ -73,7 +73,7 @@ public class SiteHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[8];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[9];
 
                 _members[0] = new org.omg.CORBA.StructMember();
                 _members[0].name = "idSite";
@@ -99,6 +99,9 @@ public class SiteHelper
                 _members[7] = new org.omg.CORBA.StructMember();
                 _members[7].name = "telephone";
                 _members[7].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[8] = new org.omg.CORBA.StructMember();
+                _members[8].name = "affluenceCourante";
+                _members[8].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
                 _tc = orb.create_struct_tc(id(),"Site",_members);
                 _working = false;
             }
@@ -134,6 +137,7 @@ public class SiteHelper
         new_one.description = istream.read_string();
         new_one.adresse = istream.read_string();
         new_one.telephone = istream.read_string();
+        new_one.affluenceCourante = istream.read_long();
 
         return new_one;
     }
@@ -153,6 +157,7 @@ public class SiteHelper
         ostream.write_string(value.description);
         ostream.write_string(value.adresse);
         ostream.write_string(value.telephone);
+        ostream.write_long(value.affluenceCourante);
     }
 
 }
