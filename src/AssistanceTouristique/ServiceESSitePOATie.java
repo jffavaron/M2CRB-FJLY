@@ -98,7 +98,7 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation getInfosES
      */
-    public AssistanceTouristique.Visite[] getInfosES(int idSite)
+    public AssistanceTouristique.Visite[] getInfosES(short idSite)
     {
         return _tie.getInfosES( idSite);
     }
@@ -106,7 +106,7 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation getAffluenceCourante
      */
-    public short getAffluenceCourante(int idSite)
+    public short getAffluenceCourante(short idSite)
     {
         return _tie.getAffluenceCourante( idSite);
     }

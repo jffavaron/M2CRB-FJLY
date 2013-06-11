@@ -21,7 +21,7 @@ import org.omg.CosNaming.NamingContextPackage.*;
  */
 public class OfficeImpl extends OfficePOA {
     private org.omg.CORBA.ORB orb;
-    private HashMap<Integer, String> listeSite;
+    private HashMap<Short, String> listeSite;
     private int nb_sites;
     private SiteTouristique monSite;
     private ServiceESSite monServES;
@@ -58,12 +58,11 @@ public class OfficeImpl extends OfficePOA {
 	}  
     }
             
-    public Site[] getListeSitesAVisiter(short idCarte, Coordonnees coordGPS, Site[] listeSitesVisites) {
+    public Site[] getListeSitesAVisiter(short idCarte, Coordonnees coordGPS, short[] listeSitesVisites) {
         Site[] siteAVisiter = new Site[this.nb_sites];
         int i=0;
-        Coordonnees coordSite;
         int affluenceCourante;
-        short horaireFermeture;
+        Site infoSite;
         try {
             //Si le touriste possede une carte 
             /*if(idCarte > 1) {
@@ -77,14 +76,13 @@ public class OfficeImpl extends OfficePOA {
                 //Pour chaque site
                 while(it.hasNext()) {
                     Map.Entry site = (Map.Entry)it.next();
-                    //Récupération des coordonnées du site : ça devrait pas être une méthode 
-                    coordSite = ServeurSite.coordSite;
-                    //Récupération des horaires de fermeture auprès du site
-                    horaireFermeture = this.monSite.getHorairesFermeture((int)site.getKey());
+                    //Récupération des informations générales du site auprès le site
+                    infoSite = this.monSite.getInfoSite((short)site.getKey());
+                   
                     //Récupération de l'affluence courante auprès du service ES du site
-                    affluenceCourante = this.monServES.getAffluenceCourante((int)site.getKey());
+                    affluenceCourante = this.monServES.getAffluenceCourante((short)site.getKey());
                     
-                    siteAVisiter[i] = new Site((String)site.getValue(), coordSite, affluenceCourante, horaireFermeture);
+                    siteAVisiter[i] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaire0uverture, infoSite.horaireFermeture, infoSite.description, infoSite.adresse, infoSite.telephone);
                     i++;
                 }
             //}

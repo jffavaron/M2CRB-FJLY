@@ -36,12 +36,12 @@ public class ServiceESSiteImpl extends ServiceESSitePOA {
         
     }
     
-    public Visite[] getInfosES(int idSite) {
+    public Visite[] getInfosES(short idSite) {
         return null;
         
     }
     
-    public short getAffluenceCourante(int idSite) {
+    public short getAffluenceCourante(short idSite) {
         short affluenceCourante=0;
         switch(idSite) {
             //Georges Labit

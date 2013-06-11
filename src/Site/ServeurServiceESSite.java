@@ -58,10 +58,10 @@ public class ServeurServiceESSite {
     public static void main(String args[]) {
         //TODO à lire dans la table 
         //Tableau des id/nom des sites 
-        HashMap<Integer,String> listeSites = new HashMap<Integer, String>();
-        listeSites. put(1, "Georges Labit");
-        listeSites.put(2,"Museum histoire naturelle");
-        listeSites.put(3, "Saint Raymond");
+        HashMap<Short,String> listeSites = new HashMap<Short, String>();
+        listeSites. put((short)1, "Georges Labit");
+        listeSites.put((short)2,"Museum histoire naturelle");
+        listeSites.put((short)3, "Saint Raymond");
         
         //Flux E/S standards
         BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));

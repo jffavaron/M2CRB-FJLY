@@ -33,24 +33,24 @@ public abstract class SiteTouristiquePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.ResponseHandler handler)
     {
 
-        if (opName.equals("getHorairesFermeture")) {
-                return _invoke_getHorairesFermeture(_is, handler);
+        if (opName.equals("getInfoSite")) {
+                return _invoke_getInfoSite(_is, handler);
         } else {
             throw new org.omg.CORBA.BAD_OPERATION(opName);
         }
     }
 
     // helper methods
-    private org.omg.CORBA.portable.OutputStream _invoke_getHorairesFermeture(
+    private org.omg.CORBA.portable.OutputStream _invoke_getInfoSite(
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        int arg0_in = _is.read_long();
+        short arg0_in = _is.read_short();
 
-        short _arg_result = getHorairesFermeture(arg0_in);
+        AssistanceTouristique.Site _arg_result = getInfoSite(arg0_in);
 
         _output = handler.createReply();
-        _output.write_short(_arg_result);
+        AssistanceTouristique.SiteHelper.write(_output,_arg_result);
 
         return _output;
     }

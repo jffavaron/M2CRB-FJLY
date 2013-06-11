@@ -56,13 +56,14 @@ public class ClientSmartphone extends javax.swing.JFrame {
     public static String dd, df;
     public static Float montant;
     //TODO à récupérer dans la base de donnée
-    public static short idCarte = 0;
+    public static short idCarte = 1;
     public static Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
-    public static Site[] sitesVisites= new Site[1];
+    public static short[] sitesVisites;
     
 
     public ClientSmartphone() {
-        sitesVisites[0] = new Site("test", coordSmartphone, 12, 120);
+        sitesVisites = new short[1];
+        sitesVisites[0]=5;
         initComponents();
     }
 

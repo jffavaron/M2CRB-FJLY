@@ -226,7 +226,7 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
             
             //TODO trouver l'identifiant du site à faire passer en paramètre
             //Récupération des statistiques auprès du service stat
-            AssistanceTouristique.Statistique[] stat = monServiceStat.getStatsSite(date, 1);
+            AssistanceTouristique.Statistique[] stat = monServiceStat.getStatsSite(date, (short)1);
             
             /************ Remplissage du tableau *************/
             //Première ligne

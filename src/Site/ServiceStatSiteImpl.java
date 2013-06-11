@@ -37,7 +37,7 @@ public class ServiceStatSiteImpl extends ServiceStatSitePOA {
                 AssistanceTouristique.ServiceESSite monServES = AssistanceTouristique.ServiceESSiteHelper.narrow(distantServES);
                 
                 //Appel à la methode du service E/S
-                monServES.getInfosES((int)site.getKey());
+                monServES.getInfosES((short)site.getKey());
             }   
         }
 	catch (Exception e) {
@@ -46,7 +46,7 @@ public class ServiceStatSiteImpl extends ServiceStatSitePOA {
         
     }
     
-    public Statistique[] getStatsSite(String date , int idSite) {
+    public Statistique[] getStatsSite(String date , short idSite) {
         //Traitement de la date
         DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT,Locale.ENGLISH);
         try {
