@@ -80,10 +80,10 @@ public class VisiteHelper
                 _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[1] = new org.omg.CORBA.StructMember();
                 _members[1].name = "heureEntree";
-                _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
+                _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[2] = new org.omg.CORBA.StructMember();
                 _members[2].name = "heureSortie";
-                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
+                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[3] = new org.omg.CORBA.StructMember();
                 _members[3].name = "interet";
                 _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
@@ -115,8 +115,8 @@ public class VisiteHelper
         AssistanceTouristique.Visite new_one = new AssistanceTouristique.Visite();
 
         new_one.date = istream.read_string();
-        new_one.heureEntree = istream.read_long();
-        new_one.heureSortie = istream.read_long();
+        new_one.heureEntree = istream.read_string();
+        new_one.heureSortie = istream.read_string();
         new_one.interet = istream.read_string();
 
         return new_one;
@@ -130,8 +130,8 @@ public class VisiteHelper
     public static void write(org.omg.CORBA.portable.OutputStream ostream, AssistanceTouristique.Visite value)
     {
         ostream.write_string(value.date);
-        ostream.write_long(value.heureEntree);
-        ostream.write_long(value.heureSortie);
+        ostream.write_string(value.heureEntree);
+        ostream.write_string(value.heureSortie);
         ostream.write_string(value.interet);
     }
 

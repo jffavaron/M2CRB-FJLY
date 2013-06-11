@@ -131,7 +131,7 @@ public abstract class ServiceESSitePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        int arg0_in = _is.read_long();
+        short arg0_in = _is.read_short();
 
         AssistanceTouristique.Visite[] _arg_result = getInfosES(arg0_in);
 
@@ -145,7 +145,7 @@ public abstract class ServiceESSitePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        int arg0_in = _is.read_long();
+        short arg0_in = _is.read_short();
 
         short _arg_result = getAffluenceCourante(arg0_in);
 

@@ -31,11 +31,11 @@ public interface ServiceESSiteOperations
     /**
      * Operation getInfosES
      */
-    public AssistanceTouristique.Visite[] getInfosES(int idSite);
+    public AssistanceTouristique.Visite[] getInfosES(short idSite);
 
     /**
      * Operation getAffluenceCourante
      */
-    public short getAffluenceCourante(int idSite);
+    public short getAffluenceCourante(short idSite);
 
 }

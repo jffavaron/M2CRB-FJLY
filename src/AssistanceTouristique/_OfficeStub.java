@@ -23,7 +23,7 @@ public class _OfficeStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation getListeSitesAVisiter
      */
-    public AssistanceTouristique.Site[] getListeSitesAVisiter(short idCarte, AssistanceTouristique.Coordonnees coordGPS, AssistanceTouristique.Site[] listeSitesVisites)
+    public AssistanceTouristique.Site[] getListeSitesAVisiter(short idCarte, AssistanceTouristique.Coordonnees coordGPS, short[] listeIdSitesVisites)
     {
         while(true)
         {
@@ -35,7 +35,7 @@ public class _OfficeStub extends org.omg.CORBA.portable.ObjectImpl
                     org.omg.CORBA.portable.OutputStream _output = this._request("getListeSitesAVisiter",true);
                     _output.write_short(idCarte);
                     AssistanceTouristique.CoordonneesHelper.write(_output,coordGPS);
-                    AssistanceTouristique.t_listeSitesHelper.write(_output,listeSitesVisites);
+                    AssistanceTouristique.t_listeIdHelper.write(_output,listeIdSitesVisites);
                     _input = this._invoke(_output);
                     AssistanceTouristique.Site[] _arg_ret = AssistanceTouristique.t_listeSitesHelper.read(_input);
                     return _arg_ret;
@@ -62,7 +62,7 @@ public class _OfficeStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.OfficeOperations _self = (AssistanceTouristique.OfficeOperations) _so.servant;
                 try
                 {
-                    return _self.getListeSitesAVisiter( idCarte,  coordGPS,  listeSitesVisites);
+                    return _self.getListeSitesAVisiter( idCarte,  coordGPS,  listeIdSitesVisites);
                 }
                 finally
                 {

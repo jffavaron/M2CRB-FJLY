@@ -244,7 +244,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation getInfosES
      */
-    public AssistanceTouristique.Visite[] getInfosES(int idSite)
+    public AssistanceTouristique.Visite[] getInfosES(short idSite)
     {
         while(true)
         {
@@ -254,7 +254,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("getInfosES",true);
-                    _output.write_long(idSite);
+                    _output.write_short(idSite);
                     _input = this._invoke(_output);
                     AssistanceTouristique.Visite[] _arg_ret = AssistanceTouristique.t_listeVisitesHelper.read(_input);
                     return _arg_ret;
@@ -294,7 +294,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation getAffluenceCourante
      */
-    public short getAffluenceCourante(int idSite)
+    public short getAffluenceCourante(short idSite)
     {
         while(true)
         {
@@ -304,7 +304,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("getAffluenceCourante",true);
-                    _output.write_long(idSite);
+                    _output.write_short(idSite);
                     _input = this._invoke(_output);
                     short _arg_ret = _input.read_short();
                     return _arg_ret;

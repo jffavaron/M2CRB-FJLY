@@ -21,9 +21,9 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
     private final static Class _opsClass = AssistanceTouristique.SiteTouristiqueOperations.class;
 
     /**
-     * Operation getHorairesFermeture
+     * Operation getInfoSite
      */
-    public short getHorairesFermeture(int idSite)
+    public AssistanceTouristique.Site getInfoSite(short idSite)
     {
         while(true)
         {
@@ -32,10 +32,10 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
                 org.omg.CORBA.portable.InputStream _input = null;
                 try
                 {
-                    org.omg.CORBA.portable.OutputStream _output = this._request("getHorairesFermeture",true);
-                    _output.write_long(idSite);
+                    org.omg.CORBA.portable.OutputStream _output = this._request("getInfoSite",true);
+                    _output.write_short(idSite);
                     _input = this._invoke(_output);
-                    short _arg_ret = _input.read_short();
+                    AssistanceTouristique.Site _arg_ret = AssistanceTouristique.SiteHelper.read(_input);
                     return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
@@ -54,13 +54,13 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
             }
             else
             {
-                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("getHorairesFermeture",_opsClass);
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("getInfoSite",_opsClass);
                 if (_so == null)
                    continue;
                 AssistanceTouristique.SiteTouristiqueOperations _self = (AssistanceTouristique.SiteTouristiqueOperations) _so.servant;
                 try
                 {
-                    return _self.getHorairesFermeture( idSite);
+                    return _self.getInfoSite( idSite);
                 }
                 finally
                 {

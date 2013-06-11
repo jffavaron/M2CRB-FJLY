@@ -15,12 +15,12 @@ public final class Visite implements org.omg.CORBA.portable.IDLEntity
     /**
      * Struct member heureEntree
      */
-    public int heureEntree;
+    public String heureEntree;
 
     /**
      * Struct member heureSortie
      */
-    public int heureSortie;
+    public String heureSortie;
 
     /**
      * Struct member interet
@@ -40,7 +40,7 @@ public final class Visite implements org.omg.CORBA.portable.IDLEntity
      * @param heureSortie heureSortie struct member
      * @param interet interet struct member
      */
-    public Visite(String date, int heureEntree, int heureSortie, String interet)
+    public Visite(String date, String heureEntree, String heureSortie, String interet)
     {
         this.date = date;
         this.heureEntree = heureEntree;

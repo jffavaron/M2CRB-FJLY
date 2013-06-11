@@ -73,20 +73,32 @@ public class SiteHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[4];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[8];
 
                 _members[0] = new org.omg.CORBA.StructMember();
-                _members[0].name = "nom";
-                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[0].name = "idSite";
+                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_short);
                 _members[1] = new org.omg.CORBA.StructMember();
-                _members[1].name = "coord";
-                _members[1].type = AssistanceTouristique.CoordonneesHelper.type();
+                _members[1].name = "titre";
+                _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[2] = new org.omg.CORBA.StructMember();
-                _members[2].name = "affluenceCourante";
-                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
+                _members[2].name = "coord";
+                _members[2].type = AssistanceTouristique.CoordonneesHelper.type();
                 _members[3] = new org.omg.CORBA.StructMember();
-                _members[3].name = "horaireFermeture";
-                _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
+                _members[3].name = "horaire0uverture";
+                _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[4] = new org.omg.CORBA.StructMember();
+                _members[4].name = "horaireFermeture";
+                _members[4].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[5] = new org.omg.CORBA.StructMember();
+                _members[5].name = "description";
+                _members[5].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[6] = new org.omg.CORBA.StructMember();
+                _members[6].name = "adresse";
+                _members[6].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[7] = new org.omg.CORBA.StructMember();
+                _members[7].name = "telephone";
+                _members[7].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _tc = orb.create_struct_tc(id(),"Site",_members);
                 _working = false;
             }
@@ -114,10 +126,14 @@ public class SiteHelper
     {
         AssistanceTouristique.Site new_one = new AssistanceTouristique.Site();
 
-        new_one.nom = istream.read_string();
+        new_one.idSite = istream.read_short();
+        new_one.titre = istream.read_string();
         new_one.coord = AssistanceTouristique.CoordonneesHelper.read(istream);
-        new_one.affluenceCourante = istream.read_long();
-        new_one.horaireFermeture = istream.read_long();
+        new_one.horaire0uverture = istream.read_string();
+        new_one.horaireFermeture = istream.read_string();
+        new_one.description = istream.read_string();
+        new_one.adresse = istream.read_string();
+        new_one.telephone = istream.read_string();
 
         return new_one;
     }
@@ -129,10 +145,14 @@ public class SiteHelper
      */
     public static void write(org.omg.CORBA.portable.OutputStream ostream, AssistanceTouristique.Site value)
     {
-        ostream.write_string(value.nom);
+        ostream.write_short(value.idSite);
+        ostream.write_string(value.titre);
         AssistanceTouristique.CoordonneesHelper.write(ostream,value.coord);
-        ostream.write_long(value.affluenceCourante);
-        ostream.write_long(value.horaireFermeture);
+        ostream.write_string(value.horaire0uverture);
+        ostream.write_string(value.horaireFermeture);
+        ostream.write_string(value.description);
+        ostream.write_string(value.adresse);
+        ostream.write_string(value.telephone);
     }
 
 }

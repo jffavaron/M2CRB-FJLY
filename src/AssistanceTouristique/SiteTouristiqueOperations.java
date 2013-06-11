@@ -8,8 +8,8 @@ package AssistanceTouristique;
 public interface SiteTouristiqueOperations
 {
     /**
-     * Operation getHorairesFermeture
+     * Operation getInfoSite
      */
-    public short getHorairesFermeture(int idSite);
+    public AssistanceTouristique.Site getInfoSite(short idSite);
 
 }

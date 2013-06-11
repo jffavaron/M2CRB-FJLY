@@ -65,9 +65,9 @@ public class OfficePOATie extends OfficePOA
     /**
      * Operation getListeSitesAVisiter
      */
-    public AssistanceTouristique.Site[] getListeSitesAVisiter(short idCarte, AssistanceTouristique.Coordonnees coordGPS, AssistanceTouristique.Site[] listeSitesVisites)
+    public AssistanceTouristique.Site[] getListeSitesAVisiter(short idCarte, AssistanceTouristique.Coordonnees coordGPS, short[] listeIdSitesVisites)
     {
-        return _tie.getListeSitesAVisiter( idCarte,  coordGPS,  listeSitesVisites);
+        return _tie.getListeSitesAVisiter( idCarte,  coordGPS,  listeIdSitesVisites);
     }
 
 }

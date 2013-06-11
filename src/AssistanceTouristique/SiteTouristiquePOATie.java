@@ -63,11 +63,11 @@ public class SiteTouristiquePOATie extends SiteTouristiquePOA
     }
 
     /**
-     * Operation getHorairesFermeture
+     * Operation getInfoSite
      */
-    public short getHorairesFermeture(int idSite)
+    public AssistanceTouristique.Site getInfoSite(short idSite)
     {
-        return _tie.getHorairesFermeture( idSite);
+        return _tie.getInfoSite( idSite);
     }
 
 }
