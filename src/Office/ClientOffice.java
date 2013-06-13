@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author jfred_000
  */
 public class ClientOffice extends javax.swing.JFrame {
-
+    private static String nomOffice = ServeurOffice.nomOffice;
     /**
      * Creates new form ClientOffice
      */
@@ -36,6 +36,7 @@ public class ClientOffice extends javax.swing.JFrame {
         boutonConsulterStatsSites = new javax.swing.JButton();
         boutonConsulterLesVentes = new javax.swing.JButton();
         boutonConsulterListeSites = new javax.swing.JButton();
+        jLabelTitreClientOffice = new javax.swing.JLabel();
         ConsultationVentes = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -96,28 +97,38 @@ public class ClientOffice extends javax.swing.JFrame {
             }
         });
 
+        jLabelTitreClientOffice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelTitreClientOffice.setText("Office de tourisme de " + nomOffice);
+
         javax.swing.GroupLayout AccueilLayout = new javax.swing.GroupLayout(Accueil);
         Accueil.setLayout(AccueilLayout);
         AccueilLayout.setHorizontalGroup(
             AccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccueilLayout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addGroup(AccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(boutonConsulterStatsSites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutonConsulterLesVentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutonConsulterListeSites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addGroup(AccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AccueilLayout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addGroup(AccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(boutonConsulterStatsSites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boutonConsulterLesVentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boutonConsulterListeSites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(AccueilLayout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(jLabelTitreClientOffice, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         AccueilLayout.setVerticalGroup(
             AccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccueilLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
+                .addContainerGap()
+                .addComponent(jLabelTitreClientOffice)
+                .addGap(147, 147, 147)
                 .addComponent(boutonConsulterLesVentes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonConsulterStatsSites)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonConsulterListeSites)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         mainPanel.add(Accueil, "Accueil");
@@ -171,7 +182,7 @@ public class ClientOffice extends javax.swing.JFrame {
                     .addGroup(ConsultationVentesLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ConsultationVentesLayout.setVerticalGroup(
@@ -194,7 +205,7 @@ public class ClientOffice extends javax.swing.JFrame {
         );
         ConsultationStatsSitesLayout.setVerticalGroup(
             ConsultationStatsSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
         );
 
         mainPanel.add(ConsultationStatsSites, "ConsultationStatsSites");
@@ -207,7 +218,7 @@ public class ClientOffice extends javax.swing.JFrame {
         );
         ConsultationListeSitesLayout.setVerticalGroup(
             ConsultationListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
         );
 
         mainPanel.add(ConsultationListeSites, "ConsultationListeSites");
@@ -224,7 +235,7 @@ public class ClientOffice extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(BandeauOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,7 +288,12 @@ public class ClientOffice extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClientOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        //Lancement du service stat de l'office
+        ServeurStatOffice servStat = new ServeurStatOffice(args);
+        Thread thread_servStat = new Thread(servStat);
+        thread_servStat.start();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -296,6 +312,7 @@ public class ClientOffice extends javax.swing.JFrame {
     private javax.swing.JButton boutonConsulterListeSites;
     private javax.swing.JButton boutonConsulterStatsSites;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTitreClientOffice;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListeVentes;
     private javax.swing.JPanel mainPanel;

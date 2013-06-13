@@ -10,6 +10,7 @@ import AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException;
 import AssistanceTouristique.ServiceBancairePackage.operationImpossibleException;
 import Office.ClientOffice;
 import Office.ServeurOffice;
+import Office.ServeurServiceAchatOffice;
 import Office.ServiceAchatOfficeImpl;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -56,14 +57,16 @@ public class ClientSmartphone extends javax.swing.JFrame {
     public static String dd, df;
     public static Float montant;
     //TODO à récupérer dans la base de donnée
-    public static short idCarte = 1;
+    public static short idCarte = 0;
     public static Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
     public static short[] sitesVisites;
+    public static Carte carte;
     
 
     public ClientSmartphone() {
-        sitesVisites = new short[1];
-        sitesVisites[0]=5;
+        sitesVisites = new short[0];
+        carte = new Carte();
+        //sitesVisites[0]=5;
         initComponents();
     }
 
@@ -124,12 +127,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
         dateF = new javax.swing.JFormattedTextField();
         BoutonPayer = new javax.swing.JButton();
         textMontant = new javax.swing.JLabel();
-        EcranBanque = new javax.swing.JPanel();
+        EcranCarte = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        BoutonValiderPaiement = new javax.swing.JButton();
-        inputCarteBancaire = new javax.swing.JTextField();
-        inputMontant = new javax.swing.JLabel();
+        BoutonVoirSite = new javax.swing.JButton();
+        jLabelMessagePaiement = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         footerPanel = new javax.swing.JPanel();
@@ -324,7 +325,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addComponent(boutonInscription)
                 .addGap(18, 18, 18)
                 .addComponent(boutonMotDePasseOublie)
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranIdentification, "EcranIdentification");
@@ -401,7 +402,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
 
@@ -507,7 +508,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addComponent(labelAffluence, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jProgressBarAffluenceSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranInfoSite, "EcranInfoSite");
@@ -521,14 +522,14 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addGroup(EcranBilletterieLayout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(jLabel7)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         EcranBilletterieLayout.setVerticalGroup(
             EcranBilletterieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranBilletterieLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jLabel7)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranBilletterie, "EcranBilletterie");
@@ -542,14 +543,14 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addGroup(EcranRechercheLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addComponent(jLabel8)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         EcranRechercheLayout.setVerticalGroup(
             EcranRechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranRechercheLayout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jLabel8)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranRecherche, "EcranRecherche");
@@ -607,7 +608,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                     .addGroup(EcranAchatLayout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(BoutonPayer)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         EcranAchatLayout.setVerticalGroup(
             EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -626,7 +627,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                     .addComponent(textMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(BoutonPayer)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         BoutonPayer.getAccessibleContext().setAccessibleName("BoutonPayer");
@@ -634,63 +635,46 @@ public class ClientSmartphone extends javax.swing.JFrame {
         mainPanel.add(EcranAchat, "EcranAchat");
         EcranAchat.getAccessibleContext().setAccessibleName("");
 
-        jLabel12.setText("Paiement de la commande");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Confirmation du paiement");
 
-        jLabel14.setText("Numéro de carte bancaire :");
-
-        BoutonValiderPaiement.setText("Valider");
-        BoutonValiderPaiement.addActionListener(new java.awt.event.ActionListener() {
+        BoutonVoirSite.setText("Voir la liste des sites");
+        BoutonVoirSite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoutonValiderPaiementActionPerformed(evt);
+                BoutonVoirSiteActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout EcranBanqueLayout = new javax.swing.GroupLayout(EcranBanque);
-        EcranBanque.setLayout(EcranBanqueLayout);
-        EcranBanqueLayout.setHorizontalGroup(
-            EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranBanqueLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EcranBanqueLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(inputMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(EcranBanqueLayout.createSequentialGroup()
-                .addGroup(EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranBanqueLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(inputCarteBancaire))
-                    .addGroup(EcranBanqueLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+        javax.swing.GroupLayout EcranCarteLayout = new javax.swing.GroupLayout(EcranCarte);
+        EcranCarte.setLayout(EcranCarteLayout);
+        EcranCarteLayout.setHorizontalGroup(
+            EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 62, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(EcranBanqueLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(BoutonValiderPaiement)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
+                        .addComponent(BoutonVoirSite)
+                        .addGap(93, 93, 93))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
+                        .addComponent(jLabelMessagePaiement, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(51, Short.MAX_VALUE))))
         );
-        EcranBanqueLayout.setVerticalGroup(
-            EcranBanqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranBanqueLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+        EcranCarteLayout.setVerticalGroup(
+            EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EcranCarteLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addComponent(jLabel12)
-                .addGap(30, 30, 30)
-                .addComponent(inputMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputCarteBancaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(BoutonValiderPaiement)
-                .addGap(41, 41, 41))
+                .addGap(43, 43, 43)
+                .addComponent(jLabelMessagePaiement, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
+                .addComponent(BoutonVoirSite)
+                .addGap(29, 29, 29))
         );
 
-        inputMontant.getAccessibleContext().setAccessibleName("inputMontant");
-
-        mainPanel.add(EcranBanque, "EcranBanque");
+        mainPanel.add(EcranCarte, "EcranCarte");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -906,7 +890,8 @@ public class ClientSmartphone extends javax.swing.JFrame {
             AssistanceTouristique.Office monOffice = AssistanceTouristique.OfficeHelper.narrow(distantOffice);
             
             //Récupération de la liste des sites à visiter
-            monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
+            Site[] siteAVisiter = monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
+            
             
        } catch (Exception e) {
             e.printStackTrace();
@@ -939,24 +924,42 @@ public class ClientSmartphone extends javax.swing.JFrame {
         df = dateF.getText();
         montant = Float.parseFloat(textMontant.getText());
 
-        //3
-        // monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
-
-        //Appel au serveur du service achat de l'office
-        //Office.ServeurServiceAchatOffice serveur_achat = new Office.ServeurServiceAchatOffice(monServAchat, dd, df, montant);
-
         //Affichage de l'écran informations bancaires
-        CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranBanque");
+        /*CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranBanque");*/
 
-        /*try {
-            //appel de la fonction acheter prestation
-            //AssistanceTouristique.Carte c = monServAchat.acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
-            //AssistanceTouristique.Carte c = serveur_achat.getServiceAchat().acheterPrestation(dd, df, Float.parseFloat(textMontant.getText()));
-            System.out.println(c.dateDebut + " " + c.dateFin);
-        } catch (achatImpossibleException ex) {
-            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        try {
+            /*********** Recherche du service achat de l'office ***********/
+            String nom_servAchat = ServeurServiceAchatOffice.nomServAchat;
+            
+            org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
+            nameToFind[0] = new org.omg.CosNaming.NameComponent(nom_servAchat, "");
+            org.omg.CORBA.Object distantServAchat = nameRoot.resolve(nameToFind);
+                
+            ServiceAchatOffice monServAchat = ServiceAchatOfficeHelper.narrow(distantServAchat);
+            
+            carte = monServAchat.acheterPrestation(dd, dd, montant);
+            System.out.println("numéro de carte : " + carte.idCarte);
+                
+        } 
+        catch (Exception e) {
+		e.printStackTrace();
+        }
+        
+        //Affichage de l'écran de confirmation ou d'annulation
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranCarte");
+        
+        if(carte.idCarte > 0) {
+            jLabelMessagePaiement.setText("Le paiement est accepté.\n"
+                    + "Le numéro de la carte est : " + carte.idCarte + ".\n"
+                    + "Vous pouvez accéder à tous les musées du " + carte.dateDebut 
+                    + " au " + carte.dateFin);
+        }
+        else
+            jLabelMessagePaiement.setText("Le paiement est refusé. La transaction est annulée.");
+        
+
     }//GEN-LAST:event_BoutonPayerActionPerformed
 
     private void dateDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateDActionPerformed
@@ -1010,21 +1013,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dateFActionPerformed
 
-    private void BoutonValiderPaiementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonValiderPaiementActionPerformed
-        // TODO add your handling code here:
-        //monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
-        //AutresServices.ServeurServiceBancaire servBanque = new AutresServices.ServeurServiceBancaire(monServBancaire);
-        /*try {
-         //boolean reponse = servBanque.getServiceBancaire().verifierPaiement(montant);
-         boolean reponse = serveur_bancaire.getServiceBancaire().verifierPaiement(montant);
-         if(reponse)
-         serveur_bancaire.validerPaiement();
-            
-         } catch (operationImpossibleException ex) {
-         Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-         }*/
-        //monServAchat.acheterPrestation(dd, dd, montant);
-    }//GEN-LAST:event_BoutonValiderPaiementActionPerformed
+    private void BoutonVoirSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonVoirSiteActionPerformed
+        //Retour à l'écran d'accueil sans le bouton "réserver"
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranAccueil");
+    }//GEN-LAST:event_BoutonVoirSiteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1086,11 +1079,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonPayer;
-    private javax.swing.JButton BoutonValiderPaiement;
+    private javax.swing.JButton BoutonVoirSite;
     private javax.swing.JPanel EcranAccueil;
     private javax.swing.JPanel EcranAchat;
-    private javax.swing.JPanel EcranBanque;
     private javax.swing.JPanel EcranBilletterie;
+    private javax.swing.JPanel EcranCarte;
     private javax.swing.JPanel EcranIdentification;
     private javax.swing.JPanel EcranInfoSite;
     private javax.swing.JPanel EcranRecherche;
@@ -1112,21 +1105,18 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JPanel footerPanel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel imageSite;
-    private javax.swing.JTextField inputCarteBancaire;
-    private javax.swing.JLabel inputMontant;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelMessagePaiement;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

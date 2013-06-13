@@ -22,6 +22,7 @@ public class ServeurSite {
     //TODO à récupérer dans la BD
     public static String nomSite;
     public static Coordonnees coordSite = new Coordonnees((float)30, (float)45);
+    public static String nomBD = "bd_site_georgeslabit";
     
     public ServeurSite() {
         
@@ -38,8 +39,9 @@ public class ServeurSite {
     
       try {
           //Configuration de base
-          sortie_std.print("Quel est le nom du site?");
-          nomSite=entree_std.readLine();
+          //sortie_std.print("Quel est le nom du site?");
+          //nomSite=entree_std.readLine();
+          nomSite=new SiteDBManager(nomBD).getNomSite();
           
           org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
@@ -50,7 +52,7 @@ public class ServeurSite {
 
             // Creation du servant
             //*********************
-           SiteTouristiqueImpl monSite = new SiteTouristiqueImpl();
+           SiteTouristiqueImpl monSite = new SiteTouristiqueImpl(nomSite);
 
             // Activer le servant au sein du POA et recuperer son ID
             byte[] monSiteId = rootPOA.activate_object(monSite);

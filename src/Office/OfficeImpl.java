@@ -59,17 +59,31 @@ public class OfficeImpl extends OfficePOA {
     }
             
     public Site[] getListeSitesAVisiter(short idCarte, Coordonnees coordGPS, short[] listeSitesVisites) {
+        ServeurOffice servOffice = new ServeurOffice();
         Site[] siteAVisiter = new Site[this.nb_sites];
         int i=0;
         int affluenceCourante;
         Site infoSite;
         try {
-            //Si le touriste possede une carte 
-            /*if(idCarte > 1) {
-            
+            //Si le touriste a déjà visité des sites 
+            if(listeSitesVisites.length > 0) {
+                //Calculer les sites qu'il reste à visiter
+                short[] sitesRestant = servOffice.calculerSitesNonVisites(listeSitesVisites);
+                //Pour chaque id des sites restants
+                for(int j=0; j<sitesRestant.length; j++) {
+                    //Récupération des infos générales du site
+                    infoSite = this.monSite.getInfoSite(sitesRestant[j]);
+                    
+                    //Récupération de l'affluence courante auprès du service ES du site
+                    affluenceCourante = this.monServES.getAffluenceCourante(sitesRestant[j]);
+                    
+                    //Construction du tableau des sites à visiter
+                    siteAVisiter[j] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaire0uverture, infoSite.horaireFermeture, infoSite.description, infoSite.adresse, infoSite.telephone, affluenceCourante);
+                }
+                
+                
             }
-            else {*/
-                //siteAVisiter = new Site[this.nb_sites];
+            else {
                 //La liste des sites est celle de l'office
                 Set set = listeSite.entrySet();
                 Iterator it = set.iterator();
@@ -85,12 +99,13 @@ public class OfficeImpl extends OfficePOA {
                     siteAVisiter[i] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaire0uverture, infoSite.horaireFermeture, infoSite.description, infoSite.adresse, infoSite.telephone, affluenceCourante);
                     i++;
                 }
-            //}
+            }
 
         }
 	catch (Exception e) {
 		e.printStackTrace();
 	}
+        
         
         return siteAVisiter; 
     }

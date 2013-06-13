@@ -23,10 +23,9 @@ import javax.swing.JOptionPane;
 public class ClientSiteTouristique extends javax.swing.JFrame {
     //TODO BD site GL
     private static String nombd="bd_site_histoirenaturelle";
-    
     public static boolean estPremierLancement = true;
-    
     private static org.omg.CosNaming.NamingContext nameRoot;
+    
     /**
      * Creates new form ClientSite
      */
@@ -399,7 +398,10 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
             System.out.println("Objet '" + nomServiceStat + "' trouve aupres du service de noms. IOR de l'objet :");
           
             // Casting de l'objet CORBA
-            AssistanceTouristique.ServiceStatSite monServiceStat = AssistanceTouristique.ServiceStatSiteHelper.narrow(distantServiceStat);
+            ServiceStatSite monServiceStat = ServiceStatSiteHelper.narrow(distantServiceStat);
+            
+            //Lancement du service ES
+            
             
             //TODO trouver l'identifiant du site à faire passer en paramètre
             //Récupération des statistiques auprès du service stat
@@ -632,10 +634,15 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
 
         try {
             //1
-            //org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
+            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
             
             //2 
-            //nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            
+            //Lancement du serveur du service ES
+           /* ServeurServiceESSite servESSite = new ServeurServiceESSite(nombd, args);
+            Thread threadSite = new Thread(servESSite);
+            threadSite.start();*/
             
             //Appel à l'interface graphique
             new ClientSiteTouristique().setVisible(true);

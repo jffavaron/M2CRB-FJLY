@@ -18,11 +18,15 @@ import org.omg.PortableServer.POAHelper;
  *
  * @author Lydia
  */
-public class ServeurServiceESSite {
+public class ServeurServiceESSite /*implements Runnable*/ {
     //A récupérer dns la table des info du site
     public static String nomServESSite;
+    private static String nombd = "bd_site_histoirenaturelle";
+    private static String args[];
     
-    public ServeurServiceESSite() {
+    public ServeurServiceESSite(/*String nombd, String args[]*/) {
+       /* this.nombd = nombd;
+        this.args = args;*/
         
     }
     
@@ -56,22 +60,19 @@ public class ServeurServiceESSite {
     }
     
     public static void main(String args[]) {
+   // public void run() {
         //TODO à lire dans la table 
-        //Tableau des id/nom des sites 
-        HashMap<Short,String> listeSites = new HashMap<Short, String>();
-        listeSites. put((short)1, "Georges Labit");
-        listeSites.put((short)2,"Museum histoire naturelle");
-        listeSites.put((short)3, "Saint Raymond");
-        
         //Flux E/S standards
-        BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
-        PrintStream sortie_std = new PrintStream(System.out);
+       /* BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
+        PrintStream sortie_std = new PrintStream(System.out);*/
 
         try {
             
             //Configuration de base
-          sortie_std.print("Quel est le nom du site?");
-          nomServESSite="ES "+entree_std.readLine();
+          //sortie_std.print("Quel est le nom du site?");
+          //nomServESSite="ES "+entree_std.readLine();
+          System.out.println(args.length);
+          nomServESSite="ES "+ new SiteDBManager(nombd).getNomSite();
           
         // Intialisation de l'ORB
         //************************

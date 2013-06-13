@@ -9,8 +9,9 @@ import AssistanceTouristique.*;
  * @author Lydia
  */
 public class SiteTouristiqueImpl extends SiteTouristiquePOA {
+    private String nomSite;
     
-    public SiteTouristiqueImpl() {
+    public SiteTouristiqueImpl(String nomSite) {
         
     }
     
