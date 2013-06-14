@@ -10,7 +10,6 @@ public interface ServiceAchatOfficeOperations
     /**
      * Operation acheterPrestation
      */
-    public AssistanceTouristique.Carte acheterPrestation(String dateD, String dateF, float montant)
-        throws AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException;
+    public AssistanceTouristique.Carte acheterPrestation(String dateD, String dateF, float montant);
 
 }

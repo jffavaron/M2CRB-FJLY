@@ -6,11 +6,7 @@ package Office;
 import AssistanceTouristique.*;
 import AutresServices.ServeurServiceBancaire;
 
-import java.io.*;
-import org.omg.CORBA.*;
-import org.omg.PortableServer.*;
 import org.omg.CosNaming.*;
-import org.omg.CosNaming.NamingContextPackage.*;
 /**
  *
  * @author Lydia
@@ -22,10 +18,12 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
     private Office office;
     private Site[] lesSites;
     private ServiceESSite[] lesServES;
+    private OfficeDBManager db;
     
     public ServiceAchatOfficeImpl(String nom_achat, org.omg.CORBA.ORB orb) {
         this.nom_achat=nom_achat;
         this.orb=orb;
+        this.db = new OfficeDBManager();
         
         //recherche banque auprès du naming service
         try {
@@ -40,7 +38,7 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
             this.banque = ServiceBancaireHelper.narrow(distantBanque);
                
             /************* Recherche de l'office auprès du service de nom *************/
-            String nom_office = ServeurOffice.nomOffice;
+            /*String nom_office = ServeurOffice.nomOffice;
        
             nameToFind = new org.omg.CosNaming.NameComponent[1];
             nameToFind[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
@@ -50,7 +48,10 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
             this.office = OfficeHelper.narrow(distantOffice);
             //Liste des sites de l'office
             Coordonnees coordOffice = new Coordonnees((float)10, (float)20);
-            this.lesSites = this.office.getListeSitesAVisiter((short)0, coordOffice, new short[0]);
+            this.lesSites = this.office.getListeSitesAVisiter((short)0, coordOffice, new short[0]);*/
+            
+            //TODO Récupération des sites dans la base de l'office
+            
             
             String nom_servES;
             lesServES = new ServiceESSite[this.lesSites.length];
@@ -73,8 +74,7 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
 
     }
     
-    public Carte acheterPrestation(String dateD, String dateF, float montant) throws 
-                AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException {
+    public Carte acheterPrestation(String dateD, String dateF, float montant) {
         //Génération d'un numéro de carte aléatoire
         short idCarte = (short)(Math.random() * 1000 + 1);
         
@@ -86,7 +86,7 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
                 //Pour chaque service ES
                 for(int i=0; i<this.lesServES.length; i++) {
                     //Envoi de la carte au service
-                    this.lesServES[i].autoriserEntree(Smartphone.ClientSmartphone.carte);
+                    this.lesServES[i].autoriserEntree(c);
                 }
             }   
         }

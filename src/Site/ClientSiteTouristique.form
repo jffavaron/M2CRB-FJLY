@@ -330,21 +330,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="206" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabelDateStat" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextFieldDateStat" min="-2" pref="133" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jButtonAccueil" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButtonAccueil" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -357,12 +349,7 @@
                       <Component id="jButtonAccueil" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Component id="jLabelStatistique" min="-2" pref="27" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelDateStat" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextFieldDateStat" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="139" max="-2" attributes="0"/>
                       <EmptySpace pref="227" max="32767" attributes="0"/>
                   </Group>
@@ -421,21 +408,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Statistiques du mus&#xe9;e:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelDateStat">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consulter les statistiques &#xe0; partir de :"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDateStat">
-              <Properties>
-                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                  <Format subtype="1" type="1"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextFieldDateStatActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -16,36 +16,51 @@ public interface ServiceESSiteOperations
      * Operation entrer
      */
     public boolean entrer(short idCarte)
-        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException, AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteException, AssistanceTouristique.ServiceESSitePackage.siteSatureException, AssistanceTouristique.ServiceESSitePackage.siteFermeException;
+        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException;
 
     /**
      * Operation sortir
      */
-    public void sortir(short idCarte);
+    public void sortir(short idVisite);
 
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(float satisfaction);
-
-    /**
-     * Operation getInfosES
-     */
-    public AssistanceTouristique.Visite[] getInfosES(short idSite);
+    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction);
 
     /**
      * Operation getAffluenceCourante
      */
-    public float getAffluenceCourante(short idSite);
+    public float getAffluenceCourante();
 
     /**
-     * Operation getTauxSatisfaction
+     * Operation generateAffluenceQuotidienne
      */
-    public float getTauxSatisfaction(short idSite);
+    public float generateAffluenceQuotidienne();
 
     /**
-     * Operation getEstFavoris
+     * Operation generateDureeMoyenneVisite
      */
-    public boolean getEstFavoris(short idSite);
+    public String generateDureeMoyenneVisite();
+
+    /**
+     * Operation generateDureeMinimaleVisite
+     */
+    public String generateDureeMinimaleVisite();
+
+    /**
+     * Operation generateDureeMaximaleVisite
+     */
+    public String generateDureeMaximaleVisite();
+
+    /**
+     * Operation generateTauxSatisfaction
+     */
+    public float generateTauxSatisfaction();
+
+    /**
+     * Operation generateEstFavoris
+     */
+    public boolean generateEstFavoris();
 
 }

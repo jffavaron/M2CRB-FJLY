@@ -8,6 +8,11 @@ package AssistanceTouristique;
 public final class Visite implements org.omg.CORBA.portable.IDLEntity
 {
     /**
+     * Struct member idVisite
+     */
+    public short idVisite;
+
+    /**
      * Struct member date
      */
     public String date;
@@ -35,13 +40,15 @@ public final class Visite implements org.omg.CORBA.portable.IDLEntity
 
     /**
      * Constructor with fields initialization
+     * @param idVisite idVisite struct member
      * @param date date struct member
      * @param heureEntree heureEntree struct member
      * @param heureSortie heureSortie struct member
      * @param interet interet struct member
      */
-    public Visite(String date, String heureEntree, String heureSortie, float interet)
+    public Visite(short idVisite, String date, String heureEntree, String heureSortie, float interet)
     {
+        this.idVisite = idVisite;
         this.date = date;
         this.heureEntree = heureEntree;
         this.heureSortie = heureSortie;

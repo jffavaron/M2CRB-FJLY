@@ -49,19 +49,11 @@ public abstract class ServiceAchatOfficePOA extends org.omg.PortableServer.Serva
         String arg1_in = _is.read_string();
         float arg2_in = _is.read_float();
 
-        try
-        {
-            AssistanceTouristique.Carte _arg_result = acheterPrestation(arg0_in, arg1_in, arg2_in);
+        AssistanceTouristique.Carte _arg_result = acheterPrestation(arg0_in, arg1_in, arg2_in);
 
-            _output = handler.createReply();
-            AssistanceTouristique.CarteHelper.write(_output,_arg_result);
+        _output = handler.createReply();
+        AssistanceTouristique.CarteHelper.write(_output,_arg_result);
 
-        }
-        catch (AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException _exception)
-        {
-            _output = handler.createExceptionReply();
-            AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleExceptionHelper.write(_output,_exception);
-        }
         return _output;
     }
 

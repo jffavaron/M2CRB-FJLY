@@ -32,28 +32,27 @@ public class SmartphoneDBManager {
     }
     
     //-- Méthodes
-    // getSiteVistites
-    public int[] getSitesVisites(){       
+    // méthode permettant de renvoyer un tableau contenant les identifiants de sites visités
+    public short[] getSitesVisites(){       
         // initialisation données        
         int i = 0;
-        int idSites[] = null;
-        ResultSet result;
+        short idSites[] = null;
         try {  
             // requete sql 
-            result = smt.executeQuery("SELECT idSiteVisite FROM Visites GROUP BY idSiteVisite");
+            ResultSet result = smt.executeQuery("SELECT idSiteVisite FROM Visites GROUP BY idSiteVisite");
         
             // récupération des données            
             if (result.last()) {
                 // récupération du nb de résultat de la requête
                 int nbValues = result.getRow();
                 //initialisation du tableau
-                idSites = new int[nbValues];
+                idSites = new short[nbValues];
                 // replace au début des résultats
                 result.beforeFirst();
             }
             // tant qu'il y a des données
             while (result.next()) {
-                idSites[i] = result.getInt("idSiteVisite");
+                idSites[i] = result.getShort("idSiteVisite");
                 i++;
             }
         } catch (SQLException ex) {

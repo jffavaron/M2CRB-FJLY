@@ -7,12 +7,9 @@ package Site;
 import AssistanceTouristique.*;
 import java.awt.CardLayout;
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,18 +20,22 @@ import javax.swing.JOptionPane;
  */
 public class ClientSiteTouristique extends javax.swing.JFrame {
     //TODO BD site GL
-    private static String nombd;
+    private String nombd;
+    //private static String nombd = "bd_site_histoirenaturelle";
+    //private static String nombd = "bd_site_georgeslabit";
+    //private static String nombd = "bd_site_saintraymond";
     public static boolean estPremierLancement = true;
     private static org.omg.CosNaming.NamingContext nameRoot;
 
-    public static void setNombd(String str) {
+    /*public static void setNombd(String str) {
         nombd = str;
-    }
+    }*/
     
     /**
      * Creates new form ClientSite
      */
-    public ClientSiteTouristique() {
+    public ClientSiteTouristique(String nombd) {
+        this.nombd = nombd;
         initComponents();
     }
 
@@ -71,8 +72,6 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStats = new javax.swing.JTable();
         jLabelStatistique = new javax.swing.JLabel();
-        jLabelDateStat = new javax.swing.JLabel();
-        jFormattedTextFieldDateStat = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -307,15 +306,6 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
         jLabelStatistique.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelStatistique.setText("Statistiques du musée:");
 
-        jLabelDateStat.setText("Consulter les statistiques à partir de :");
-
-        jFormattedTextFieldDateStat.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextFieldDateStat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDateStatActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout EcranStatsLayout = new javax.swing.GroupLayout(EcranStats);
         EcranStats.setLayout(EcranStatsLayout);
         EcranStatsLayout.setHorizontalGroup(
@@ -327,18 +317,12 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranStatsLayout.createSequentialGroup()
                 .addContainerGap(206, Short.MAX_VALUE)
                 .addGroup(EcranStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EcranStatsLayout.createSequentialGroup()
-                        .addComponent(jLabelDateStat)
-                        .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextFieldDateStat, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(EcranStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranStatsLayout.createSequentialGroup()
-                            .addComponent(jButtonAccueil)
-                            .addGap(49, 49, 49))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranStatsLayout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(179, 179, 179)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranStatsLayout.createSequentialGroup()
+                        .addComponent(jButtonAccueil)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranStatsLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))))
         );
         EcranStatsLayout.setVerticalGroup(
             EcranStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,11 +331,7 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
                 .addComponent(jButtonAccueil)
                 .addGap(72, 72, 72)
                 .addComponent(jLabelStatistique, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(EcranStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDateStat)
-                    .addComponent(jFormattedTextFieldDateStat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(117, 117, 117)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(227, Short.MAX_VALUE))
         );
@@ -379,6 +359,55 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
         //Affichage de l'écran informations bancaires
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranStats");
+        SiteDBManager db = new SiteDBManager(this.nombd);
+        String nomServiceStat = "STAT " + db.getNomSite();
+        //String date = jFormattedTextFieldDateStat.getText();
+        String valeurStat;
+        try {
+            //TODO appel au service E/S du site
+            /********* Appel au service statistique du site *********/
+            // Construction du nom a rechercher
+            /*org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
+            nameToFind[0] = new org.omg.CosNaming.NameComponent(nomServiceStat,"");
+
+            // Recherche aupres du naming service
+            org.omg.CORBA.Object distantServiceStat = nameRoot.resolve(nameToFind);
+            System.out.println("Objet '" + nomServiceStat + "' trouve aupres du service de noms.");
+
+            // Casting de l'objet CORBA
+            ServiceStatSite monServiceStat = ServiceStatSiteHelper.narrow(distantServiceStat);
+
+            //Lancement du service ES
+
+            //TODO trouver l'identifiant du site à faire passer en paramètre
+            //Récupération des statistiques auprès du service stat
+            Statistique[] stat = monServiceStat.getStatsSite(db.getIdSite());*/
+
+            /************ Remplissage du tableau *************/
+            //Première ligne
+            /*jTableStats.getModel().setValueAt(stat[0].libelleStat,0,0);
+            valeurStat=stat[0].valeurStat + " " + stat[0].uniteStat;
+            jTableStats.getModel().setValueAt(valeurStat,0,1);
+
+            //Deuxième ligne
+            jTableStats.getModel().setValueAt(stat[1].libelleStat,1,0);
+            valeurStat=stat[1].valeurStat + " " + stat[1].uniteStat;
+            jTableStats.getModel().setValueAt(valeurStat,1,1);
+
+            //Troisième ligne
+            jTableStats.getModel().setValueAt(stat[2].libelleStat,2,0);
+            valeurStat=stat[2].valeurStat + " " + stat[2].uniteStat;
+            jTableStats.getModel().setValueAt(valeurStat,2,1);
+
+            //Quatrième ligne
+            jTableStats.getModel().setValueAt(stat[3].libelleStat,3,0);
+            valeurStat=stat[3].valeurStat + ' ' + stat[3].uniteStat;
+            jTableStats.getModel().setValueAt(valeurStat,3,1);*/
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonConsulterStatsActionPerformed
 
     private void jButtonAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAccueilActionPerformed
@@ -386,58 +415,6 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "Accueil");
     }//GEN-LAST:event_jButtonAccueilActionPerformed
-
-    private void jFormattedTextFieldDateStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDateStatActionPerformed
-        String nomServiceStat = ServeurStatSite.nomServStatSite;
-        String date = jFormattedTextFieldDateStat.getText();
-        String valeurStat;
-        
-        try {
-            /********* Appel au service statistique du site *********/
-            // Construction du nom a rechercher
-             org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
-             nameToFind[0] = new org.omg.CosNaming.NameComponent(nomServiceStat,"");
-
-            // Recherche aupres du naming service
-            org.omg.CORBA.Object distantServiceStat = nameRoot.resolve(nameToFind);
-            System.out.println("Objet '" + nomServiceStat + "' trouve aupres du service de noms. IOR de l'objet :");
-          
-            // Casting de l'objet CORBA
-            ServiceStatSite monServiceStat = ServiceStatSiteHelper.narrow(distantServiceStat);
-            
-            //Lancement du service ES
-            
-            
-            //TODO trouver l'identifiant du site à faire passer en paramètre
-            //Récupération des statistiques auprès du service stat
-            Statistique[] stat = monServiceStat.getStatsSite((short)1);
-            
-            /************ Remplissage du tableau *************/
-            //Première ligne
-            jTableStats.getModel().setValueAt(stat[0].libelleStat,0,0);
-            valeurStat=stat[0].valeurStat + ' ' + stat[0].uniteStat;
-            jTableStats.getModel().setValueAt(valeurStat,0,1);
-            
-            //Deuxième ligne
-            jTableStats.getModel().setValueAt(stat[1].libelleStat,1,0);
-            valeurStat=stat[1].valeurStat + ' ' + stat[1].uniteStat;
-            jTableStats.getModel().setValueAt(valeurStat,1,1);
-            
-            //Troisième ligne
-            jTableStats.getModel().setValueAt(stat[2].libelleStat,2,0);
-            valeurStat=stat[2].valeurStat + ' ' + stat[2].uniteStat;
-            jTableStats.getModel().setValueAt(valeurStat,2,1);
-            
-            //Quatrième ligne
-            jTableStats.getModel().setValueAt(stat[3].libelleStat,3,0);
-            valeurStat=stat[3].valeurStat + ' ' + stat[3].uniteStat;
-            jTableStats.getModel().setValueAt(valeurStat,3,1);                
-            
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jFormattedTextFieldDateStatActionPerformed
 
     private void jFormattedTextFieldHoraireOuvertureSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraireOuvertureSiteActionPerformed
         // TODO add your handling code here:
@@ -638,26 +615,35 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        System.out.println(args[0]);
+        //System.out.println(args[0]);
         
-        ClientSiteTouristique.setNombd(args[0]);
-        
+        //ClientSiteTouristique.setNombd(args[0]);
         try {
+            
             //1
-            //org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(new String[0], null);
+            org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, null);
             
             //2 
-            //nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+            
+            //Lancement du serveur du site
+            /*ServeurSite servSite = new ServeurSite(nombd, args);
+            Thread thread_Site = new Thread(servSite);
+            thread_Site.start();
             
             //Lancement du serveur du service ES
-            ServeurServiceESSite servESSite = new ServeurServiceESSite(nombd);
-            Thread threadSite = new Thread(servESSite);
-            threadSite.start();
+            ServeurServiceESSite servESSite = new ServeurServiceESSite(nombd, args);
+            Thread thread_servESSite = new Thread(servESSite);
+            thread_servESSite.start();
             
             //Lancement du serveur stat
+            ServeurStatSite servStatSite = new ServeurStatSite(nombd, args);
+            Thread thread_servStatSite = new Thread(servStatSite);
+            thread_servStatSite.start();*/
             
             //Appel à l'interface graphique
-            new ClientSiteTouristique().setVisible(true);
+            ClientSiteTouristique client = new ClientSiteTouristique(args[0]);
+            client.setVisible(true);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -670,10 +656,8 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAccueil;
     private javax.swing.JButton jButtonConsulterStats;
     private javax.swing.JButton jButtonValiderAssistant;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDateStat;
     private javax.swing.JFormattedTextField jFormattedTextFieldHoraireFermetureSite;
     private javax.swing.JFormattedTextField jFormattedTextFieldHoraireOuvertureSite;
-    private javax.swing.JLabel jLabelDateStat;
     private javax.swing.JLabel jLabelHoraireFermeture;
     private javax.swing.JLabel jLabelHoraireOuverture;
     private javax.swing.JLabel jLabelSousTitreAssistant;

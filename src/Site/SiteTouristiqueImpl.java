@@ -11,24 +11,32 @@ import AssistanceTouristique.*;
 public class SiteTouristiqueImpl extends SiteTouristiquePOA {
     private String nomSite;
     private String nombd;
+    private SiteDBManager db;
     
     public SiteTouristiqueImpl(String nomSite, String nombd) {
        this.nomSite = nomSite;
        this.nombd = nombd;
+       this.db = new SiteDBManager(this.nombd);
+       
+       //Recherche de l'office distante
+       //appel de la methode enregistrerSiteVersOffice(Site)
+       //this.office.enregistrerSiteVersOffice(Site)
     }
     
     //TODO BD
-    public Site getInfoSite(short idSite) {
+    public Site getInfoSite() {
    
-        float latitude = new SiteDBManager(this.nombd).getCoordLatitudeSite();
-        float longitude = new SiteDBManager(this.nombd).getCoordLongitudeSite();
-        Coordonnees coordSite = new Coordonnees(longitude, latitude);
+        float latitude = this.db.getCoordLatitudeSite();
+        float longitude = this.db.getCoordLongitudeSite();
+        Coordonnees coordSite = new Coordonnees(latitude, longitude);
         
-        Site infoSite = new Site((short)new SiteDBManager(this.nombd).getIdSite(), new SiteDBManager(this.nombd).getNomSite(),
-                                 coordSite, new SiteDBManager(this.nombd).getHoraireOuvertureSite(),
-                                 new SiteDBManager(this.nombd).getHoraireFermetureSite(), new SiteDBManager(this.nombd).getDescriptionSite(),
-                                 new SiteDBManager(this.nombd).getAdresseSite(), new SiteDBManager(this.nombd).getTelephoneSite(),
-                                 (int)new SiteDBManager(this.nombd).getAffluenceCouranteSite());
+        Site infoSite = new Site(this.db.getIdSite(), this.db.getNomSite(),
+                                 coordSite, this.db.getHoraireOuvertureSite(),
+                                 this.db.getHoraireFermetureSite(), this.db.getDescriptionSite(),
+                                 this.db.getAdresseSite(), this.db.getTelephoneSite(),
+                                 this.db.getAffluenceCouranteSite());
+        
+        ////Site infoSite = new Site((short)1, "titre", coordSite, "a", nomSite, nomSite, nomSite, nomSite, (float)13.45);
         return infoSite;     
     }
 }

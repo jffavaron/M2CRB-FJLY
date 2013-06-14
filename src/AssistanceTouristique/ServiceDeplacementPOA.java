@@ -49,19 +49,11 @@ public abstract class ServiceDeplacementPOA extends org.omg.PortableServer.Serva
         AssistanceTouristique.Coordonnees arg1_in = AssistanceTouristique.CoordonneesHelper.read(_is);
         String arg2_in = _is.read_string();
 
-        try
-        {
-            int _arg_result = calculerDureeTrajet(arg0_in, arg1_in, arg2_in);
+        int _arg_result = calculerDureeTrajet(arg0_in, arg1_in, arg2_in);
 
-            _output = handler.createReply();
-            _output.write_long(_arg_result);
+        _output = handler.createReply();
+        _output.write_long(_arg_result);
 
-        }
-        catch (AssistanceTouristique.ServiceDeplacementPackage.coordNonValidesException _exception)
-        {
-            _output = handler.createExceptionReply();
-            AssistanceTouristique.ServiceDeplacementPackage.coordNonValidesExceptionHelper.write(_output,_exception);
-        }
         return _output;
     }
 

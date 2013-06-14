@@ -1,4 +1,4 @@
-// IDL du 13/06/13
+// IDL du 14/06/13
 // Module de gestion d'assistance touristique
 module AssistanceTouristique{
 	// --#### Définitions des types
@@ -16,16 +16,10 @@ module AssistanceTouristique{
 		string dateDebut;
 		string dateFin;
 	};
-	
-	// Structure Statistique permettant d'indiquer le libellé d'une statistique et sa valeur correspondante
-	struct Statistique{
-		string libelleStat;
-		float valeurStat;
-		string uniteStat;
-	};
-	
+		
 	// Structure Visite permettant d'indiquer les informations relatives à une visite 
 	struct Visite{
+                short idVisite;
 		string date;
 		string heureEntree;
 		string heureSortie;
@@ -46,7 +40,6 @@ module AssistanceTouristique{
 	};
 		
 	typedef sequence<Site> t_listeSites; // type liste de sites touristiques
-	typedef sequence<Statistique> t_listeStat; // type liste de statistiques
 	typedef sequence<Visite> t_listeVisites; // type liste de visites
         typedef sequence<short> t_listeId; //type liste des identifiants
 	
@@ -65,62 +58,44 @@ module AssistanceTouristique{
 	interface Office{
 		// Méthodes
 		t_listeSites getListeSitesAVisiter(in short idCarte, in Coordonnees coordGPS, in t_listeId listeIdSitesVisites);	// renvoie la liste des informations relatives aux sites à visiter
-		
 	};
 	
 	// Interface ServiceAchat
 	interface ServiceAchatOffice{
-		// Exceptions
-		exception achatImpossibleException {t_raison raison;};
-
 		// Méthodes
-		Carte acheterPrestation(in string dateD, in string dateF, in float montant) raises(achatImpossibleException); // renvoie l'identifiant de la carte générée
+		Carte acheterPrestation(in string dateD, in string dateF, in float montant); // renvoie l'identifiant de la carte générée
 		
-	};
-	
-	// Interface ServiceStatOffice
-	interface ServiceStatOffice{
-		// Méthodes
-		t_listeStat getStatsGlobales();	// renvoie une liste de statistiques sur l'ensemble des sites
 	};
 	
 	// Interface SiteTouristique
 	interface SiteTouristique{
 		// Méthodes
-		Site getInfoSite(in short idSite);	// revoie l heure de fermeture du site sous la forme HHMM
+		Site getInfoSite();	// revoie l heure de fermeture du site sous la forme HHMM
 	};
 	
 	// Interface ServiceESSite
 	interface ServiceESSite{
 		// Exceptions
 		exception carteNonValideException {t_raison raison;};
-		exception siteDejaVisiteException {t_raison raison;};
-		exception siteSatureException {t_raison raison;};
-		exception siteFermeException {t_raison raison;};
 	
 		// Méthodes		
 		oneway void autoriserEntree(in Carte carte);	// enregistre la carte comme valide pour la période correspondante
-		boolean entrer(in short idCarte) raises (carteNonValideException, siteDejaVisiteException, siteSatureException, siteFermeException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
-		oneway void sortir(in short idCarte);
-		oneway void donnerAvisVisite(in float satisfaction);
-		t_listeVisites getInfosES(in short idSite);	// renvoie une liste d'informations sur les visites (entrées et sorties) du site touristique
-		float getAffluenceCourante(in short idSite);    // renvoie l'affluence courante du site touristique
-                float getTauxSatisfaction(in short idSite);     // renvoie le taux de satisfaction du touriste pour chaque site	
-                boolean getEstFavoris(in short idSite);  // renvoie si le site est favoris	
+		boolean entrer(in short idCarte) raises (carteNonValideException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
+		oneway void sortir(in short idVisite);
+		oneway void donnerAvisVisite(in Visite visite, in float satisfaction);
+		float getAffluenceCourante();    // renvoie l'affluence courante du site touristique
+                float generateAffluenceQuotidienne();    // renvoie l'affluence quotidienne du site touristique (calculée)
+                string generateDureeMoyenneVisite();    // renvoie la durée moyenne d'une visite du site touristique (calculée)
+                string generateDureeMinimaleVisite();    // renvoie la durée minimale d'une visite du site touristique (calculée)
+                string generateDureeMaximaleVisite();    // renvoie la durée maximale d'une visite du site touristique (calculée)
+                float generateTauxSatisfaction();     // renvoie le taux de satisfaction moyen du site passé en paramètre
+                boolean generateEstFavoris();  // renvoie vrai si le site est favoris, faux sinon
 	};
 		
-	// Interface ServiceStatSite
-	interface ServiceStatSite{
-		// Méthodes
-		t_listeStat getStatsSite(in short idSite);	// renvoie une liste de statistiques sur le site touristique
-	};
-	
 	// Interface ServiceDeplacement
 	interface ServiceDeplacement{
-		// Exceptions
-		exception coordNonValidesException {t_raison raison;};
 		// Méthodes
-		long calculerDureeTrajet(in Coordonnees coordGPS_A, in Coordonnees coordGPS_B, in string mode) raises(coordNonValidesException);	// renvoie la durée du trajet en minute
+		long calculerDureeTrajet(in Coordonnees coordGPS_A, in Coordonnees coordGPS_B, in string mode);	// renvoie la durée du trajet en minute
 	};
 	
 	// Interface ServiceBanque

@@ -73,20 +73,23 @@ public class VisiteHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[4];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[5];
 
                 _members[0] = new org.omg.CORBA.StructMember();
-                _members[0].name = "date";
-                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[0].name = "idVisite";
+                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_short);
                 _members[1] = new org.omg.CORBA.StructMember();
-                _members[1].name = "heureEntree";
+                _members[1].name = "date";
                 _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[2] = new org.omg.CORBA.StructMember();
-                _members[2].name = "heureSortie";
+                _members[2].name = "heureEntree";
                 _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[3] = new org.omg.CORBA.StructMember();
-                _members[3].name = "interet";
-                _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_float);
+                _members[3].name = "heureSortie";
+                _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[4] = new org.omg.CORBA.StructMember();
+                _members[4].name = "interet";
+                _members[4].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_float);
                 _tc = orb.create_struct_tc(id(),"Visite",_members);
                 _working = false;
             }
@@ -114,6 +117,7 @@ public class VisiteHelper
     {
         AssistanceTouristique.Visite new_one = new AssistanceTouristique.Visite();
 
+        new_one.idVisite = istream.read_short();
         new_one.date = istream.read_string();
         new_one.heureEntree = istream.read_string();
         new_one.heureSortie = istream.read_string();
@@ -129,6 +133,7 @@ public class VisiteHelper
      */
     public static void write(org.omg.CORBA.portable.OutputStream ostream, AssistanceTouristique.Visite value)
     {
+        ostream.write_short(value.idVisite);
         ostream.write_string(value.date);
         ostream.write_string(value.heureEntree);
         ostream.write_string(value.heureSortie);

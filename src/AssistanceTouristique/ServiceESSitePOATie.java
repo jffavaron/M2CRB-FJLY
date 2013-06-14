@@ -74,7 +74,7 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
      * Operation entrer
      */
     public boolean entrer(short idCarte)
-        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException, AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteException, AssistanceTouristique.ServiceESSitePackage.siteSatureException, AssistanceTouristique.ServiceESSitePackage.siteFermeException
+        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException
     {
         return _tie.entrer( idCarte);
     }
@@ -82,49 +82,73 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation sortir
      */
-    public void sortir(short idCarte)
+    public void sortir(short idVisite)
     {
-        _tie.sortir( idCarte);
+        _tie.sortir( idVisite);
     }
 
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(float satisfaction)
+    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction)
     {
-        _tie.donnerAvisVisite( satisfaction);
-    }
-
-    /**
-     * Operation getInfosES
-     */
-    public AssistanceTouristique.Visite[] getInfosES(short idSite)
-    {
-        return _tie.getInfosES( idSite);
+        _tie.donnerAvisVisite( visite,  satisfaction);
     }
 
     /**
      * Operation getAffluenceCourante
      */
-    public float getAffluenceCourante(short idSite)
+    public float getAffluenceCourante()
     {
-        return _tie.getAffluenceCourante( idSite);
+        return _tie.getAffluenceCourante();
     }
 
     /**
-     * Operation getTauxSatisfaction
+     * Operation generateAffluenceQuotidienne
      */
-    public float getTauxSatisfaction(short idSite)
+    public float generateAffluenceQuotidienne()
     {
-        return _tie.getTauxSatisfaction( idSite);
+        return _tie.generateAffluenceQuotidienne();
     }
 
     /**
-     * Operation getEstFavoris
+     * Operation generateDureeMoyenneVisite
      */
-    public boolean getEstFavoris(short idSite)
+    public String generateDureeMoyenneVisite()
     {
-        return _tie.getEstFavoris( idSite);
+        return _tie.generateDureeMoyenneVisite();
+    }
+
+    /**
+     * Operation generateDureeMinimaleVisite
+     */
+    public String generateDureeMinimaleVisite()
+    {
+        return _tie.generateDureeMinimaleVisite();
+    }
+
+    /**
+     * Operation generateDureeMaximaleVisite
+     */
+    public String generateDureeMaximaleVisite()
+    {
+        return _tie.generateDureeMaximaleVisite();
+    }
+
+    /**
+     * Operation generateTauxSatisfaction
+     */
+    public float generateTauxSatisfaction()
+    {
+        return _tie.generateTauxSatisfaction();
+    }
+
+    /**
+     * Operation generateEstFavoris
+     */
+    public boolean generateEstFavoris()
+    {
+        return _tie.generateEstFavoris();
     }
 
 }

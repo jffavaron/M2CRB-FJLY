@@ -24,7 +24,6 @@ public class _ServiceDeplacementStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation calculerDureeTrajet
      */
     public int calculerDureeTrajet(AssistanceTouristique.Coordonnees coordGPS_A, AssistanceTouristique.Coordonnees coordGPS_B, String mode)
-        throws AssistanceTouristique.ServiceDeplacementPackage.coordNonValidesException
     {
         while(true)
         {
@@ -48,11 +47,6 @@ public class _ServiceDeplacementStub extends org.omg.CORBA.portable.ObjectImpl
                 catch(org.omg.CORBA.portable.ApplicationException _exception)
                 {
                     String _exception_id = _exception.getId();
-                    if (_exception_id.equals(AssistanceTouristique.ServiceDeplacementPackage.coordNonValidesExceptionHelper.id()))
-                    {
-                        throw AssistanceTouristique.ServiceDeplacementPackage.coordNonValidesExceptionHelper.read(_exception.getInputStream());
-                    }
-
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
                 }
                 finally

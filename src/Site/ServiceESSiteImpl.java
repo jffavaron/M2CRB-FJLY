@@ -11,54 +11,34 @@ import AssistanceTouristique.*;
 public class ServiceESSiteImpl extends ServiceESSitePOA {
  
     private String nombd;
+    private SiteDBManager db;
     
     public ServiceESSiteImpl(String nombd) {
         this.nombd = nombd;
+        this.db = new SiteDBManager(this.nombd);
     }
     
     public void autoriserEntree(Carte carte) {
         
     }
     
-    public boolean entrer(short idCarte) throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException, 
-                                                AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteException, 
-                                                AssistanceTouristique.ServiceESSitePackage.siteSatureException, 
-                                                AssistanceTouristique.ServiceESSitePackage.siteFermeException {
+    public boolean entrer(short idCarte) throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException {
         return false;
       
     }
     
     //Methode oneway
-    public void sortir(short idCarte) {
+    public void sortir(short idVisite) {
     
     }
     
     //Methode oneway
-    public void donnerAvisVisite(float satisfaction) {
+    public void donnerAvisVisite(Visite visite, float satisfaction) {
         
     }
     
-    public Visite[] getInfosES(short idSite) {
-        return null;
-        
-    }
-    
-    public float getAffluenceCourante(short idSite) {
+    public float getAffluenceCourante() {
         float affluenceCourante=0;
-        switch(idSite) {
-            //Georges Labit
-            case 1 :
-                affluenceCourante=2;
-                break;
-            //Museum histoire naturelle
-            case 2:
-                affluenceCourante=4;
-                break;
-            //Saint Raymond
-            case 3 :
-                affluenceCourante=6;
-                break;      
-        }
         
         return affluenceCourante;
     }
@@ -67,8 +47,29 @@ public class ServiceESSiteImpl extends ServiceESSitePOA {
         return ((float) 12.5);
     }
 
-    public boolean getEstFavoris(short idSite) {
+    public boolean generateEstFavoris() {
         return true;
     }
+    
+    public float generateAffluenceQuotidienne() {
+        return 0;
+    }
+    
+    public String generateDureeMoyenneVisite() {
+        return "durée moyenne";
+    }
+    
+    public String generateDureeMinimaleVisite() {
+        return "duréemini";
+    }
+    
+    public String generateDureeMaximaleVisite() {
+        return "duréemaxi";
+    }
+    
+    public float generateTauxSatisfaction() {
+        return 0;
+    }
+                
     
 }

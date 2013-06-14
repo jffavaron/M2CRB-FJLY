@@ -66,7 +66,6 @@ public class ServiceAchatOfficePOATie extends ServiceAchatOfficePOA
      * Operation acheterPrestation
      */
     public AssistanceTouristique.Carte acheterPrestation(String dateD, String dateF, float montant)
-        throws AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException
     {
         return _tie.acheterPrestation( dateD,  dateF,  montant);
     }

@@ -5,7 +5,6 @@
 package Smartphone;
 
 import AssistanceTouristique.*;
-import AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException;
 
 import Office.ServeurOffice;
 import Office.ServeurServiceAchatOffice;
@@ -39,28 +38,30 @@ public class ClientSmartphone extends javax.swing.JFrame {
      * Creates new form MainSmartphone
      */
     //Flux E/S standards
-    /*public static String nom_office;
-     public static BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
-     public static PrintStream sortie_std = new PrintStream(System.out); 
+    /*public  String nom_office;
+     public  BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
+     public  PrintStream sortie_std = new PrintStream(System.out); 
     
-     public static org.omg.CORBA.Object distantOffice;*/
-    private static org.omg.CosNaming.NamingContext nameRoot;
-    public static AssistanceTouristique.Office monOffice;
-    public static AssistanceTouristique.ServiceAchatOffice monServAchat;
-    //public static AssistanceTouristique.ServiceBancaire monServBancaire;
-    public static AutresServices.ServeurServiceBancaire serveur_bancaire;
+     public  org.omg.CORBA.Object distantOffice;*/
+    private org.omg.CosNaming.NamingContext nameRoot;
+    public  AssistanceTouristique.Office monOffice;
+    public  AssistanceTouristique.ServiceAchatOffice monServAchat;
+    //public  AssistanceTouristique.ServiceBancaire monServBancaire;
+    public  AutresServices.ServeurServiceBancaire serveur_bancaire;
     
-    public static String dd, df;
-    public static Float montant;
+    public  String dd, df;
+    public  Float montant;
     //TODO à récupérer dans la base de donnée
-    public static short idCarte = 0;
-    public static Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
-    public static short[] sitesVisites;
-    public static Carte carte;
+    public  short idCarte = 0;
+    public  Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
+    public  short[] sitesVisites;
+    public  Carte carte;
     
 
     public ClientSmartphone() {
-        sitesVisites = new short[0];
+        this.nameRoot = nameRoot;
+        sitesVisites = new short[1];
+        sitesVisites[0] = 0;
         carte = new Carte();
         //sitesVisites[0]=5;
         initComponents();
@@ -947,24 +948,24 @@ public class ClientSmartphone extends javax.swing.JFrame {
             nameToFind[0] = new org.omg.CosNaming.NameComponent(nom_servAchat, "");
             org.omg.CORBA.Object distantServAchat = nameRoot.resolve(nameToFind);
                 
-            ServiceAchatOffice monServAchat = ServiceAchatOfficeHelper.narrow(distantServAchat);
+            this.monServAchat = ServiceAchatOfficeHelper.narrow(distantServAchat);
             
-            carte = monServAchat.acheterPrestation(dd, dd, montant);
+            this.carte = monServAchat.acheterPrestation(dd, dd, montant);
             System.out.println("numéro de carte : " + carte.idCarte);
                 
         } 
-        catch (NotFound | CannotProceed | InvalidName | achatImpossibleException e) {
+        catch (Exception e) {
         }
         
         //Affichage de l'écran de confirmation ou d'annulation
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranCarte");
         
-        if(carte.idCarte > 0) {
+        if(this.carte.idCarte > 0) {
             jLabelMessagePaiement.setText("Le paiement est accepté.\n"
                     + "Le numéro de la carte est : " + carte.idCarte + ".\n"
                     + "Vous pouvez accéder à tous les musées du " + carte.dateDebut 
-                    + " au " + carte.dateFin);
+                    + " au " + this.carte.dateFin);
         }
         else
             jLabelMessagePaiement.setText("Le paiement est refusé. La transaction est annulée.");

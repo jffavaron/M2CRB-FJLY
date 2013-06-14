@@ -23,7 +23,7 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation getInfoSite
      */
-    public AssistanceTouristique.Site getInfoSite(short idSite)
+    public AssistanceTouristique.Site getInfoSite()
     {
         while(true)
         {
@@ -33,7 +33,6 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("getInfoSite",true);
-                    _output.write_short(idSite);
                     _input = this._invoke(_output);
                     AssistanceTouristique.Site _arg_ret = AssistanceTouristique.SiteHelper.read(_input);
                     return _arg_ret;
@@ -60,7 +59,7 @@ public class _SiteTouristiqueStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.SiteTouristiqueOperations _self = (AssistanceTouristique.SiteTouristiqueOperations) _so.servant;
                 try
                 {
-                    return _self.getInfoSite( idSite);
+                    return _self.getInfoSite();
                 }
                 finally
                 {

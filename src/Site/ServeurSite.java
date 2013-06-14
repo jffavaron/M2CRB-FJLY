@@ -4,11 +4,6 @@
  */
 package Site;
 
-import AssistanceTouristique.Coordonnees;
-import Office.OfficeImpl;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.Date;
 import org.omg.CosNaming.NamingContext;
 import org.omg.PortableServer.POA;
@@ -18,25 +13,29 @@ import org.omg.PortableServer.POAHelper;
  *
  * @author Lydia
  */
-public class ServeurSite implements Runnable {
+public class ServeurSite /*implements Runnable*/ {
     //TODO à récupérer dans la BD
-    public static String nomSite;
-    private static String nombd;
-    //public static Coordonnees coordSite = new Coordonnees((float)30, (float)45);
-    //private static String nomBD = "bd_site_histoirenaturelle";
-    //private static String nomBD = "bd_site_georgeslabit";
-    //private static String nomBD = "bd_site_saintraymond";
+    //public String nomSite;
     
-    public ServeurSite(String nombd) {
+    //public static Coordonnees coordSite = new Coordonnees((float)30, (float)45);
+
+    
+    /*public ServeurSite(String nombd, String args[]) {
        this.nombd = nombd;
-    }
+       this.args = args;
+       this.db = new SiteDBManager(this.nombd);
+    }*/
     
     public void afficherHoraireFermeture(Date heureF) {
         
     }
     
-    //public static void main(String args[]) {
-    public void run() {
+    public static void main(String args[]) {
+    //public void run() {
+        String nombd = args[0];
+        SiteDBManager db = new SiteDBManager(nombd);
+        //String nomSite = db.getNomSite();
+        String codeSite = db.getCodeSite();
      /* //Flux E/S standards
      BufferedReader entree_std = new BufferedReader(new InputStreamReader(System.in));
      PrintStream sortie_std = new PrintStream(System.out); */
@@ -45,9 +44,8 @@ public class ServeurSite implements Runnable {
           //Configuration de base
           //sortie_std.print("Quel est le nom du site?");
           //nomSite=entree_std.readLine();
-          nomSite=new SiteDBManager(nombd).getNomSite();
           
-          org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(new String[0],null);
+          org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
             // Gestion du POA
              //****************
@@ -56,7 +54,7 @@ public class ServeurSite implements Runnable {
 
             // Creation du servant
             //*********************
-           SiteTouristiqueImpl monSite = new SiteTouristiqueImpl(nomSite, nombd);
+           SiteTouristiqueImpl monSite = new SiteTouristiqueImpl(codeSite, nombd);
 
             // Activer le servant au sein du POA et recuperer son ID
             byte[] monSiteId = rootPOA.activate_object(monSite);
@@ -71,11 +69,11 @@ public class ServeurSite implements Runnable {
 
             // Construction du nom a enregistrer
             org.omg.CosNaming.NameComponent[] nameToRegister = new org.omg.CosNaming.NameComponent[1];
-            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nomSite,"");
+            nameToRegister[0] = new org.omg.CosNaming.NameComponent(codeSite,"");
 
             // Enregistrement de l'objet CORBA dans le service de noms
             nameRoot.rebind(nameToRegister,rootPOA.servant_to_reference(monSite));
-            System.out.println("==> Nom '"+ nomSite + "' est enregistre dans le service de noms.");
+            System.out.println("==> Nom '"+ codeSite + "' est enregistre dans le service de noms.");
 
             String IORServant = orb.object_to_string(rootPOA.servant_to_reference(monSite));
             System.out.println("L'objet possede la reference suivante :");

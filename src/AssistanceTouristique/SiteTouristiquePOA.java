@@ -45,9 +45,8 @@ public abstract class SiteTouristiquePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        short arg0_in = _is.read_short();
 
-        AssistanceTouristique.Site _arg_result = getInfoSite(arg0_in);
+        AssistanceTouristique.Site _arg_result = getInfoSite();
 
         _output = handler.createReply();
         AssistanceTouristique.SiteHelper.write(_output,_arg_result);

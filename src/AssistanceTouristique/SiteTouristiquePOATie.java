@@ -65,9 +65,9 @@ public class SiteTouristiquePOATie extends SiteTouristiquePOA
     /**
      * Operation getInfoSite
      */
-    public AssistanceTouristique.Site getInfoSite(short idSite)
+    public AssistanceTouristique.Site getInfoSite()
     {
-        return _tie.getInfoSite( idSite);
+        return _tie.getInfoSite();
     }
 
 }

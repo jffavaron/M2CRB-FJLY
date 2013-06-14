@@ -24,7 +24,6 @@ public class _ServiceAchatOfficeStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation acheterPrestation
      */
     public AssistanceTouristique.Carte acheterPrestation(String dateD, String dateF, float montant)
-        throws AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleException
     {
         while(true)
         {
@@ -48,11 +47,6 @@ public class _ServiceAchatOfficeStub extends org.omg.CORBA.portable.ObjectImpl
                 catch(org.omg.CORBA.portable.ApplicationException _exception)
                 {
                     String _exception_id = _exception.getId();
-                    if (_exception_id.equals(AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleExceptionHelper.id()))
-                    {
-                        throw AssistanceTouristique.ServiceAchatOfficePackage.achatImpossibleExceptionHelper.read(_exception.getInputStream());
-                    }
-
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
                 }
                 finally

@@ -10,6 +10,6 @@ public interface SiteTouristiqueOperations
     /**
      * Operation getInfoSite
      */
-    public AssistanceTouristique.Site getInfoSite(short idSite);
+    public AssistanceTouristique.Site getInfoSite();
 
 }

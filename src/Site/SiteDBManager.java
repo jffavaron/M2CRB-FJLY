@@ -36,14 +36,14 @@ public class SiteDBManager {
     //-- Méthodes
     
     // -- Getters
-    public int getIdSite(){
-        int idSite = 0;
+    public short getIdSite(){
+        short idSite = 0;
         try {
             // requete sql 
             ResultSet result = smt.executeQuery("SELECT idSite FROM InfoSite");
             // récupération des données 
             result.first();
-            idSite = result.getInt("idSite");
+            idSite = result.getShort("idSite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,6 +64,20 @@ public class SiteDBManager {
         return nomSite;
     }
     
+    public String getCodeSite(){
+        String codeSite = "";
+        try {
+            // requete sql 
+            ResultSet result = smt.executeQuery("SELECT codeSite FROM InfoSite");
+            // récupération des données 
+            result.first();
+            codeSite = result.getString("codeSite");
+        } catch (SQLException ex) {
+            Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codeSite;
+    }
+        
     public float getCoordLatitudeSite(){
         float coordLatitude = 0;
         try {
@@ -92,6 +106,7 @@ public class SiteDBManager {
         return coordLongitude;
     }
     
+    // donnée fictive enregistrée (pour simulation de la réalité)
     public float getAffluenceCouranteSite(){
         float affluenceCourante = 0;
         try {
@@ -176,6 +191,7 @@ public class SiteDBManager {
         return telephone;
     }
     
+    // donnée fictive enregistrée (pour simulation de la réalité)
     public float getAffluenceQuotidienneSite(){
         float affluenceQuotidienne = 0;
         try {
@@ -190,46 +206,52 @@ public class SiteDBManager {
         return affluenceQuotidienne;
     }
     
-    public int getDureeMoyenneVisiteSite(){
-        int dureeMoyenneVisite = 0;
+    // calcul de la durée moyenne pour une visite
+    public float generateDureeMoyenneVisiteSite(){
+        float dureeMoyenneVisite = 0;
         try {
-            // requete sql 
-            ResultSet result = smt.executeQuery("SELECT dureeMoyenneVisite FROM InfoSite");
+            // requete sql pour avoir la durée moyenne d'une visite en secondes
+            ResultSet result = smt.executeQuery("SELECT AVG(TIME_TO_SEC(TIMEDIFF( "
+                    + "dateHeureSortie, dateHeureEntree))) AS dureeMoyenneVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMoyenneVisite = result.getInt("dureeMoyenneVisite");
+            dureeMoyenneVisite = result.getFloat("dureeMoyenneVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMoyenneVisite;
+        return dureeMoyenneVisite/60 ; // /60 pour avoir la durée en minutes
     }
     
-    public int getDureeMinimaleVisiteSite(){
-        int dureeMinimaleVisite = 0;
+    // calcul de la durée minimale pour une visite
+    public float generateDureeMinimaleVisiteSite(){
+        float dureeMinimaleVisite = 0;
         try {
-            // requete sql 
-            ResultSet result = smt.executeQuery("SELECT dureeMinimaleVisite FROM InfoSite");
+            // requete sql pour avoir la durée minimale d'une visite en secondes
+            ResultSet result = smt.executeQuery("SELECT MIN(TIME_TO_SEC(TIMEDIFF( "
+                    + "dateHeureSortie, dateHeureEntree))) AS dureeMinimaleVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMinimaleVisite = result.getInt("dureeMinimaleVisite");
+            dureeMinimaleVisite = result.getFloat("dureeMinimaleVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMinimaleVisite;
+        return dureeMinimaleVisite/60 ; // /60 pour avoir la durée en minutes
     }
     
-    public int getDureeMaximaleVisiteSite(){
-        int dureeMaximaleVisite = 0;
+    // calcul de la durée maximale pour une visite
+    public float generateDureeMaximaleVisiteSite(){
+        float dureeMaximaleVisite = 0;
         try {
-            // requete sql 
-            ResultSet result = smt.executeQuery("SELECT dureeMaximaleVisite FROM InfoSite");
+            // requete sql pour avoir la durée maximale d'une visite en secondes
+            ResultSet result = smt.executeQuery("SELECT MAX(TIME_TO_SEC(TIMEDIFF( "
+                    + "dateHeureSortie, dateHeureEntree))) AS dureeMaximaleVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMaximaleVisite = result.getInt("dureeMaximaleVisite");
+            dureeMaximaleVisite = result.getFloat("dureeMaximaleVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMaximaleVisite;
+        return dureeMaximaleVisite/60 ; // /60 pour avoir la durée en minutes
     }
     
     //-- 
@@ -269,8 +291,8 @@ public class SiteDBManager {
     }
     
     // revoie l'idVisite qui vient d'être initialisée
-    public int debuterVisite(int idCarte){
-        int idVisite = 0;
+    public short debuterVisite(short idCarte){
+        short idVisite = 0;
         try {
             // requete sql insert 
             String query = "INSERT INTO Visites VALUES(null," + idCarte + 
@@ -280,7 +302,7 @@ public class SiteDBManager {
             // récupère l'idVisite créé
             ResultSet rSetIdGenerees = smt.getGeneratedKeys();
             if (rSetIdGenerees.next()) {
-                idVisite = rSetIdGenerees.getInt(1);                
+                idVisite = rSetIdGenerees.getShort(1);                
             }            
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -289,7 +311,7 @@ public class SiteDBManager {
     }
     
     // MAJ la visite avec la date de sortie
-    public void finirVisite(int idVisite){
+    public void finirVisite(short idVisite){
         try {
             // requete sql insert 
             String query = "UPDATE Visites SET dateHeureSortie = NOW()"
@@ -301,7 +323,7 @@ public class SiteDBManager {
     }
     
     // MAJ la viste en ajoutant l'avis (taux de satisfaction)
-    public void setTauxSatisfactionVisite(int idVisite, float tauxSatisfaction){
+    public void setTauxSatisfactionVisite(short idVisite, float tauxSatisfaction){
         try {
             // requete sql insert 
             String query = "UPDATE Visites SET tauxSatisfaction = " + tauxSatisfaction
@@ -310,6 +332,49 @@ public class SiteDBManager {
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }   
+    
+    // revoie le taux de satisfaction moyen des visites du site
+    public float generateTauxSatisfactionGlobal(){
+        float tauxSatisfaction = 0;
+        try {
+            // requete sql pour avoir la moyenne des taux des satisfactions des visites
+            ResultSet result = smt.executeQuery(
+                    "SELECT AVG(tauxSatisfaction) AS tauxSatisfactionMoyen FROM Visites");
+            // récupération des données 
+            result.first();
+            tauxSatisfaction = result.getFloat("tauxSatisfactionMoyen");
+        } catch (SQLException ex) {
+            Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tauxSatisfaction; 
+    }
+    
+    // renvoie vrai si le site est considéré comme favori, faux sinon
+    // (est considéré comme favori un site qui a + de 75% de taux se satisfaction
+    //  et qui a été visité au moins une fois dans la semaine)
+    public boolean generateEstFavori(){
+        boolean estFavori = false;
+        float tauxSatisfaction = this.generateTauxSatisfactionGlobal();
+        int nbVisitsThisWeek = 0;
+        try {
+            // requete sql pour avoir la moyenne des taux des satisfactions des visites
+            ResultSet result = smt.executeQuery(
+                    "SELECT COUNT(idVisite) AS nbVisitsThisWeek FROM Visites " +
+                    "WHERE DATEDIFF(NOW(),dateHeureEntree) <= 7");
+            // récupération des données 
+            result.first();
+            nbVisitsThisWeek = result.getInt("nbVisitsThisWeek");
+        } catch (SQLException ex) {
+            Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(tauxSatisfaction >= 75 && nbVisitsThisWeek > 0){
+            estFavori = true;
+        }
+        else{
+            estFavori = false;
+        }
+        return estFavori;
     }    
 }
 

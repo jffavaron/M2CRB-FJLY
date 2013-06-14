@@ -181,7 +181,7 @@ public class ClientOffice extends javax.swing.JFrame {
                     .addGroup(ConsultationVentesLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ConsultationVentesLayout.setVerticalGroup(
@@ -200,11 +200,11 @@ public class ClientOffice extends javax.swing.JFrame {
         ConsultationStatsSites.setLayout(ConsultationStatsSitesLayout);
         ConsultationStatsSitesLayout.setHorizontalGroup(
             ConsultationStatsSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         ConsultationStatsSitesLayout.setVerticalGroup(
             ConsultationStatsSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
         );
 
         mainPanel.add(ConsultationStatsSites, "ConsultationStatsSites");
@@ -213,11 +213,11 @@ public class ClientOffice extends javax.swing.JFrame {
         ConsultationListeSites.setLayout(ConsultationListeSitesLayout);
         ConsultationListeSitesLayout.setHorizontalGroup(
             ConsultationListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         ConsultationListeSitesLayout.setVerticalGroup(
             ConsultationListeSitesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
         );
 
         mainPanel.add(ConsultationListeSites, "ConsultationListeSites");
@@ -277,19 +277,35 @@ public class ClientOffice extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ClientOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ClientOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ClientOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientOffice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         
+        //Lancement du serveur de l'office
+       /* ServeurOffice servOffice = new ServeurOffice(args);
+        Thread thread_servOffice = new Thread(servOffice);
+        thread_servOffice.start();*/
+
         //Lancement du service stat de l'office
-        ServeurStatOffice servStat = new ServeurStatOffice(args);
+        /*ServeurStatOffice servStat = new ServeurStatOffice(nombd);
         Thread thread_servStat = new Thread(servStat);
         thread_servStat.start();
         
+        //Lancement du service achat de l'office
+        ServeurServiceAchatOffice servAchat = new ServeurServiceAchatOffice(nombd);
+        Thread thread_servAchat = new Thread(servAchat);
+        thread_servAchat.start();*/
+    
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new ClientOffice().setVisible(true);
             }

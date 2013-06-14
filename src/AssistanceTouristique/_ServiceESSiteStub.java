@@ -74,7 +74,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation entrer
      */
     public boolean entrer(short idCarte)
-        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException, AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteException, AssistanceTouristique.ServiceESSitePackage.siteSatureException, AssistanceTouristique.ServiceESSitePackage.siteFermeException
+        throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException
     {
         while(true)
         {
@@ -99,21 +99,6 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                     if (_exception_id.equals(AssistanceTouristique.ServiceESSitePackage.carteNonValideExceptionHelper.id()))
                     {
                         throw AssistanceTouristique.ServiceESSitePackage.carteNonValideExceptionHelper.read(_exception.getInputStream());
-                    }
-
-                    if (_exception_id.equals(AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteExceptionHelper.id()))
-                    {
-                        throw AssistanceTouristique.ServiceESSitePackage.siteDejaVisiteExceptionHelper.read(_exception.getInputStream());
-                    }
-
-                    if (_exception_id.equals(AssistanceTouristique.ServiceESSitePackage.siteSatureExceptionHelper.id()))
-                    {
-                        throw AssistanceTouristique.ServiceESSitePackage.siteSatureExceptionHelper.read(_exception.getInputStream());
-                    }
-
-                    if (_exception_id.equals(AssistanceTouristique.ServiceESSitePackage.siteFermeExceptionHelper.id()))
-                    {
-                        throw AssistanceTouristique.ServiceESSitePackage.siteFermeExceptionHelper.read(_exception.getInputStream());
                     }
 
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
@@ -144,7 +129,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation sortir
      */
-    public void sortir(short idCarte)
+    public void sortir(short idVisite)
     {
         while(true)
         {
@@ -154,7 +139,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("sortir",false);
-                    _output.write_short(idCarte);
+                    _output.write_short(idVisite);
                     _input = this._invoke(_output);
                     return;
                 }
@@ -180,7 +165,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    _self.sortir( idCarte);
+                    _self.sortir( idVisite);
                     return;
                 }
                 finally
@@ -194,7 +179,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(float satisfaction)
+    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction)
     {
         while(true)
         {
@@ -204,6 +189,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("donnerAvisVisite",false);
+                    AssistanceTouristique.VisiteHelper.write(_output,visite);
                     _output.write_float(satisfaction);
                     _input = this._invoke(_output);
                     return;
@@ -230,58 +216,8 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    _self.donnerAvisVisite( satisfaction);
+                    _self.donnerAvisVisite( visite,  satisfaction);
                     return;
-                }
-                finally
-                {
-                    _servant_postinvoke(_so);
-                }
-            }
-        }
-    }
-
-    /**
-     * Operation getInfosES
-     */
-    public AssistanceTouristique.Visite[] getInfosES(short idSite)
-    {
-        while(true)
-        {
-            if (!this._is_local())
-            {
-                org.omg.CORBA.portable.InputStream _input = null;
-                try
-                {
-                    org.omg.CORBA.portable.OutputStream _output = this._request("getInfosES",true);
-                    _output.write_short(idSite);
-                    _input = this._invoke(_output);
-                    AssistanceTouristique.Visite[] _arg_ret = AssistanceTouristique.t_listeVisitesHelper.read(_input);
-                    return _arg_ret;
-                }
-                catch(org.omg.CORBA.portable.RemarshalException _exception)
-                {
-                    continue;
-                }
-                catch(org.omg.CORBA.portable.ApplicationException _exception)
-                {
-                    String _exception_id = _exception.getId();
-                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
-                }
-                finally
-                {
-                    this._releaseReply(_input);
-                }
-            }
-            else
-            {
-                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("getInfosES",_opsClass);
-                if (_so == null)
-                   continue;
-                AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
-                try
-                {
-                    return _self.getInfosES( idSite);
                 }
                 finally
                 {
@@ -294,7 +230,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation getAffluenceCourante
      */
-    public float getAffluenceCourante(short idSite)
+    public float getAffluenceCourante()
     {
         while(true)
         {
@@ -304,7 +240,6 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("getAffluenceCourante",true);
-                    _output.write_short(idSite);
                     _input = this._invoke(_output);
                     float _arg_ret = _input.read_float();
                     return _arg_ret;
@@ -331,7 +266,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    return _self.getAffluenceCourante( idSite);
+                    return _self.getAffluenceCourante();
                 }
                 finally
                 {
@@ -342,9 +277,9 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     }
 
     /**
-     * Operation getTauxSatisfaction
+     * Operation generateAffluenceQuotidienne
      */
-    public float getTauxSatisfaction(short idSite)
+    public float generateAffluenceQuotidienne()
     {
         while(true)
         {
@@ -353,8 +288,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 org.omg.CORBA.portable.InputStream _input = null;
                 try
                 {
-                    org.omg.CORBA.portable.OutputStream _output = this._request("getTauxSatisfaction",true);
-                    _output.write_short(idSite);
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateAffluenceQuotidienne",true);
                     _input = this._invoke(_output);
                     float _arg_ret = _input.read_float();
                     return _arg_ret;
@@ -375,13 +309,13 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
             }
             else
             {
-                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("getTauxSatisfaction",_opsClass);
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateAffluenceQuotidienne",_opsClass);
                 if (_so == null)
                    continue;
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    return _self.getTauxSatisfaction( idSite);
+                    return _self.generateAffluenceQuotidienne();
                 }
                 finally
                 {
@@ -392,9 +326,9 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     }
 
     /**
-     * Operation getEstFavoris
+     * Operation generateDureeMoyenneVisite
      */
-    public boolean getEstFavoris(short idSite)
+    public String generateDureeMoyenneVisite()
     {
         while(true)
         {
@@ -403,8 +337,203 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 org.omg.CORBA.portable.InputStream _input = null;
                 try
                 {
-                    org.omg.CORBA.portable.OutputStream _output = this._request("getEstFavoris",true);
-                    _output.write_short(idSite);
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateDureeMoyenneVisite",true);
+                    _input = this._invoke(_output);
+                    String _arg_ret = _input.read_string();
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateDureeMoyenneVisite",_opsClass);
+                if (_so == null)
+                   continue;
+                AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
+                try
+                {
+                    return _self.generateDureeMoyenneVisite();
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
+     * Operation generateDureeMinimaleVisite
+     */
+    public String generateDureeMinimaleVisite()
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateDureeMinimaleVisite",true);
+                    _input = this._invoke(_output);
+                    String _arg_ret = _input.read_string();
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateDureeMinimaleVisite",_opsClass);
+                if (_so == null)
+                   continue;
+                AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
+                try
+                {
+                    return _self.generateDureeMinimaleVisite();
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
+     * Operation generateDureeMaximaleVisite
+     */
+    public String generateDureeMaximaleVisite()
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateDureeMaximaleVisite",true);
+                    _input = this._invoke(_output);
+                    String _arg_ret = _input.read_string();
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateDureeMaximaleVisite",_opsClass);
+                if (_so == null)
+                   continue;
+                AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
+                try
+                {
+                    return _self.generateDureeMaximaleVisite();
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
+     * Operation generateTauxSatisfaction
+     */
+    public float generateTauxSatisfaction()
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateTauxSatisfaction",true);
+                    _input = this._invoke(_output);
+                    float _arg_ret = _input.read_float();
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateTauxSatisfaction",_opsClass);
+                if (_so == null)
+                   continue;
+                AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
+                try
+                {
+                    return _self.generateTauxSatisfaction();
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
+     * Operation generateEstFavoris
+     */
+    public boolean generateEstFavoris()
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("generateEstFavoris",true);
                     _input = this._invoke(_output);
                     boolean _arg_ret = _input.read_boolean();
                     return _arg_ret;
@@ -425,13 +554,13 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
             }
             else
             {
-                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("getEstFavoris",_opsClass);
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("generateEstFavoris",_opsClass);
                 if (_so == null)
                    continue;
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    return _self.getEstFavoris( idSite);
+                    return _self.generateEstFavoris();
                 }
                 finally
                 {
