@@ -207,51 +207,52 @@ public class SiteDBManager {
     }
     
     // calcul de la durée moyenne pour une visite
-    public float generateDureeMoyenneVisiteSite(){
-        float dureeMoyenneVisite = 0;
+    public String generateDureeMoyenneVisiteSite(){
+        String dureeMoyenneVisite = "";
         try {
             // requete sql pour avoir la durée moyenne d'une visite en secondes
-            ResultSet result = smt.executeQuery("SELECT AVG(TIME_TO_SEC(TIMEDIFF( "
-                    + "dateHeureSortie, dateHeureEntree))) AS dureeMoyenneVisite FROM Visites");
+            ResultSet result = smt.executeQuery("SELECT SEC_TO_TIME(AVG(TIME_TO_SEC"
+                    + "(TIMEDIFF(dateHeureSortie, dateHeureEntree)))) "
+                    + "AS dureeMoyenneVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMoyenneVisite = result.getFloat("dureeMoyenneVisite");
+            dureeMoyenneVisite = result.getString("dureeMoyenneVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMoyenneVisite/60 ; // /60 pour avoir la durée en minutes
+        return dureeMoyenneVisite ; 
     }
     
     // calcul de la durée minimale pour une visite
-    public float generateDureeMinimaleVisiteSite(){
-        float dureeMinimaleVisite = 0;
+    public String generateDureeMinimaleVisiteSite(){
+        String dureeMinimaleVisite = "";
         try {
             // requete sql pour avoir la durée minimale d'une visite en secondes
-            ResultSet result = smt.executeQuery("SELECT MIN(TIME_TO_SEC(TIMEDIFF( "
-                    + "dateHeureSortie, dateHeureEntree))) AS dureeMinimaleVisite FROM Visites");
+            ResultSet result = smt.executeQuery("SELECT MIN(TIMEDIFF("
+                    + "dateHeureSortie, dateHeureEntree)) AS dureeMinimaleVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMinimaleVisite = result.getFloat("dureeMinimaleVisite");
+            dureeMinimaleVisite = result.getString("dureeMinimaleVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMinimaleVisite/60 ; // /60 pour avoir la durée en minutes
+        return dureeMinimaleVisite;
     }
     
     // calcul de la durée maximale pour une visite
-    public float generateDureeMaximaleVisiteSite(){
-        float dureeMaximaleVisite = 0;
+    public String generateDureeMaximaleVisiteSite(){
+        String dureeMaximaleVisite = "";
         try {
             // requete sql pour avoir la durée maximale d'une visite en secondes
-            ResultSet result = smt.executeQuery("SELECT MAX(TIME_TO_SEC(TIMEDIFF( "
-                    + "dateHeureSortie, dateHeureEntree))) AS dureeMaximaleVisite FROM Visites");
+            ResultSet result = smt.executeQuery("SELECT MAX(TIMEDIFF( "
+                    + "dateHeureSortie, dateHeureEntree)) AS dureeMaximaleVisite FROM Visites");
             // récupération des données 
             result.first();
-            dureeMaximaleVisite = result.getFloat("dureeMaximaleVisite");
+            dureeMaximaleVisite = result.getString("dureeMaximaleVisite");
         } catch (SQLException ex) {
             Logger.getLogger(SiteDBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return dureeMaximaleVisite/60 ; // /60 pour avoir la durée en minutes
+        return dureeMaximaleVisite;
     }
     
     //-- 

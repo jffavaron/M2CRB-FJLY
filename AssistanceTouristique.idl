@@ -70,7 +70,7 @@ module AssistanceTouristique{
 	// Interface SiteTouristique
 	interface SiteTouristique{
 		// Méthodes
-		Site getInfoSite();	// revoie l heure de fermeture du site sous la forme HHMM
+		Site getInfoSite( );	// revoie l heure de fermeture du site sous la forme HHMM
 	};
 	
 	// Interface ServiceESSite
