@@ -46,27 +46,29 @@ public class ClientSmartphone extends javax.swing.JFrame {
     
      public  org.omg.CORBA.Object distantOffice;*/
     private org.omg.CosNaming.NamingContext nameRoot;
-    public  AssistanceTouristique.Office monOffice;
-    public  AssistanceTouristique.ServiceAchatOffice monServAchat;
-    //public  AssistanceTouristique.ServiceBancaire monServBancaire;
-    public  AutresServices.ServeurServiceBancaire serveur_bancaire;
+    private AssistanceTouristique.Office monOffice;
+    private AssistanceTouristique.ServiceAchatOffice monServAchat;
+    private AutresServices.ServeurServiceBancaire serveur_bancaire;
     private String nomOffice;
-    public  String dd, df;
-    public  Float montant;
+    private String dd, df;
+    private Float montant;
     //TODO à récupérer dans la base de donnée
-    public  short idCarte = 0;
-    public  Coordonnees coordSmartphone = new Coordonnees((float)10, (float)20);
-    public  short[] sitesVisites;
-    public  Carte carte;
+    private short idCarte;
+    private Coordonnees coordSmartphone;
+    private short[] sitesVisites;
+    private Carte carte;
     private float satisfaction = 50;
+    private SmartphoneDBManager db;
     private Date dateFinTheorique;
 
     public ClientSmartphone(org.omg.CosNaming.NamingContext nameRoot, String nomOffice) {
         this.nameRoot = nameRoot;
         this.nomOffice=nomOffice;
-        sitesVisites = new short[1];
-        sitesVisites[0] = 0;
-        carte = new Carte();
+        this.idCarte = 0;
+        this.coordSmartphone = new Coordonnees((float) 10, (float) 20);
+        this.db = new SmartphoneDBManager();
+        this.sitesVisites = this.db.getSitesVisites();
+        this.carte = new Carte(this.idCarte,"","");
         //sitesVisites[0]=5;
         initComponents();
     }
@@ -1074,7 +1076,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 this.monOffice = AssistanceTouristique.OfficeHelper.narrow(distantOffice);
 
                 //Récupération de la liste des sites à visiter
-               /* Site[] siteAVisiter = monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
+                Site[] siteAVisiter = monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
 
                 for(int i=0;i<siteAVisiter.length;i++) {
                     System.out.println("******************************************************");
@@ -1089,7 +1091,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                     System.out.println("coord.latitude : " + siteAVisiter[i].coord.latitude);
                     System.out.println("coord.longitude : " + siteAVisiter[i].coord.longitude);
                     System.out.println("******************************************************");       
-                }*/
+                }
                 
                 
                 CardLayout card = (CardLayout) mainPanel.getLayout();
