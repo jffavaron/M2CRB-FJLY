@@ -13,6 +13,11 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
     public short idSite;
 
     /**
+     * Struct member codeSite
+     */
+    public String codeSite;
+
+    /**
      * Struct member titre
      */
     public String titre;
@@ -61,6 +66,7 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
     /**
      * Constructor with fields initialization
      * @param idSite idSite struct member
+     * @param codeSite codeSite struct member
      * @param titre titre struct member
      * @param coord coord struct member
      * @param horaireOuverture horaireOuverture struct member
@@ -70,9 +76,10 @@ public final class Site implements org.omg.CORBA.portable.IDLEntity
      * @param telephone telephone struct member
      * @param affluenceCourante affluenceCourante struct member
      */
-    public Site(short idSite, String titre, AssistanceTouristique.Coordonnees coord, String horaireOuverture, String horairesFermeture, String description, String adresse, String telephone, float affluenceCourante)
+    public Site(short idSite, String codeSite, String titre, AssistanceTouristique.Coordonnees coord, String horaireOuverture, String horairesFermeture, String description, String adresse, String telephone, float affluenceCourante)
     {
         this.idSite = idSite;
+        this.codeSite = codeSite;
         this.titre = titre;
         this.coord = coord;
         this.horaireOuverture = horaireOuverture;

@@ -22,7 +22,7 @@ public class OfficeImpl extends OfficePOA {
     private int nb_sites;
     //TODO
     private SiteTouristique[] mesSites; 
-    private ServiceESSite[] monServES;
+    private ServiceESSite[] mesServES;
     private OfficeDBManager db;
     //private NamingContext nameRoot;
     
@@ -32,7 +32,7 @@ public class OfficeImpl extends OfficePOA {
         //this.nb_sites=this.listeSite.length;
         this.nb_sites=this.listeSite.size();
         this.mesSites = new SiteTouristique[this.nb_sites];
-        this.monServES = new ServiceESSite[this.nb_sites];
+        this.mesServES = new ServiceESSite[this.nb_sites];
         this.db = new OfficeDBManager();
         
         short idSite;
@@ -62,7 +62,7 @@ public class OfficeImpl extends OfficePOA {
                 nameToFind[0] = new org.omg.CosNaming.NameComponent(nomServES, "");
                 org.omg.CORBA.Object distantServES = nameRoot.resolve(nameToFind);
                 
-                this.monServES[i] = ServiceESSiteHelper.narrow(distantServES);
+                this.mesServES[i] = ServiceESSiteHelper.narrow(distantServES);
                 i++;
              }
         }
@@ -71,49 +71,32 @@ public class OfficeImpl extends OfficePOA {
     }
             
     @Override
-    public Site[] getListeSitesAVisiter(short idCarte, Coordonnees coordGPS, short[] listeSitesVisites) {
-        //ServeurOffice servOffice = new ServeurOffice(this.nombd);
+    public Site[] getListeSitesAVisiter(short[] listeSitesVisites) {
         // récupération des ids des sites à visiter
-        short[] idSites = this.db.getIdSites();
+        short[] idSitesAVisiter;
+        if(listeSitesVisites != null)
+            //Si les sites ont déjà été visités, récupération des ids de ceux qui restent à visiter
+            idSitesAVisiter = this.db.getSitesNonVisites(listeSitesVisites);
+        else
+            idSitesAVisiter = this.db.getIdSites();
         
         // pour chaque site à visiter, récupération des infos des sites
-        Site[] sitesAVisiter = null;
-        /*for(int j=0; j<this.listeSite.length; j++) {  
-            // TODO !!! + affluence courante
-            /*Site = infoSite = this.monSite.getInfoSite(this.listeSite[j]);
+        Site[] sitesAVisiter = new Site[idSitesAVisiter.length];
+        Site infoSite;
+        float affluenceCourante;
+        
+        for(int i=0; i<idSitesAVisiter.length; i++) {  
+            infoSite = this.mesSites[i].getInfoSite();
                    
             //Récupération de l'affluence courante auprès du service ES du site
-            //affluenceCourante = this.monServES.getAffluenceCourante((short)site.getKey());
+            affluenceCourante = this.mesServES[i].getAffluenceCourante();
 
-            affluenceCourante = (float)12.3;
-
-            siteAVisiter[i] = new Site(infoSite.idSite, infoSite.titre, infoSite.coord, infoSite.horaireOuverture, infoSite.horairesFermeture, infoSite.description, infoSite.adresse, infoSite.telephone, affluenceCourante);
-            i++;*/
-        //}
-            //}
+            sitesAVisiter[i] = new Site(infoSite.idSite, infoSite.codeSite, infoSite.titre, infoSite.coord, infoSite.horaireOuverture, infoSite.horairesFermeture, infoSite.description, infoSite.adresse, infoSite.telephone, affluenceCourante);
+        }
         
         
         return sitesAVisiter; 
     }
-    
-    /*public void enregistrerSiteVersOffice(Site s) {
-        try {
-            // Construction du nom a enregistrer
-            org.omg.CosNaming.NameComponent[] nameToRegister = new org.omg.CosNaming.NameComponent[1];
-            nameToRegister[0] = new org.omg.CosNaming.NameComponent(nomOffice,"");
-
-            // Enregistrement de l'objet CORBA dans le service de noms
-            nameRoot.rebind(nameToRegister,rootPOA.servant_to_reference(monOffice));
-            System.out.println("==> Nom '"+ nomOffice + "' est enregistre dans le service de noms.");
-
-            String IORServant = orb.object_to_string(rootPOA.servant_to_reference(monOffice));
-            System.out.println("L'objet possede la reference suivante :");
-            System.out.println(IORServant);
-         }
-	catch (Exception e) {
-		e.printStackTrace();
-	}   
-            
-    }*/
+   
     
 }

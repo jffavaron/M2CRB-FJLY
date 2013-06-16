@@ -56,6 +56,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private short idCarte;
     private Coordonnees coordSmartphone;
     private short[] sitesVisites;
+    private Site[] sitesAVisiter;
     private Carte carte;
     private float satisfaction = 50;
     private SmartphoneDBManager db;
@@ -99,13 +100,16 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jTextPaneIdentification = new javax.swing.JTextPane();
         boutonInscription = new javax.swing.JButton();
         boutonMotDePasseOublie = new javax.swing.JButton();
-        EcranAccueil = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        EcranAccueil = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         boutonReserver = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         EcranInfoSite = new javax.swing.JPanel();
         imageSite = new javax.swing.JLabel();
         titreSite = new javax.swing.JLabel();
@@ -132,8 +136,8 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jButtonCalculerMontant = new javax.swing.JButton();
         EcranCarte = new javax.swing.JPanel();
         jLabelConfirmationPaiement = new javax.swing.JLabel();
-        BoutonVoirSite = new javax.swing.JButton();
-        jLabelMessagePaiement = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPaneCarte = new javax.swing.JTextPane();
         EcranNFC = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneInstructionsNFC = new javax.swing.JTextPane();
@@ -345,21 +349,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addComponent(boutonInscription)
                 .addGap(18, 18, 18)
                 .addComponent(boutonMotDePasseOublie)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranIdentification, "EcranIdentification");
         EcranIdentification.getAccessibleContext().setAccessibleName("");
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
-        jButton1.setText("Muséum d'histoire naturelle de Toulouse");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/company_logo45x45.jpg"))); // NOI18N
@@ -370,6 +364,49 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-deportation45x45.jpg"))); // NOI18N
         jButton3.setText("Musée de la résistance et de la déportation");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 322, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(8, 8, 8)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                    .addGap(9, 9, 9)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(154, 154, 154)
+                    .addComponent(jButton2)
+                    .addContainerGap(154, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(154, 154, 154)
+                    .addComponent(jButton3)
+                    .addContainerGap(154, Short.MAX_VALUE)))
+        );
+
+        mainPanel.add(jPanel2, "card12");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
+        jButton1.setText("Muséum d'histoire naturelle de Toulouse");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-labit45x45.jpg"))); // NOI18N
@@ -385,11 +422,26 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonReserver.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         boutonReserver.setForeground(new java.awt.Color(255, 255, 255));
         boutonReserver.setText("Réserver");
+        if(carte.idCarte > 0) {
+            boutonReserver.setEnabled(false);
+        }
         boutonReserver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutonReserverActionPerformed(evt);
             }
         });
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jList1);
 
         javax.swing.GroupLayout EcranAccueilLayout = new javax.swing.GroupLayout(EcranAccueil);
         EcranAccueil.setLayout(EcranAccueilLayout);
@@ -398,17 +450,17 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addGroup(EcranAccueilLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranAccueilLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(EcranAccueilLayout.createSequentialGroup()
-                        .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(121, 121, 121)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(EcranAccueilLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EcranAccueilLayout.setVerticalGroup(
@@ -421,12 +473,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addGap(41, 41, 41))
         );
 
         mainPanel.add(EcranAccueil, "EcranAccueil");
@@ -687,43 +737,29 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jLabelConfirmationPaiement.setForeground(new java.awt.Color(0, 51, 255));
         jLabelConfirmationPaiement.setText("Confirmation du paiement");
 
-        BoutonVoirSite.setBackground(new java.awt.Color(0, 51, 255));
-        BoutonVoirSite.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        BoutonVoirSite.setForeground(new java.awt.Color(255, 255, 255));
-        BoutonVoirSite.setText("Voir la liste des sites");
-        BoutonVoirSite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoutonVoirSiteActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jTextPaneCarte);
 
         javax.swing.GroupLayout EcranCarteLayout = new javax.swing.GroupLayout(EcranCarte);
         EcranCarte.setLayout(EcranCarteLayout);
         EcranCarteLayout.setHorizontalGroup(
             EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
-                        .addComponent(jLabelConfirmationPaiement)
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
-                        .addComponent(BoutonVoirSite)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
-                        .addComponent(jLabelMessagePaiement, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(51, Short.MAX_VALUE))))
+            .addGroup(EcranCarteLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jLabelConfirmationPaiement)
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(EcranCarteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         EcranCarteLayout.setVerticalGroup(
             EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranCarteLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(60, 60, 60)
                 .addComponent(jLabelConfirmationPaiement)
-                .addGap(43, 43, 43)
-                .addComponent(jLabelMessagePaiement, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                .addGap(63, 63, 63)
-                .addComponent(BoutonVoirSite)
-                .addGap(29, 29, 29))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranCarte, "EcranCarte");
@@ -1076,20 +1112,20 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 this.monOffice = AssistanceTouristique.OfficeHelper.narrow(distantOffice);
 
                 //Récupération de la liste des sites à visiter
-                Site[] siteAVisiter = monOffice.getListeSitesAVisiter(idCarte, coordSmartphone, sitesVisites);
+                this.sitesAVisiter = monOffice.getListeSitesAVisiter(sitesVisites);
 
-                for(int i=0;i<siteAVisiter.length;i++) {
+                for(int i=0;i<this.sitesAVisiter.length;i++) {
                     System.out.println("******************************************************");
-                    System.out.println("idSite : " + siteAVisiter[i].idSite);
-                    System.out.println("titre : " + siteAVisiter[i].titre);
-                    System.out.println("adresse : " + siteAVisiter[i].adresse);
-                    System.out.println("description : " + siteAVisiter[i].description);
-                    System.out.println("horaireOuverture : " + siteAVisiter[i].horaireOuverture);
-                    System.out.println("horairesFermeture : " + siteAVisiter[i].horairesFermeture);
-                    System.out.println("telephone : " + siteAVisiter[i].telephone);
-                    System.out.println("affluenceCourante : " + siteAVisiter[i].affluenceCourante);
-                    System.out.println("coord.latitude : " + siteAVisiter[i].coord.latitude);
-                    System.out.println("coord.longitude : " + siteAVisiter[i].coord.longitude);
+                    System.out.println("idSite : " + sitesAVisiter[i].idSite);
+                    System.out.println("titre : " + sitesAVisiter[i].titre);
+                    System.out.println("adresse : " + sitesAVisiter[i].adresse);
+                    System.out.println("description : " + sitesAVisiter[i].description);
+                    System.out.println("horaireOuverture : " + sitesAVisiter[i].horaireOuverture);
+                    System.out.println("horairesFermeture : " + sitesAVisiter[i].horairesFermeture);
+                    System.out.println("telephone : " + sitesAVisiter[i].telephone);
+                    System.out.println("affluenceCourante : " + sitesAVisiter[i].affluenceCourante);
+                    System.out.println("coord.latitude : " + sitesAVisiter[i].coord.latitude);
+                    System.out.println("coord.longitude : " + sitesAVisiter[i].coord.longitude);
                     System.out.println("******************************************************");       
                 }
                 
@@ -1118,6 +1154,12 @@ public class ClientSmartphone extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldIdentifiantActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+        
+        
+        
+        
         //On affiche les Infos du Site
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranInfoSite");
@@ -1132,55 +1174,43 @@ public class ClientSmartphone extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonReserverActionPerformed
 
     private void BoutonPayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPayerActionPerformed
-        // TODO add your handling code here:
         //Je récupère les dates
         dd = dateD.getText();
         df = dateF.getText();
         montant = Float.parseFloat(textMontant.getText());
 
-        //Affichage de l'écran informations bancaires
-        /*CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranBanque");*/
-
         try {
-            /*********** Recherche du service achat de l'office ***********/
+            /**
+             * ********* Recherche du service achat de l'office **********
+             */
             String nom_servAchat = "ACHAT " + this.nomOffice;
-            
+
             org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
             nameToFind[0] = new org.omg.CosNaming.NameComponent(nom_servAchat, "");
             org.omg.CORBA.Object distantServAchat = nameRoot.resolve(nameToFind);
-                
+
             this.monServAchat = ServiceAchatOfficeHelper.narrow(distantServAchat);
-            
+
             this.carte = monServAchat.acheterPrestation(dd, dd, montant);
             System.out.println("numéro de carte : " + carte.idCarte);
-                
-        } 
-        catch (NotFound | CannotProceed | InvalidName e) {
+
+        } catch (NotFound | CannotProceed | InvalidName e) {
             e.printStackTrace();
         }
-        
+
         //Affichage de l'écran de confirmation ou d'annulation
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranCarte");
-        
-       // if(this.carte.idCarte > 0) {
-            jLabelMessagePaiement.setText("Le paiement est accepté.\n"
-                    + "Le numéro de la carte est : " + carte.idCarte + ".\n"
-                    + "Vous pouvez accéder à tous les musées du " + carte.dateDebut 
-                    + " au " + this.carte.dateFin);
-        /*}
-        else
-            jLabelMessagePaiement.setText("Le paiement est refusé. La transaction est annulée.");*/
-        
+
+        jTextPaneCarte.setText("Le paiement est accepté.\n"
+                + "Le numéro de la carte est : " + carte.idCarte + ".\n"
+                + "Vous pouvez accéder à tous les musées du " + carte.dateDebut
+                + " au " + this.carte.dateFin);
+
+
+        boutonReserver.setEnabled(false);
 
     }//GEN-LAST:event_BoutonPayerActionPerformed
-
-    private void BoutonVoirSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonVoirSiteActionPerformed
-        //Retour à l'écran d'accueil sans le bouton "réserver"
-        CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranAccueil");
-    }//GEN-LAST:event_BoutonVoirSiteActionPerformed
 
     private void jButtonEntrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrerActionPerformed
         //On désactive le bouton retour
@@ -1353,6 +1383,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonCalculerMontantActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        System.out.println("hello " + jList1.getSelectedValue().toString());
+    }//GEN-LAST:event_jList1MouseClicked
     
     /**
      * @param args the command line arguments
@@ -1399,7 +1433,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonPayer;
-    private javax.swing.JButton BoutonVoirSite;
     private javax.swing.JPanel EcranAccueil;
     private javax.swing.JPanel EcranAchat;
     private javax.swing.JPanel EcranAvis;
@@ -1445,16 +1478,20 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelConfirmationPaiement;
     private javax.swing.JLabel jLabelHeureDebutVisite;
     private javax.swing.JLabel jLabelMerciDeVotreVisite;
-    private javax.swing.JLabel jLabelMessagePaiement;
     private javax.swing.JLabel jLabelNumeroCarte;
     private javax.swing.JLabel jLabelSatisfaction;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBarAffluenceSite;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPaneIdentification;
     private javax.swing.JScrollPane jScrollPanePresentationSite;
     private javax.swing.JSlider jSliderSatisfaction;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPaneCarte;
     private javax.swing.JTextPane jTextPaneIdentification;
     private javax.swing.JTextPane jTextPaneInstructionsNFC;
     private javax.swing.JLabel labelAffluence;

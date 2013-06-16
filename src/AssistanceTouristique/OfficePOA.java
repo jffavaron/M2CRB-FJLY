@@ -45,11 +45,9 @@ public abstract class OfficePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        short arg0_in = _is.read_short();
-        AssistanceTouristique.Coordonnees arg1_in = AssistanceTouristique.CoordonneesHelper.read(_is);
-        short[] arg2_in = AssistanceTouristique.t_listeIdHelper.read(_is);
+        short[] arg0_in = AssistanceTouristique.t_listeIdHelper.read(_is);
 
-        AssistanceTouristique.Site[] _arg_result = getListeSitesAVisiter(arg0_in, arg1_in, arg2_in);
+        AssistanceTouristique.Site[] _arg_result = getListeSitesAVisiter(arg0_in);
 
         _output = handler.createReply();
         AssistanceTouristique.t_listeSitesHelper.write(_output,_arg_result);

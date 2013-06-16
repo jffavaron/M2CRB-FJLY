@@ -10,6 +10,6 @@ public interface OfficeOperations
     /**
      * Operation getListeSitesAVisiter
      */
-    public AssistanceTouristique.Site[] getListeSitesAVisiter(short idCarte, AssistanceTouristique.Coordonnees coordGPS, short[] listeIdSitesVisites);
+    public AssistanceTouristique.Site[] getListeSitesAVisiter(short[] listeIdSitesVisites);
 
 }

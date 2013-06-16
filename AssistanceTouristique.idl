@@ -29,6 +29,7 @@ module AssistanceTouristique{
 	// Structure Site permettant d'indiquer les informations générales relatives à un site touristique
 	struct Site{
                 short idSite;
+                string codeSite;
 		string titre;
 		Coordonnees coord;
                 string horaireOuverture;
@@ -57,7 +58,7 @@ module AssistanceTouristique{
 	// Interface Office
 	interface Office{
 		// Méthodes
-		t_listeSites getListeSitesAVisiter(in short idCarte, in Coordonnees coordGPS, in t_listeId listeIdSitesVisites);	// renvoie la liste des informations relatives aux sites à visiter
+		t_listeSites getListeSitesAVisiter(in t_listeId listeIdSitesVisites);	// renvoie la liste des informations relatives aux sites à visiter
 	};
 	
 	// Interface ServiceAchat
