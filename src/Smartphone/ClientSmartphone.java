@@ -14,6 +14,7 @@ import java.awt.HeadlessException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -58,6 +59,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
     public  short[] sitesVisites;
     public  Carte carte;
     private float satisfaction = 50;
+    private Date dateFinTheorique;
 
     public ClientSmartphone(org.omg.CosNaming.NamingContext nameRoot, String nomOffice) {
         this.nameRoot = nameRoot;
@@ -116,19 +118,18 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jProgressBarAffluenceSite = new javax.swing.JProgressBar();
         jButtonEntrer = new javax.swing.JButton();
         EcranBilletterie = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         EcranRecherche = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         EcranAchat = new javax.swing.JPanel();
         dateD = new javax.swing.JFormattedTextField();
         dateF = new javax.swing.JFormattedTextField();
         BoutonPayer = new javax.swing.JButton();
         textMontant = new javax.swing.JLabel();
-        labelPassword1 = new javax.swing.JLabel();
-        labelPassword2 = new javax.swing.JLabel();
-        labelPassword3 = new javax.swing.JLabel();
+        labelPresentation1 = new javax.swing.JLabel();
+        labelPresentation2 = new javax.swing.JLabel();
+        labelPresentation3 = new javax.swing.JLabel();
+        jButtonCalculerMontant = new javax.swing.JButton();
         EcranCarte = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelConfirmationPaiement = new javax.swing.JLabel();
         BoutonVoirSite = new javax.swing.JButton();
         jLabelMessagePaiement = new javax.swing.JLabel();
         EcranNFC = new javax.swing.JPanel();
@@ -139,15 +140,15 @@ public class ClientSmartphone extends javax.swing.JFrame {
         EcranSortir = new javax.swing.JPanel();
         jButtonSortirDuSite = new javax.swing.JButton();
         jLabelHeureDebutVisite = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelBonneVisite = new javax.swing.JLabel();
         jLabelNumeroCarte = new javax.swing.JLabel();
         EcranAvis = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelAvisInteresse = new javax.swing.JLabel();
         jSliderSatisfaction = new javax.swing.JSlider();
         jButtonDonnerAvis = new javax.swing.JButton();
         jButtonIgnorer = new javax.swing.JButton();
         jLabelSatisfaction = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelMerciDeVotreVisite = new javax.swing.JLabel();
         footerPanel = new javax.swing.JPanel();
         boutonAccueil = new javax.swing.JButton();
         boutonBilletterie = new javax.swing.JButton();
@@ -342,7 +343,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addComponent(boutonInscription)
                 .addGap(18, 18, 18)
                 .addComponent(boutonMotDePasseOublie)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranIdentification, "EcranIdentification");
@@ -546,67 +547,52 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranInfoSite, "EcranInfoSite");
 
-        jLabel7.setText("Ici la billetterie !");
-
         javax.swing.GroupLayout EcranBilletterieLayout = new javax.swing.GroupLayout(EcranBilletterie);
         EcranBilletterie.setLayout(EcranBilletterieLayout);
         EcranBilletterieLayout.setHorizontalGroup(
             EcranBilletterieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranBilletterieLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jLabel7)
-                .addContainerGap(120, Short.MAX_VALUE))
+            .addGap(0, 320, Short.MAX_VALUE)
         );
         EcranBilletterieLayout.setVerticalGroup(
             EcranBilletterieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranBilletterieLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel7)
-                .addContainerGap(250, Short.MAX_VALUE))
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         mainPanel.add(EcranBilletterie, "EcranBilletterie");
-
-        jLabel8.setText("Ici la recherche !");
 
         javax.swing.GroupLayout EcranRechercheLayout = new javax.swing.GroupLayout(EcranRecherche);
         EcranRecherche.setLayout(EcranRechercheLayout);
         EcranRechercheLayout.setHorizontalGroup(
             EcranRechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranRechercheLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel8)
-                .addContainerGap(107, Short.MAX_VALUE))
+            .addGap(0, 320, Short.MAX_VALUE)
         );
         EcranRechercheLayout.setVerticalGroup(
             EcranRechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EcranRechercheLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel8)
-                .addContainerGap(209, Short.MAX_VALUE))
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         mainPanel.add(EcranRecherche, "EcranRecherche");
 
         dateD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         dateD.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        dateD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateDActionPerformed(evt);
+        dateD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dateDKeyReleased(evt);
             }
         });
 
         dateF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        dateF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateFActionPerformed(evt);
+        dateF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dateFKeyReleased(evt);
             }
         });
 
         BoutonPayer.setBackground(new java.awt.Color(0, 51, 255));
-        BoutonPayer.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        BoutonPayer.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BoutonPayer.setForeground(new java.awt.Color(255, 255, 255));
         BoutonPayer.setText("Payer");
+        BoutonPayer.setEnabled(false);
         BoutonPayer.setActionCommand("BoutonPayer");
         BoutonPayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -614,70 +600,90 @@ public class ClientSmartphone extends javax.swing.JFrame {
             }
         });
 
-        labelPassword1.setBackground(new java.awt.Color(153, 153, 153));
-        labelPassword1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        labelPassword1.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword1.setText("   Date de début");
-        labelPassword1.setToolTipText("");
-        labelPassword1.setOpaque(true);
+        textMontant.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        labelPassword2.setBackground(new java.awt.Color(153, 153, 153));
-        labelPassword2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        labelPassword2.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword2.setText("   Montant (en euros)");
-        labelPassword2.setToolTipText("");
-        labelPassword2.setOpaque(true);
+        labelPresentation1.setBackground(new java.awt.Color(153, 153, 153));
+        labelPresentation1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelPresentation1.setForeground(new java.awt.Color(255, 255, 255));
+        labelPresentation1.setText("   Date de début");
+        labelPresentation1.setToolTipText("");
+        labelPresentation1.setOpaque(true);
 
-        labelPassword3.setBackground(new java.awt.Color(153, 153, 153));
-        labelPassword3.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        labelPassword3.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword3.setText("   Date de fin");
-        labelPassword3.setToolTipText("");
-        labelPassword3.setOpaque(true);
+        labelPresentation2.setBackground(new java.awt.Color(153, 153, 153));
+        labelPresentation2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelPresentation2.setForeground(new java.awt.Color(255, 255, 255));
+        labelPresentation2.setText("   Montant (en euros)");
+        labelPresentation2.setToolTipText("");
+        labelPresentation2.setOpaque(true);
+
+        labelPresentation3.setBackground(new java.awt.Color(153, 153, 153));
+        labelPresentation3.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        labelPresentation3.setForeground(new java.awt.Color(255, 255, 255));
+        labelPresentation3.setText("   Date de fin");
+        labelPresentation3.setToolTipText("");
+        labelPresentation3.setOpaque(true);
+
+        jButtonCalculerMontant.setBackground(new java.awt.Color(0, 51, 255));
+        jButtonCalculerMontant.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButtonCalculerMontant.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCalculerMontant.setText("Calculer montant");
+        jButtonCalculerMontant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalculerMontantActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout EcranAchatLayout = new javax.swing.GroupLayout(EcranAchat);
         EcranAchat.setLayout(EcranAchatLayout);
         EcranAchatLayout.setHorizontalGroup(
             EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelPresentation1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(dateD)
-            .addComponent(labelPassword3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(labelPresentation3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
             .addComponent(dateF)
-            .addComponent(labelPassword2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-            .addComponent(textMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelPresentation2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
             .addGroup(EcranAchatLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(BoutonPayer, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranAchatLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(BoutonPayer, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EcranAchatLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonCalculerMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(textMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EcranAchatLayout.setVerticalGroup(
             EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranAchatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelPresentation1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPassword3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelPresentation3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelPresentation2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGroup(EcranAchatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCalculerMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
                 .addComponent(BoutonPayer)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        BoutonPayer.getAccessibleContext().setAccessibleName("BoutonPayer");
+        BoutonPayer.getAccessibleContext().setAccessibleName("");
 
         mainPanel.add(EcranAchat, "EcranAchat");
         EcranAchat.getAccessibleContext().setAccessibleName("");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel12.setText("Confirmation du paiement");
+        jLabelConfirmationPaiement.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelConfirmationPaiement.setForeground(new java.awt.Color(0, 51, 255));
+        jLabelConfirmationPaiement.setText("Confirmation du paiement");
 
         BoutonVoirSite.setBackground(new java.awt.Color(0, 51, 255));
         BoutonVoirSite.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -697,7 +703,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
+                        .addComponent(jLabelConfirmationPaiement)
                         .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranCarteLayout.createSequentialGroup()
                         .addComponent(BoutonVoirSite)
@@ -710,7 +716,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
             EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranCarteLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jLabel12)
+                .addComponent(jLabelConfirmationPaiement)
                 .addGap(43, 43, 43)
                 .addComponent(jLabelMessagePaiement, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                 .addGap(63, 63, 63)
@@ -777,10 +783,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         jLabelHeureDebutVisite.setText("Heure d'entrée : ");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bonne visite !");
+        jLabelBonneVisite.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabelBonneVisite.setForeground(new java.awt.Color(0, 51, 255));
+        jLabelBonneVisite.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelBonneVisite.setText("Bonne visite !");
 
         jLabelNumeroCarte.setText("Numéro de carte : ");
 
@@ -788,7 +794,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         EcranSortir.setLayout(EcranSortirLayout);
         EcranSortirLayout.setHorizontalGroup(
             EcranSortirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+            .addComponent(jLabelBonneVisite, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
             .addGroup(EcranSortirLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(EcranSortirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -808,7 +814,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelHeureDebutVisite)
                 .addGap(107, 107, 107)
-                .addComponent(jLabel1)
+                .addComponent(jLabelBonneVisite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(jButtonSortirDuSite, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
@@ -816,8 +822,8 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranSortir, "EcranSortir");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Votre avis nous intéresse !");
+        jLabelAvisInteresse.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelAvisInteresse.setText("Votre avis nous intéresse !");
 
         jSliderSatisfaction.setMaximum(4);
         jSliderSatisfaction.setToolTipText("");
@@ -852,9 +858,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jLabelSatisfaction.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSatisfaction.setText("Moyen");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel3.setText("Merci de votre visite !");
+        jLabelMerciDeVotreVisite.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabelMerciDeVotreVisite.setForeground(new java.awt.Color(0, 51, 255));
+        jLabelMerciDeVotreVisite.setText("Merci de votre visite !");
 
         javax.swing.GroupLayout EcranAvisLayout = new javax.swing.GroupLayout(EcranAvis);
         EcranAvis.setLayout(EcranAvisLayout);
@@ -864,9 +870,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(EcranAvisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelSatisfaction, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelAvisInteresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSliderSatisfaction, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(jLabelMerciDeVotreVisite, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EcranAvisLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(EcranAvisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -879,9 +885,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
             EcranAvisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranAvisLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(jLabelMerciDeVotreVisite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jLabelAvisInteresse)
                 .addGap(34, 34, 34)
                 .addComponent(jSliderSatisfaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1101,6 +1107,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
             }
 
         } catch (NotFound | CannotProceed | InvalidName | HeadlessException e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_boutonSeConnecterActionPerformed
 
@@ -1147,7 +1154,8 @@ public class ClientSmartphone extends javax.swing.JFrame {
             System.out.println("numéro de carte : " + carte.idCarte);
                 
         } 
-        catch (Exception e) {
+        catch (NotFound | CannotProceed | InvalidName e) {
+            e.printStackTrace();
         }
         
         //Affichage de l'écran de confirmation ou d'annulation
@@ -1165,57 +1173,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_BoutonPayerActionPerformed
-
-    private void dateDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateDActionPerformed
-        // TODO add your handling code here:
-        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
-
-        //Récupération de la date de début
-        Date dd, df;
-        try {
-            dd = formater.parse(dateD.getText());
-            df = formater.parse(dateF.getText());
-            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24;
-
-            long diff = Math.abs(df.getTime() - dd.getTime());
-            long nb_jour = (long) diff / CONST_DURATION_OF_DAY;
-
-            //Calcul du montant en fonction du nombre de jours (5 euros par jour)
-            long montant = (nb_jour * 5) + 1;
-            System.out.println(String.valueOf(montant));
-
-            //J'affiche la valeur du montant dans l'input du montant
-            textMontant.setText(String.valueOf(montant));
-
-        } catch (ParseException ex) {
-            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_dateDActionPerformed
-
-    private void dateFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFActionPerformed
-        // TODO add your handling code here:
-        DateFormat formater = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
-
-        //Récupération de la date de début
-        Date dd, df;
-        try {
-            dd = formater.parse(dateD.getText());
-            df = formater.parse(dateF.getText());
-            final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24;
-
-            long diff = Math.abs(df.getTime() - dd.getTime());
-            long nb_jour = (long) diff / CONST_DURATION_OF_DAY;
-
-            //Calcul du montant en fonction du nombre de jours (5 euros par jour)
-            long montant = (nb_jour * 5) + 5;
-
-            //J'affiche la valeur du montant dans l'input du montant
-            textMontant.setText(String.valueOf(montant));
-
-        } catch (ParseException ex) {
-            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_dateFActionPerformed
 
     private void BoutonVoirSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonVoirSiteActionPerformed
         //Retour à l'écran d'accueil sans le bouton "réserver"
@@ -1250,8 +1207,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jLabelHeureDebutVisite.setText("Date d'entrée : " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
         jLabelNumeroCarte.setText("Numéro de carte : " + carte.idCarte);
         CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranSortir");
-        
+        card.show(mainPanel, "EcranSortir");    
         
     }//GEN-LAST:event_jButtonEntrerNFCActionPerformed
 
@@ -1307,6 +1263,95 @@ public class ClientSmartphone extends javax.swing.JFrame {
         card.show(mainPanel, "EcranAccueil");
     }//GEN-LAST:event_jButtonIgnorerActionPerformed
 
+    private void dateFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateFKeyReleased
+        textMontant.setText("");
+        BoutonPayer.setEnabled(false);
+    }//GEN-LAST:event_dateFKeyReleased
+
+    private void dateDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateDKeyReleased
+        textMontant.setText("");
+        BoutonPayer.setEnabled(false);
+
+        if (dateD.getText().length() == 8) {
+
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+                if (sdf.parse(dateD.getText()).before(sdf.parse(sdf.format(new Date())))) {
+                    JOptionPane.showMessageDialog(this, "Erreur : \nLa date de début est antérieure à la date actuelle ! ", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    dateD.setValue(null);
+                    dateF.setValue(null);
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_dateDKeyReleased
+
+    private void jButtonCalculerMontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculerMontantActionPerformed
+ 
+        //on contrôle la saisie seulement si les deux champs date sont renseignés
+        if (!dateD.getText().equals("") && !dateF.getText().equals("")) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+                
+                Date dateDebut = sdf.parse(dateD.getText());
+                Date dateFin = sdf.parse(dateF.getText());
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateDebut);
+                calendar.add(Calendar.DATE, 6);
+                dateFinTheorique = calendar.getTime();
+                
+                if (dateDebut.after(dateFin)) {
+                    JOptionPane.showMessageDialog(this, "Erreur : \nLa date de début doit être antérieure à la date de fin ! ", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    textMontant.setText("");
+                    BoutonPayer.setEnabled(false);
+                    dateF.setValue(null);
+                } 
+                
+                else {
+                if(dateDebut.before(sdf.parse(sdf.format(new Date())))){
+                    System.out.println("pas bon!");
+                    dateD.setValue(null);
+                    dateF.setValue(null);
+                }
+                
+                else {
+
+                    if (dateFin.after(dateFinTheorique)) {
+                        JOptionPane.showMessageDialog(this, "Erreur : \nLa réservation ne doit pas excéder 7 jours ! ", "Erreur", JOptionPane.WARNING_MESSAGE);
+                        textMontant.setText("");
+                        BoutonPayer.setEnabled(false);
+                        dateF.setValue(null);
+                    } else {
+
+                        final long CONST_DURATION_OF_DAY = 1000 * 60 * 60 * 24;
+
+                        long diff = Math.abs(dateFin.getTime() - dateDebut.getTime());
+                        long nb_jour = (long) diff / CONST_DURATION_OF_DAY;
+
+                        //Calcul du montant en fonction du nombre de jours (5 euros par jour)
+                        long montant = (nb_jour * 5) + 5;
+
+                        //Affichage de la valeur du montant dans l'input du montant
+                        textMontant.setText(String.valueOf(montant));
+                        BoutonPayer.setEnabled(true);
+                    }
+                }
+            }
+    
+            } catch (ParseException ex) {
+                Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Erreur : \nVeuillez rentrer une date de début et une date de fin ! ", "Erreur", JOptionPane.WARNING_MESSAGE);
+            textMontant.setText("");
+            BoutonPayer.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_jButtonCalculerMontantActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -1343,25 +1388,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
             org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
             //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
 
-            //Recherche de l'office
-            /*org.omg.CosNaming.NameComponent[] office = new org.omg.CosNaming.NameComponent[1];
-             office[0] = new org.omg.CosNaming.NameComponent(nom_office, "");
-             org.omg.CORBA.Object distantOffice = nameRoot.resolve(office);
-            
-             //3
-             monServAchat = AssistanceTouristique.ServiceAchatOfficeHelper.narrow(distantOffice);
-             //monServBancaire = AssistanceTouristique.ServiceBancaireHelper.narrow(distantOffice);
-             */
-            /*
-             //Lancement du serveur service bancaire
-             serveur_bancaire = new AutresServices.ServeurServiceBancaire(orb, entree_std, sortie_std);
-             Thread threadServBancaire = new Thread(serveur_bancaire);
-             threadServBancaire.start();*/
-
             //Appel à l'interface graphique
             new ClientSmartphone(nameRoot, nomOffice).setVisible(true);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1401,18 +1432,17 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonAnnulerEntrer;
+    private javax.swing.JButton jButtonCalculerMontant;
     private javax.swing.JButton jButtonDonnerAvis;
     private javax.swing.JButton jButtonEntrer;
     private javax.swing.JButton jButtonEntrerNFC;
     private javax.swing.JButton jButtonIgnorer;
     private javax.swing.JButton jButtonSortirDuSite;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelAvisInteresse;
+    private javax.swing.JLabel jLabelBonneVisite;
+    private javax.swing.JLabel jLabelConfirmationPaiement;
     private javax.swing.JLabel jLabelHeureDebutVisite;
+    private javax.swing.JLabel jLabelMerciDeVotreVisite;
     private javax.swing.JLabel jLabelMessagePaiement;
     private javax.swing.JLabel jLabelNumeroCarte;
     private javax.swing.JLabel jLabelSatisfaction;
@@ -1431,9 +1461,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JLabel labelIdentifiant;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelPassword1;
-    private javax.swing.JLabel labelPassword2;
-    private javax.swing.JLabel labelPassword3;
+    private javax.swing.JLabel labelPresentation1;
+    private javax.swing.JLabel labelPresentation2;
+    private javax.swing.JLabel labelPresentation3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel numtelSite;
     private javax.swing.JLabel sousTitreSite;
