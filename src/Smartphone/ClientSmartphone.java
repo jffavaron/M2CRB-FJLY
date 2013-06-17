@@ -17,9 +17,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import javax.swing.event.ListDataListener;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.InvalidName;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
@@ -100,16 +103,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jTextPaneIdentification = new javax.swing.JTextPane();
         boutonInscription = new javax.swing.JButton();
         boutonMotDePasseOublie = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         EcranAccueil = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         boutonReserver = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListSitesAVisiter = new javax.swing.JList();
+        jLabelBienvenueOffice = new javax.swing.JLabel();
         EcranInfoSite = new javax.swing.JPanel();
         imageSite = new javax.swing.JLabel();
         titreSite = new javax.swing.JLabel();
@@ -355,69 +353,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
         mainPanel.add(EcranIdentification, "EcranIdentification");
         EcranIdentification.getAccessibleContext().setAccessibleName("");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/company_logo45x45.jpg"))); // NOI18N
-        jButton2.setText("Musée des Augustins - Musée des beaux arts de Toulouse");
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-deportation45x45.jpg"))); // NOI18N
-        jButton3.setText("Musée de la résistance et de la déportation");
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(8, 8, 8)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                    .addGap(9, 9, 9)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(154, 154, 154)
-                    .addComponent(jButton2)
-                    .addContainerGap(154, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(154, 154, 154)
-                    .addComponent(jButton3)
-                    .addContainerGap(154, Short.MAX_VALUE)))
-        );
-
-        mainPanel.add(jPanel2, "card12");
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse - Copie.jpg"))); // NOI18N
-        jButton1.setText("Muséum d'histoire naturelle de Toulouse");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/hg-labit45x45.jpg"))); // NOI18N
-        jButton4.setText("Musée Georges-Labit ");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/4385_20090101171725.jpg"))); // NOI18N
-        jButton5.setText("Musée Saint-Raymond de Toulouse");
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
         boutonReserver.setBackground(new java.awt.Color(0, 51, 255));
         boutonReserver.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         boutonReserver.setForeground(new java.awt.Color(255, 255, 255));
@@ -431,17 +366,19 @@ public class ClientSmartphone extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        jListSitesAVisiter.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jListSitesAVisiter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
+                jListSitesAVisiterMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(jListSitesAVisiter);
+
+        jLabelBienvenueOffice.setText("jLabel1");
 
         javax.swing.GroupLayout EcranAccueilLayout = new javax.swing.GroupLayout(EcranAccueil);
         EcranAccueil.setLayout(EcranAccueilLayout);
@@ -450,31 +387,19 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addGroup(EcranAccueilLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(EcranAccueilLayout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(EcranAccueilLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelBienvenueOffice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
+                    .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                 .addContainerGap())
         );
         EcranAccueilLayout.setVerticalGroup(
             EcranAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranAccueilLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelBienvenueOffice)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boutonReserver, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addGap(41, 41, 41))
         );
@@ -1111,11 +1036,16 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
                 this.monOffice = AssistanceTouristique.OfficeHelper.narrow(distantOffice);
 
+                jLabelBienvenueOffice.setText("Bienvenue sur les sites de l'office de " + this.nomOffice);
+                
                 //Récupération de la liste des sites à visiter
                 this.sitesAVisiter = monOffice.getListeSitesAVisiter(sitesVisites);
 
-                for(int i=0;i<this.sitesAVisiter.length;i++) {
-                    System.out.println("******************************************************");
+                Vector<String> listeTitresSites = new Vector<String>();
+
+                //parcours de la liste des sitesAVisiter pour initialiser un vector
+                for (int i = 0; i < this.sitesAVisiter.length; i++) {
+                    /*System.out.println("******************************************************");
                     System.out.println("idSite : " + sitesAVisiter[i].idSite);
                     System.out.println("titre : " + sitesAVisiter[i].titre);
                     System.out.println("adresse : " + sitesAVisiter[i].adresse);
@@ -1126,9 +1056,11 @@ public class ClientSmartphone extends javax.swing.JFrame {
                     System.out.println("affluenceCourante : " + sitesAVisiter[i].affluenceCourante);
                     System.out.println("coord.latitude : " + sitesAVisiter[i].coord.latitude);
                     System.out.println("coord.longitude : " + sitesAVisiter[i].coord.longitude);
-                    System.out.println("******************************************************");       
+                    System.out.println("******************************************************");*/  
+                    listeTitresSites.add(sitesAVisiter[i].titre);
                 }
                 
+                jListSitesAVisiter.setListData(listeTitresSites);
                 
                 CardLayout card = (CardLayout) mainPanel.getLayout();
                 card.show(mainPanel, "EcranAccueil");
@@ -1152,21 +1084,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private void fieldIdentifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdentifiantActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldIdentifiantActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
-        
-        
-        
-        
-        //On affiche les Infos du Site
-        CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranInfoSite");
-        //On rend le bouton Retour visible
-        boutonRetour.setVisible(true);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boutonReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonReserverActionPerformed
         CardLayout card = (CardLayout) mainPanel.getLayout();
@@ -1384,9 +1301,42 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonCalculerMontantActionPerformed
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        System.out.println("hello " + jList1.getSelectedValue().toString());
-    }//GEN-LAST:event_jList1MouseClicked
+    private void jListSitesAVisiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSitesAVisiterMouseClicked
+        // mise à jour des infos pour le détail d'un site
+        
+        // parcours de la liste des listes à visiter
+        for (int i = 0; i < this.sitesAVisiter.length; i++) {
+         
+            if (sitesAVisiter[i].titre.equals(jListSitesAVisiter.getSelectedValue().toString())){
+                imageSite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/logo_" + sitesAVisiter[i].codeSite + ".jpg")));
+                titreSite.setText(sitesAVisiter[i].titre);
+                sousTitreSite.setText("Ouvert de " + sitesAVisiter[i].horaireOuverture + " à " + sitesAVisiter[i].horairesFermeture);
+                adresseSite.setText(sitesAVisiter[i].adresse);
+                numtelSite.setText(sitesAVisiter[i].telephone);
+                jTextPane1.setText(sitesAVisiter[i].description);
+                jProgressBarAffluenceSite.setValue((int)sitesAVisiter[i].affluenceCourante);
+            }
+            
+            /*System.out.println("******************************************************");
+                    System.out.println("idSite : " + sitesAVisiter[i].idSite);
+                    System.out.println("titre : " + sitesAVisiter[i].titre);
+                    System.out.println("adresse : " + sitesAVisiter[i].adresse);
+                    System.out.println("description : " + sitesAVisiter[i].description);
+                    System.out.println("horaireOuverture : " + sitesAVisiter[i].horaireOuverture);
+                    System.out.println("horairesFermeture : " + sitesAVisiter[i].horairesFermeture);
+                    System.out.println("telephone : " + sitesAVisiter[i].telephone);
+                    System.out.println("affluenceCourante : " + sitesAVisiter[i].affluenceCourante);
+                    System.out.println("coord.latitude : " + sitesAVisiter[i].coord.latitude);
+                    System.out.println("coord.longitude : " + sitesAVisiter[i].coord.longitude);
+                    System.out.println("******************************************************");*/  
+
+                }
+        
+        boutonRetour.setVisible(true);
+        
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranInfoSite");
+    }//GEN-LAST:event_jListSitesAVisiterMouseClicked
     
     /**
      * @param args the command line arguments
@@ -1461,11 +1411,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JPanel footerPanel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel imageSite;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonAnnulerEntrer;
     private javax.swing.JButton jButtonCalculerMontant;
     private javax.swing.JButton jButtonDonnerAvis;
@@ -1474,15 +1419,15 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton jButtonIgnorer;
     private javax.swing.JButton jButtonSortirDuSite;
     private javax.swing.JLabel jLabelAvisInteresse;
+    private javax.swing.JLabel jLabelBienvenueOffice;
     private javax.swing.JLabel jLabelBonneVisite;
     private javax.swing.JLabel jLabelConfirmationPaiement;
     private javax.swing.JLabel jLabelHeureDebutVisite;
     private javax.swing.JLabel jLabelMerciDeVotreVisite;
     private javax.swing.JLabel jLabelNumeroCarte;
     private javax.swing.JLabel jLabelSatisfaction;
-    private javax.swing.JList jList1;
+    private javax.swing.JList jListSitesAVisiter;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBarAffluenceSite;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
