@@ -26,8 +26,13 @@ public class ServiceESSiteImpl extends ServiceESSitePOA {
     
     // revoie vrai si l'entrée est valide, faux sinon
     // TODO gérer exception
+    //TODO renvoyer l'id de la visite
     public boolean entrer(short idCarte) throws carteNonValideException{
         boolean estAutorise = this.db.estAutoriseeEntree(idCarte);
+        short idVisite;
+        if(estAutorise) {
+            idVisite = this.db.debuterVisite(idCarte);  
+        }
         ////throw new carteNonValideException();    // pour lever l'exception
         return estAutorise;      
     }

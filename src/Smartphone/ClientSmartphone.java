@@ -5,24 +5,19 @@
 package Smartphone;
 
 import AssistanceTouristique.*;
+import AssistanceTouristique.ServiceESSitePackage.carteNonValideException;
 
-import Office.ServeurOffice;
-import Office.ServeurServiceAchatOffice;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-import javax.swing.event.ListDataListener;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.InvalidName;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
@@ -49,8 +44,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
     
      public  org.omg.CORBA.Object distantOffice;*/
     private org.omg.CosNaming.NamingContext nameRoot;
-    private AssistanceTouristique.Office monOffice;
-    private AssistanceTouristique.ServiceAchatOffice monServAchat;
+    private Office monOffice;
+    private ServiceAchatOffice monServAchat;
+    private ServiceESSite monServES;
+    
     private AutresServices.ServeurServiceBancaire serveur_bancaire;
     private String nomOffice;
     private String dd, df;
@@ -136,6 +133,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
         jLabelConfirmationPaiement = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPaneCarte = new javax.swing.JTextPane();
+        jButtonOKPaiement = new javax.swing.JButton();
         EcranNFC = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneInstructionsNFC = new javax.swing.JTextPane();
@@ -664,18 +662,31 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTextPaneCarte);
 
+        jButtonOKPaiement.setText("OK");
+        jButtonOKPaiement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKPaiementActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EcranCarteLayout = new javax.swing.GroupLayout(EcranCarte);
         EcranCarte.setLayout(EcranCarteLayout);
         EcranCarteLayout.setHorizontalGroup(
             EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EcranCarteLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabelConfirmationPaiement)
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(EcranCarteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EcranCarteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(EcranCarteLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabelConfirmationPaiement)
+                        .addGap(0, 61, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(EcranCarteLayout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(jButtonOKPaiement)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EcranCarteLayout.setVerticalGroup(
             EcranCarteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,7 +695,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addComponent(jLabelConfirmationPaiement)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonOKPaiement)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         mainPanel.add(EcranCarte, "EcranCarte");
@@ -914,7 +927,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(boutonBilletterie, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(boutonRecherche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boutonRecherche, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         footerPanelLayout.setVerticalGroup(
@@ -1148,19 +1161,57 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
     private void jButtonEntrerNFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrerNFCActionPerformed
         
-        //Désactivation Accueil / Billeterie / Recherche
-        boutonAccueil.setEnabled(false);
-        boutonBilletterie.setEnabled(false);
-        boutonRecherche.setEnabled(false);
+        String nomServES = new String();
         
-        jLabelHeureDebutVisite.setText("Date d'entrée : " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
-        jLabelNumeroCarte.setText("Numéro de carte : " + carte.idCarte);
-        CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranSortir");    
-        
+        //recuperation de l'ID à partir du site
+         for (int i = 0; i < this.sitesAVisiter.length; i++) {
+             if(sitesAVisiter[i].titre.equals(titreSite.getText())){ 
+                 nomServES = "ES " + sitesAVisiter[i].codeSite;
+                 break;
+             }
+         }
+        Boolean autorisation = false;
+         //System.out.println(nomServES);
+         try {
+            /**
+             * ********* Recherche du service ES du site **********
+             */
+            org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
+            nameToFind[0] = new org.omg.CosNaming.NameComponent(nomServES, "");
+            org.omg.CORBA.Object distantServES = nameRoot.resolve(nameToFind);
+
+            this.monServES = ServiceESSiteHelper.narrow(distantServES);
+            
+            autorisation = monServES.entrer(idCarte);
+
+        } catch (NotFound | CannotProceed | InvalidName e) {
+            e.printStackTrace();
+        } catch (carteNonValideException ex) {
+            Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (autorisation) {
+            //Désactivation Accueil / Billeterie / Recherche
+            boutonAccueil.setEnabled(false);
+            boutonBilletterie.setEnabled(false);
+            boutonRecherche.setEnabled(false);
+            jLabelHeureDebutVisite.setText("Date d'entrée : " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
+            jLabelNumeroCarte.setText("Numéro de carte : " + carte.idCarte);
+            CardLayout card = (CardLayout) mainPanel.getLayout();
+            card.show(mainPanel, "EcranSortir");
+        } else {
+            JOptionPane.showMessageDialog(this, "Carte invalide !", "Erreur", JOptionPane.WARNING_MESSAGE);
+            //la carte est invalide on retourne à l'accueil
+            CardLayout card = (CardLayout) mainPanel.getLayout();
+            card.show(mainPanel, "EcranAccueil");
+        }
+
+
     }//GEN-LAST:event_jButtonEntrerNFCActionPerformed
 
     private void jButtonSortirDuSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSortirDuSiteActionPerformed
+        //Appel à la méthode distante sortir
+        //this.monServES.sortir(idVisite);
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranAvis");       
     }//GEN-LAST:event_jButtonSortirDuSiteActionPerformed
@@ -1337,6 +1388,13 @@ public class ClientSmartphone extends javax.swing.JFrame {
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranInfoSite");
     }//GEN-LAST:event_jListSitesAVisiterMouseClicked
+
+    private void jButtonOKPaiementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKPaiementActionPerformed
+        //on désactive le bouton réserver
+        boutonReserver.setEnabled(false);
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "EcranAccueil");
+    }//GEN-LAST:event_jButtonOKPaiementActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1417,6 +1475,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEntrer;
     private javax.swing.JButton jButtonEntrerNFC;
     private javax.swing.JButton jButtonIgnorer;
+    private javax.swing.JButton jButtonOKPaiement;
     private javax.swing.JButton jButtonSortirDuSite;
     private javax.swing.JLabel jLabelAvisInteresse;
     private javax.swing.JLabel jLabelBienvenueOffice;
