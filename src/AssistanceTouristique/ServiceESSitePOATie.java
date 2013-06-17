@@ -73,7 +73,7 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation entrer
      */
-    public boolean entrer(short idCarte)
+    public short entrer(short idCarte)
         throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException
     {
         return _tie.entrer( idCarte);
@@ -90,9 +90,9 @@ public class ServiceESSitePOATie extends ServiceESSitePOA
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction)
+    public void donnerAvisVisite(int idVisite, float satisfaction)
     {
-        _tie.donnerAvisVisite( visite,  satisfaction);
+        _tie.donnerAvisVisite( idVisite,  satisfaction);
     }
 
     /**

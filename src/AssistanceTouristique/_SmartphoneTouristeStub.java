@@ -21,51 +21,9 @@ public class _SmartphoneTouristeStub extends org.omg.CORBA.portable.ObjectImpl
     private final static Class _opsClass = AssistanceTouristique.SmartphoneTouristeOperations.class;
 
     /**
-     * Read accessor for idCarteAchetee attribute
-     * @return the attribute value
-     */
-    public short idCarteAchetee()
-    {
-        while(true)
-        {
-            if (!this._is_local())
-            {
-                org.omg.CORBA.portable.InputStream _input = null;
-                try {
-                    org.omg.CORBA.portable.OutputStream _output = this._request("_get_idCarteAchetee",true);
-                    _input = this._invoke(_output);
-                    return _input.read_short();
-                } catch (final org.omg.CORBA.portable.RemarshalException _exception) {
-                    continue;
-                } catch (final org.omg.CORBA.portable.ApplicationException _exception) {
-                    final String _exception_id = _exception.getId();
-                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
-                } finally {
-                    this._releaseReply(_input);
-                }
-            }
-            else
-            {
-                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("_get_idCarteAchetee",_opsClass);
-                if (_so == null)
-                   continue;
-                AssistanceTouristique.SmartphoneTouristeOperations _self = (AssistanceTouristique.SmartphoneTouristeOperations) _so.servant;
-                try
-                {
-                    return _self.idCarteAchetee();
-                }
-                finally
-                {
-                    _servant_postinvoke(_so);
-                }
-            }
-        }
-    }
-
-    /**
      * Operation notifierAvisVisite
      */
-    public void notifierAvisVisite(AssistanceTouristique.Visite visite, AssistanceTouristique.Site site)
+    public void notifierAvisVisite(int visite, String codeSite)
     {
         while(true)
         {
@@ -75,8 +33,8 @@ public class _SmartphoneTouristeStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("notifierAvisVisite",true);
-                    AssistanceTouristique.VisiteHelper.write(_output,visite);
-                    AssistanceTouristique.SiteHelper.write(_output,site);
+                    _output.write_long(visite);
+                    _output.write_string(codeSite);
                     _input = this._invoke(_output);
                     return;
                 }
@@ -102,7 +60,7 @@ public class _SmartphoneTouristeStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.SmartphoneTouristeOperations _self = (AssistanceTouristique.SmartphoneTouristeOperations) _so.servant;
                 try
                 {
-                    _self.notifierAvisVisite( visite,  site);
+                    _self.notifierAvisVisite( visite,  codeSite);
                     return;
                 }
                 finally

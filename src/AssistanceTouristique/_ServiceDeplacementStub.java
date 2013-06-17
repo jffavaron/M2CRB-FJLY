@@ -23,7 +23,7 @@ public class _ServiceDeplacementStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation calculerDureeTrajet
      */
-    public int calculerDureeTrajet(AssistanceTouristique.Coordonnees coordGPS_A, AssistanceTouristique.Coordonnees coordGPS_B, String mode)
+    public float calculerDureeTrajet(AssistanceTouristique.Coordonnees coordGPS_A, AssistanceTouristique.Coordonnees coordGPS_B, String mode)
     {
         while(true)
         {
@@ -37,7 +37,7 @@ public class _ServiceDeplacementStub extends org.omg.CORBA.portable.ObjectImpl
                     AssistanceTouristique.CoordonneesHelper.write(_output,coordGPS_B);
                     _output.write_string(mode);
                     _input = this._invoke(_output);
-                    int _arg_ret = _input.read_long();
+                    float _arg_ret = _input.read_float();
                     return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)

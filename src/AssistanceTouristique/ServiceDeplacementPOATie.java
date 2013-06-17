@@ -65,7 +65,7 @@ public class ServiceDeplacementPOATie extends ServiceDeplacementPOA
     /**
      * Operation calculerDureeTrajet
      */
-    public int calculerDureeTrajet(AssistanceTouristique.Coordonnees coordGPS_A, AssistanceTouristique.Coordonnees coordGPS_B, String mode)
+    public float calculerDureeTrajet(AssistanceTouristique.Coordonnees coordGPS_A, AssistanceTouristique.Coordonnees coordGPS_B, String mode)
     {
         return _tie.calculerDureeTrajet( coordGPS_A,  coordGPS_B,  mode);
     }

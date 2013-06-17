@@ -63,19 +63,11 @@ public class SmartphoneTouristePOATie extends SmartphoneTouristePOA
     }
 
     /**
-     * Read accessor for idCarteAchetee attribute
-     */
-    public short idCarteAchetee()
-    {
-        return _tie.idCarteAchetee();
-    }
-
-    /**
      * Operation notifierAvisVisite
      */
-    public void notifierAvisVisite(AssistanceTouristique.Visite visite, AssistanceTouristique.Site site)
+    public void notifierAvisVisite(int visite, String codeSite)
     {
-        _tie.notifierAvisVisite( visite,  site);
+        _tie.notifierAvisVisite( visite,  codeSite);
     }
 
 }

@@ -74,7 +74,7 @@ public class OfficeImpl extends OfficePOA {
     public Site[] getListeSitesAVisiter(short[] listeSitesVisites) {
         // récupération des ids des sites à visiter
         short[] idSitesAVisiter;
-        if(listeSitesVisites != null)
+        if(listeSitesVisites.length != 0)
             //Si les sites ont déjà été visités, récupération des ids de ceux qui restent à visiter
             idSitesAVisiter = this.db.getSitesNonVisites(listeSitesVisites);
         else

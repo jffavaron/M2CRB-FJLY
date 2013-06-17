@@ -8,14 +8,8 @@ package AssistanceTouristique;
 public interface SmartphoneTouristeOperations
 {
     /**
-     * Read accessor for idCarteAchetee attribute
-     * @return the attribute value
-     */
-    public short idCarteAchetee();
-
-    /**
      * Operation notifierAvisVisite
      */
-    public void notifierAvisVisite(AssistanceTouristique.Visite visite, AssistanceTouristique.Site site);
+    public void notifierAvisVisite(int visite, String codeSite);
 
 }

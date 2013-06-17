@@ -17,8 +17,11 @@ public class SmartphoneTouristeImpl extends SmartphoneTouristePOA {
         
     }
     
-    public void notifierAvisVisite(Visite visite, Site site) {
-        
+    public void notifierAvisVisite(int idVisite, String codeSite) {
+        // TODO afficher saisie de l'avis
+        ServeurSmartphone2 servSmartphone = new ServeurSmartphone2(idVisite, codeSite);
+        //Appel à l'interface graphique
+        servSmartphone.afficherInterfaceAvis();
     }
 
     public short idCarteAchetee() {

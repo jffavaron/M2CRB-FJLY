@@ -15,7 +15,7 @@ public interface ServiceESSiteOperations
     /**
      * Operation entrer
      */
-    public boolean entrer(short idCarte)
+    public short entrer(short idCarte)
         throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException;
 
     /**
@@ -26,7 +26,7 @@ public interface ServiceESSiteOperations
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction);
+    public void donnerAvisVisite(int idVisite, float satisfaction);
 
     /**
      * Operation getAffluenceCourante

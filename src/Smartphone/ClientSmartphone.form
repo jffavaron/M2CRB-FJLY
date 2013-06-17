@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="SmartPhone"/>
@@ -488,32 +471,41 @@
                   <Component id="labelBandeauPresentation" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPanePresentationSite" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="labelBandeauAdresse" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="adresseSite" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="numtelSite" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Component id="labelAffluence" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="imageSite" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="numtelSite" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane4" min="-2" pref="154" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="titreSite" pref="205" max="32767" attributes="0"/>
-                                  <Component id="sousTitreSite" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonEntrer" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelDureeTrajet" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxMoyenDeplacement" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="jProgressBarAffluenceSite" min="-2" pref="275" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="imageSite" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="titreSite" pref="205" max="32767" attributes="0"/>
+                                          <Component id="sousTitreSite" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jButtonEntrer" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="jProgressBarAffluenceSite" min="-2" pref="275" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -538,14 +530,20 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelBandeauAdresse" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="adresseSite" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="numtelSite" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jComboBoxMoyenDeplacement" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelDureeTrajet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numtelSite" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelAffluence" min="-2" pref="25" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jProgressBarAffluenceSite" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -553,9 +551,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="imageSite">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Smartphone/Images/721-museum-toulouse100x100.jpg"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>
             </Component>
@@ -635,11 +630,6 @@
                 <Property name="text" type="java.lang.String" value="Mus&#xe9;e nationnal - Sciences"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="adresseSite">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="35 All&#xe9;e Jules Guesde Toulouse"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="numtelSite">
               <Properties>
                 <Property name="text" type="java.lang.String" value="05 67 73 84 84"/>
@@ -686,6 +676,39 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEntrerActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxMoyenDeplacement">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value=""/>
+                    <StringItem index="1" value="pi&#xe9;ton"/>
+                    <StringItem index="2" value="voiture"/>
+                    <StringItem index="3" value="transports en commun"/>
+                    <StringItem index="4" value="v&#xe9;lo"/>
+                  </StringArray>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxMoyenDeplacementItemStateChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelDureeTrajet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dur&#xe9;e du trajet : "/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="jTextPaneAdresseSite">
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="EcranBilletterie">
@@ -1297,7 +1320,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="boutonBilletterie" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="boutonRecherche" pref="109" max="32767" attributes="0"/>
+                  <Component id="boutonRecherche" max="32767" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>

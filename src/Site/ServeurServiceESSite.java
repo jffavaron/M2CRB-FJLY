@@ -85,7 +85,7 @@ public class ServeurServiceESSite /*implements Runnable */{
 
         // Creation du servant
         //*********************
-        ServiceESSiteImpl monServiceESSite = new ServiceESSiteImpl(nombd);
+        ServiceESSiteImpl monServiceESSite = new ServiceESSiteImpl(nombd, orb);
 
         // Activer le servant au sein du POA et recuperer son ID
         byte[] monServiceESSiteId = rootPOA.activate_object(monServiceESSite);

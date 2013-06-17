@@ -61,14 +61,18 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private float satisfaction = 50;
     private SmartphoneDBManager db;
     private Date dateFinTheorique;
+    private short idVisite;
 
     public ClientSmartphone(org.omg.CosNaming.NamingContext nameRoot, String nomOffice) {
         this.nameRoot = nameRoot;
         this.nomOffice=nomOffice;
         this.idCarte = 0;
-        this.coordSmartphone = new Coordonnees((float) 10, (float) 20);
+        this.coordSmartphone = new Coordonnees((float)43.5570857, (float)1.4660794000000124);
         this.db = new SmartphoneDBManager();
         this.sitesVisites = this.db.getSitesVisites();
+        if(this.sitesVisites == null){
+            this.sitesVisites = new short[0];
+        }
         this.carte = new Carte(this.idCarte,"","");
         //sitesVisites[0]=5;
         initComponents();
@@ -83,7 +87,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         bandeauPanel = new javax.swing.JPanel();
         ImageBandeau = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
@@ -113,11 +116,14 @@ public class ClientSmartphone extends javax.swing.JFrame {
         labelBandeauPresentation = new javax.swing.JLabel();
         labelBandeauAdresse = new javax.swing.JLabel();
         sousTitreSite = new javax.swing.JLabel();
-        adresseSite = new javax.swing.JLabel();
         numtelSite = new javax.swing.JLabel();
         labelAffluence = new javax.swing.JLabel();
         jProgressBarAffluenceSite = new javax.swing.JProgressBar();
         jButtonEntrer = new javax.swing.JButton();
+        jComboBoxMoyenDeplacement = new javax.swing.JComboBox();
+        jLabelDureeTrajet = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPaneAdresseSite = new javax.swing.JTextPane();
         EcranBilletterie = new javax.swing.JPanel();
         EcranRecherche = new javax.swing.JPanel();
         EcranAchat = new javax.swing.JPanel();
@@ -155,17 +161,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonAccueil = new javax.swing.JButton();
         boutonBilletterie = new javax.swing.JButton();
         boutonRecherche = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SmartPhone");
@@ -404,7 +399,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
         mainPanel.add(EcranAccueil, "EcranAccueil");
 
-        imageSite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/721-museum-toulouse100x100.jpg"))); // NOI18N
         imageSite.setText("jLabel1");
 
         titreSite.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -439,8 +433,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
         sousTitreSite.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         sousTitreSite.setText("Musée nationnal - Sciences");
 
-        adresseSite.setText("35 Allée Jules Guesde Toulouse");
-
         numtelSite.setText("05 67 73 84 84");
 
         labelAffluence.setBackground(new java.awt.Color(153, 153, 153));
@@ -463,6 +455,18 @@ public class ClientSmartphone extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxMoyenDeplacement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "piéton", "voiture", "transports en commun", "vélo" }));
+        jComboBoxMoyenDeplacement.setToolTipText("");
+        jComboBoxMoyenDeplacement.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMoyenDeplacementItemStateChanged(evt);
+            }
+        });
+
+        jLabelDureeTrajet.setText("Durée du trajet : ");
+
+        jScrollPane4.setViewportView(jTextPaneAdresseSite);
+
         javax.swing.GroupLayout EcranInfoSiteLayout = new javax.swing.GroupLayout(EcranInfoSite);
         EcranInfoSite.setLayout(EcranInfoSiteLayout);
         EcranInfoSiteLayout.setHorizontalGroup(
@@ -470,26 +474,32 @@ public class ClientSmartphone extends javax.swing.JFrame {
             .addComponent(labelBandeauPresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPanePresentationSite, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(labelBandeauAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adresseSite)
-                    .addComponent(numtelSite))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(labelAffluence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(EcranInfoSiteLayout.createSequentialGroup()
                 .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(imageSite, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(numtelSite)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titreSite, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(sousTitreSite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEntrer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDureeTrajet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxMoyenDeplacement, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(EcranInfoSiteLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jProgressBarAffluenceSite, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(imageSite, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(titreSite, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                    .addComponent(sousTitreSite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonEntrer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(EcranInfoSiteLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jProgressBarAffluenceSite, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         EcranInfoSiteLayout.setVerticalGroup(
             EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,14 +520,18 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelBandeauAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(adresseSite)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(numtelSite)
+                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxMoyenDeplacement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(EcranInfoSiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDureeTrajet)
+                    .addComponent(numtelSite))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelAffluence, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarAffluenceSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         mainPanel.add(EcranInfoSite, "EcranInfoSite");
@@ -927,7 +941,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(boutonBilletterie, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(boutonRecherche, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addComponent(boutonRecherche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         footerPanelLayout.setVerticalGroup(
@@ -1121,8 +1135,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
             this.monServAchat = ServiceAchatOfficeHelper.narrow(distantServAchat);
 
-            this.carte = monServAchat.acheterPrestation(dd, dd, montant);
-            System.out.println("numéro de carte : " + carte.idCarte);
+            this.carte = monServAchat.acheterPrestation(dd, df, montant);
 
         } catch (NotFound | CannotProceed | InvalidName e) {
             e.printStackTrace();
@@ -1170,7 +1183,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                  break;
              }
          }
-        Boolean autorisation = false;
+        
          //System.out.println(nomServES);
          try {
             /**
@@ -1181,8 +1194,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
             org.omg.CORBA.Object distantServES = nameRoot.resolve(nameToFind);
 
             this.monServES = ServiceESSiteHelper.narrow(distantServES);
-            
-            autorisation = monServES.entrer(idCarte);
+            System.out.println("numéro de carte : " + this.carte.idCarte);
+            this.idVisite = monServES.entrer(this.carte.idCarte);
+            System.out.println("IdVisite " + this.idVisite);
 
         } catch (NotFound | CannotProceed | InvalidName e) {
             e.printStackTrace();
@@ -1190,7 +1204,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
             Logger.getLogger(ClientSmartphone.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (autorisation) {
+        if (this.idVisite > 0) {
             //Désactivation Accueil / Billeterie / Recherche
             boutonAccueil.setEnabled(false);
             boutonBilletterie.setEnabled(false);
@@ -1211,9 +1225,10 @@ public class ClientSmartphone extends javax.swing.JFrame {
 
     private void jButtonSortirDuSiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSortirDuSiteActionPerformed
         //Appel à la méthode distante sortir
-        //this.monServES.sortir(idVisite);
+        this.monServES.sortir(idVisite);
+        
         CardLayout card = (CardLayout) mainPanel.getLayout();
-        card.show(mainPanel, "EcranAvis");       
+        card.show(mainPanel, "EcranAccueil");  
     }//GEN-LAST:event_jButtonSortirDuSiteActionPerformed
 
     private void jSliderSatisfactionStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderSatisfactionStateChanged
@@ -1248,6 +1263,9 @@ public class ClientSmartphone extends javax.swing.JFrame {
         boutonAccueil.setEnabled(true);
         boutonBilletterie.setEnabled(true);
         boutonRecherche.setEnabled(true);
+        
+        this.monServES.donnerAvisVisite(this.idVisite, this.satisfaction);
+        
         
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranAccueil");
@@ -1362,7 +1380,7 @@ public class ClientSmartphone extends javax.swing.JFrame {
                 imageSite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Smartphone/Images/logo_" + sitesAVisiter[i].codeSite + ".jpg")));
                 titreSite.setText(sitesAVisiter[i].titre);
                 sousTitreSite.setText("Ouvert de " + sitesAVisiter[i].horaireOuverture + " à " + sitesAVisiter[i].horairesFermeture);
-                adresseSite.setText(sitesAVisiter[i].adresse);
+                jTextPaneAdresseSite.setText(sitesAVisiter[i].adresse);
                 numtelSite.setText(sitesAVisiter[i].telephone);
                 jTextPane1.setText(sitesAVisiter[i].description);
                 jProgressBarAffluenceSite.setValue((int)sitesAVisiter[i].affluenceCourante);
@@ -1395,6 +1413,41 @@ public class ClientSmartphone extends javax.swing.JFrame {
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "EcranAccueil");
     }//GEN-LAST:event_jButtonOKPaiementActionPerformed
+
+    private void jComboBoxMoyenDeplacementItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMoyenDeplacementItemStateChanged
+        Coordonnees coordSite = new Coordonnees();
+        // parcours de la liste des listes à visiter
+        for (int i = 0; i < this.sitesAVisiter.length; i++) {
+            if (sitesAVisiter[i].titre.equals(jListSitesAVisiter.getSelectedValue().toString())) {
+                coordSite = sitesAVisiter[i].coord;
+                break;
+            }
+        }
+        
+        try {
+            /**
+             * ********* Recherche du service de déplacement du site **********
+             */
+            String nomDplt = AutresServices.ServeurServiceDeplacement.nom_deplacement;
+
+            org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
+            nameToFind[0] = new org.omg.CosNaming.NameComponent(nomDplt, "");
+            org.omg.CORBA.Object distantServDplt = nameRoot.resolve(nameToFind);
+
+            ServiceDeplacement servDplt = ServiceDeplacementHelper.narrow(distantServDplt);
+
+            //Appel à la méthode distante du service
+            int dureeTrajet = (int)servDplt.calculerDureeTrajet(coordSmartphone, coordSite, jComboBoxMoyenDeplacement.getSelectedItem().toString());
+            
+            jLabelDureeTrajet.setText("Durée du trajet : " + dureeTrajet + " minute(s)");
+
+        } catch (NotFound | CannotProceed | InvalidName e) {
+            e.printStackTrace();
+        }
+     
+        
+        
+    }//GEN-LAST:event_jComboBoxMoyenDeplacementItemStateChanged
     
     /**
      * @param args the command line arguments
@@ -1431,7 +1484,16 @@ public class ClientSmartphone extends javax.swing.JFrame {
             //2 
             org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
             //org.omg.CosNaming.NamingContext nameRoot = org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object("corbaloc:iiop:1.2@127.0.0.1:2001/NameService"));
+            
+            //Construction du nom a rechercher
+            /*org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
+            nameToFind[0] = new org.omg.CosNaming.NameComponent("Smartphone","");
 
+            //Recherche aupres du naming service
+            org.omg.CORBA.Object distantSmartphone = nameRoot.resolve(nameToFind);
+            System.out.println("Objet Smartphone trouve aupres du service de noms. IOR de l'objet :");
+            System.out.println(orb.object_to_string(distantSmartphone));*/
+            
             //Appel à l'interface graphique
             new ClientSmartphone(nameRoot, nomOffice).setVisible(true);
 
@@ -1452,7 +1514,6 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JPanel EcranRecherche;
     private javax.swing.JPanel EcranSortir;
     private javax.swing.JLabel ImageBandeau;
-    private javax.swing.JLabel adresseSite;
     private javax.swing.JPanel bandeauPanel;
     private javax.swing.JButton boutonAccueil;
     private javax.swing.JButton boutonBilletterie;
@@ -1477,24 +1538,27 @@ public class ClientSmartphone extends javax.swing.JFrame {
     private javax.swing.JButton jButtonIgnorer;
     private javax.swing.JButton jButtonOKPaiement;
     private javax.swing.JButton jButtonSortirDuSite;
+    private javax.swing.JComboBox jComboBoxMoyenDeplacement;
     private javax.swing.JLabel jLabelAvisInteresse;
     private javax.swing.JLabel jLabelBienvenueOffice;
     private javax.swing.JLabel jLabelBonneVisite;
     private javax.swing.JLabel jLabelConfirmationPaiement;
+    private javax.swing.JLabel jLabelDureeTrajet;
     private javax.swing.JLabel jLabelHeureDebutVisite;
     private javax.swing.JLabel jLabelMerciDeVotreVisite;
     private javax.swing.JLabel jLabelNumeroCarte;
     private javax.swing.JLabel jLabelSatisfaction;
     private javax.swing.JList jListSitesAVisiter;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBarAffluenceSite;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneIdentification;
     private javax.swing.JScrollPane jScrollPanePresentationSite;
     private javax.swing.JSlider jSliderSatisfaction;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPaneAdresseSite;
     private javax.swing.JTextPane jTextPaneCarte;
     private javax.swing.JTextPane jTextPaneIdentification;
     private javax.swing.JTextPane jTextPaneInstructionsNFC;

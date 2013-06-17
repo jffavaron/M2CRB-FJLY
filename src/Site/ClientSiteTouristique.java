@@ -19,17 +19,10 @@ import javax.swing.JOptionPane;
  * @author Lydia
  */
 public class ClientSiteTouristique extends javax.swing.JFrame {
-    //TODO BD site GL
+
     private String nombd;
-    //private static String nombd = "bd_site_histoirenaturelle";
-    //private static String nombd = "bd_site_georgeslabit";
-    //private static String nombd = "bd_site_saintraymond";
-    public static boolean estPremierLancement = true;
     private org.omg.CosNaming.NamingContext naming;
 
-    /*public static void setNombd(String str) {
-        nombd = str;
-    }*/
     
     /**
      * Creates new form ClientSite
@@ -435,19 +428,18 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // on consulte la bdd pour savoir si c'est le premier lancement de l'application
-        try {
+        /*try {
 
             // Connexion
-            Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost/" + nombd, "root", "");
-            Statement smt2 = conn2.createStatement();
+            //Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost/" + nombd, "root", "");
+            //Statement smt2 = conn2.createStatement();
 
-            ResultSet result = smt2.executeQuery("SELECT estPremierLancement FROM infosite");
-            result.first();
-            //System.out.println("estPremierLancement" + result.getInt("estPremierLancement"));
+            //ResultSet result = smt2.executeQuery("SELECT estPremierLancement FROM infosite");
+            //result.first();
 
             //Lors du lancement de l'application on vérifie en base si c'est le premier lancement
-            CardLayout card = (CardLayout) mainPanel.getLayout();
-            if (result.getInt("estPremierLancement") == 1) {
+            /*CardLayout card = (CardLayout) mainPanel.getLayout();
+            if (this.idSite.equals == 0) {
                 card.show(mainPanel, "EcranInitialisationSite");
             } else {
                 card.show(mainPanel, "Accueil");
@@ -455,7 +447,7 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }//GEN-LAST:event_formComponentShown
 
     private void jTextFieldTitreSiteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTitreSiteFocusGained
@@ -507,7 +499,8 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAreaDescriptionSiteFocusLost
 
     private void jButtonValiderAssistantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderAssistantActionPerformed
-         
+    //Non retenue finalement ...
+        /*     
         // vérification que tous les champs ont été renseignés ...
         if (jTextFieldTitreSite.getText().equals("titre du site ...")
                 || jTextFieldAdresseSite.getText().equals("adresse du site ...")
@@ -569,7 +562,7 @@ public class ClientSiteTouristique extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 Logger.getLogger(ClientSiteTouristique.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }      
+        }*/      
     }//GEN-LAST:event_jButtonValiderAssistantActionPerformed
 
     private void jTextFieldLatitudeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLatitudeFocusGained

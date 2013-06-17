@@ -73,7 +73,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation entrer
      */
-    public boolean entrer(short idCarte)
+    public short entrer(short idCarte)
         throws AssistanceTouristique.ServiceESSitePackage.carteNonValideException
     {
         while(true)
@@ -86,7 +86,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                     org.omg.CORBA.portable.OutputStream _output = this._request("entrer",true);
                     _output.write_short(idCarte);
                     _input = this._invoke(_output);
-                    boolean _arg_ret = _input.read_boolean();
+                    short _arg_ret = _input.read_short();
                     return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
@@ -179,7 +179,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation donnerAvisVisite
      */
-    public void donnerAvisVisite(AssistanceTouristique.Visite visite, float satisfaction)
+    public void donnerAvisVisite(int idVisite, float satisfaction)
     {
         while(true)
         {
@@ -189,7 +189,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 try
                 {
                     org.omg.CORBA.portable.OutputStream _output = this._request("donnerAvisVisite",false);
-                    AssistanceTouristique.VisiteHelper.write(_output,visite);
+                    _output.write_long(idVisite);
                     _output.write_float(satisfaction);
                     _input = this._invoke(_output);
                     return;
@@ -216,7 +216,7 @@ public class _ServiceESSiteStub extends org.omg.CORBA.portable.ObjectImpl
                 AssistanceTouristique.ServiceESSiteOperations _self = (AssistanceTouristique.ServiceESSiteOperations) _so.servant;
                 try
                 {
-                    _self.donnerAvisVisite( visite,  satisfaction);
+                    _self.donnerAvisVisite( idVisite,  satisfaction);
                     return;
                 }
                 finally

@@ -33,9 +33,7 @@ public abstract class SmartphoneTouristePOA extends org.omg.PortableServer.Serva
             final org.omg.CORBA.portable.ResponseHandler handler)
     {
 
-        if (opName.equals("_get_idCarteAchetee")) {
-                return _invoke__get_idCarteAchetee(_is, handler);
-        } else if (opName.equals("notifierAvisVisite")) {
+        if (opName.equals("notifierAvisVisite")) {
                 return _invoke_notifierAvisVisite(_is, handler);
         } else {
             throw new org.omg.CORBA.BAD_OPERATION(opName);
@@ -43,22 +41,12 @@ public abstract class SmartphoneTouristePOA extends org.omg.PortableServer.Serva
     }
 
     // helper methods
-    private org.omg.CORBA.portable.OutputStream _invoke__get_idCarteAchetee(
-            final org.omg.CORBA.portable.InputStream _is,
-            final org.omg.CORBA.portable.ResponseHandler handler) {
-        org.omg.CORBA.portable.OutputStream _output;
-        short arg = idCarteAchetee();
-        _output = handler.createReply();
-        _output.write_short(arg);
-        return _output;
-    }
-
     private org.omg.CORBA.portable.OutputStream _invoke_notifierAvisVisite(
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        AssistanceTouristique.Visite arg0_in = AssistanceTouristique.VisiteHelper.read(_is);
-        AssistanceTouristique.Site arg1_in = AssistanceTouristique.SiteHelper.read(_is);
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
 
         notifierAvisVisite(arg0_in, arg1_in);
 

@@ -64,7 +64,7 @@ public class ServiceAchatOfficeImpl extends ServiceAchatOfficePOA {
     
     public Carte acheterPrestation(String dateD, String dateF, float montant) {
         //Génération d'un numéro de carte aléatoire
-        short idCarte = (short)(Math.random() * 15 + 1);
+        short idCarte = (short)(Math.random() * 255 + 1);
         
         //Construction de la carte
         Carte c = new Carte(idCarte, dateD, dateF);

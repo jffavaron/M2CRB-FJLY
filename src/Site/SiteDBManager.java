@@ -296,7 +296,7 @@ public class SiteDBManager {
         short idVisite = 0;
         try {
             // requete sql insert 
-            String query = "INSERT idCarte, dateHeureEntree INTO Visites VALUES(" + idCarte + 
+            String query = "INSERT INTO Visites (idCarte, dateHeureEntree) VALUES(" + idCarte + 
                     ",NOW())";            
             smt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);                     
             
@@ -324,7 +324,7 @@ public class SiteDBManager {
     }
     
     // MAJ la viste en ajoutant l'avis (taux de satisfaction)
-    public void setTauxSatisfactionVisite(short idVisite, float tauxSatisfaction){
+    public void setTauxSatisfactionVisite(int idVisite, float tauxSatisfaction){
         try {
             // requete sql insert 
             String query = "UPDATE Visites SET tauxSatisfaction = " + tauxSatisfaction

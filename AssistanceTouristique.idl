@@ -1,4 +1,4 @@
-// IDL du 14/06/13
+// IDL du 17/06/13
 // Module de gestion d'assistance touristique
 module AssistanceTouristique{
 	// --#### Définitions des types
@@ -47,12 +47,9 @@ module AssistanceTouristique{
 	//--#### Définitions des interfaces
 	
 	// Interface SmartphoneTouriste
-	interface SmartphoneTouriste{
-		// Attributs 
-		readonly attribute short idCarteAchetee; // accessible
-		
-		// Méthodes
-		void notifierAvisVisite(in Visite visite, in Site site);
+	interface SmartphoneTouriste{		
+		// Méthode
+		void notifierAvisVisite(in long visite, in string codeSite);
 	};
 	
 	// Interface Office
@@ -71,7 +68,7 @@ module AssistanceTouristique{
 	// Interface SiteTouristique
 	interface SiteTouristique{
 		// Méthodes
-		Site getInfoSite( );	// revoie l heure de fermeture du site sous la forme HHMM
+		Site getInfoSite();	// revoie l heure de fermeture du site sous la forme HHMM
 	};
 	
 	// Interface ServiceESSite
@@ -81,9 +78,9 @@ module AssistanceTouristique{
 	
 		// Méthodes		
 		oneway void autoriserEntree(in Carte carte);	// enregistre la carte comme valide pour la période correspondante
-		boolean entrer(in short idCarte) raises (carteNonValideException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
+		short entrer(in short idCarte) raises (carteNonValideException);	// revoie true si l'entrée correspondant à l'idCarte est possible, false sinon
 		oneway void sortir(in short idVisite);
-		oneway void donnerAvisVisite(in Visite visite, in float satisfaction);
+		oneway void donnerAvisVisite(in long idVisite, in float satisfaction);
 		float getAffluenceCourante();    // renvoie l'affluence courante du site touristique
                 float generateAffluenceQuotidienne();    // renvoie l'affluence quotidienne du site touristique (calculée)
                 string generateDureeMoyenneVisite();    // renvoie la durée moyenne d'une visite du site touristique (calculée)
@@ -96,7 +93,7 @@ module AssistanceTouristique{
 	// Interface ServiceDeplacement
 	interface ServiceDeplacement{
 		// Méthodes
-		long calculerDureeTrajet(in Coordonnees coordGPS_A, in Coordonnees coordGPS_B, in string mode);	// renvoie la durée du trajet en minute
+		float calculerDureeTrajet(in Coordonnees coordGPS_A, in Coordonnees coordGPS_B, in string mode);	// renvoie la durée du trajet en minute
 	};
 	
 	// Interface ServiceBanque

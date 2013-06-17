@@ -91,10 +91,10 @@ public abstract class ServiceESSitePOA extends org.omg.PortableServer.Servant
 
         try
         {
-            boolean _arg_result = entrer(arg0_in);
+            short _arg_result = entrer(arg0_in);
 
             _output = handler.createReply();
-            _output.write_boolean(_arg_result);
+            _output.write_short(_arg_result);
 
         }
         catch (AssistanceTouristique.ServiceESSitePackage.carteNonValideException _exception)
@@ -122,7 +122,7 @@ public abstract class ServiceESSitePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {
         org.omg.CORBA.portable.OutputStream _output;
-        AssistanceTouristique.Visite arg0_in = AssistanceTouristique.VisiteHelper.read(_is);
+        int arg0_in = _is.read_long();
         float arg1_in = _is.read_float();
 
         donnerAvisVisite(arg0_in, arg1_in);
